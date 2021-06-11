@@ -1,19 +1,21 @@
 package gr.uop;
 
-
 import java.util.Iterator;
-
-//import com.sun.javafx.scene.control.skin.FXVK;
 
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.geometry.Bounds;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -28,10 +30,10 @@ import javafx.stage.Window;
 public class Client extends Application {
 
     private PopupWindow keyboard;
-    
+
     @Override
     public void start(Stage stage) {
-        
+
         var label = new Label("Καλωσήρθατε στο κατάστημα μας!");
         label.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 50));
         label.setStyle("-fx-background-color: grey;padding: 20px;");
@@ -39,11 +41,33 @@ public class Client extends Application {
         TextField plate = new TextField();
         plate.setMinWidth(100);
 
-
-        VBox vb = new VBox(label,label_plate,plate);
+        VBox vb = new VBox(label, label_plate, plate);
         vb.setAlignment(Pos.CENTER);
         vb.setSpacing(20);
-        var scene = new Scene(new StackPane(vb), 640, 480);
+        VBox numbers = new VBox();
+        GridPane gridNumber = new GridPane();
+        gridNumber.setPadding(new Insets(5));
+        gridNumber.setHgap(5);
+        gridNumber.setVgap(5);
+        // Tο μηδεν ??!?!?
+        int numbutton = 9;
+        for (int r = 0; r < 3; r++) {
+            for (int c = 0; c < 3; c++) {
+                Button button = new Button(" " + numbutton);
+                numbutton--;
+                gridNumber.add(button, c, r);
+            }
+        }
+        Button button0 = new Button("0");
+        button0.setMinWidth(50);
+        button0.setAlignment(Pos.BASELINE_CENTER);
+        numbers.getChildren().addAll(gridNumber, button0);
+
+        BorderPane mainPane = new BorderPane();
+        mainPane.setTop(vb);
+        mainPane.setCenter(numbers);
+        mainPane.setPadding(new Insets(0, 0, 10, 0));
+        var scene = new Scene(mainPane, 640, 480);
 
         stage.setMinWidth(1024);
         stage.setMinHeight(768);
@@ -53,62 +77,10 @@ public class Client extends Application {
         stage.setScene(scene);
         stage.show();
 
-        Node first = scene.getRoot().getChildrenUnmodifiable().get(0);
-        if (first != null) {
-            // FXVK.init(first);
-            // FXVK.attach(first);
-            keyboard = getPopupWindow();
-        }
-
-        plate.focusedProperty().addListener((ob, b, b1) -> {
-            if (keyboard == null) {
-                keyboard = getPopupWindow();
-            }
-
-            keyboard.setHideOnEscape(Boolean.FALSE);
-            keyboard.setAutoHide(Boolean.FALSE);
-            keyboard.centerOnScreen();
-            keyboard.requestFocus();
-
-            keyboard.yProperty().addListener(obs -> {
-
-                Platform.runLater(() -> {
-                    // Double y = Bounds.getHeight() - taskbarHeight - keyboard.getY();
-                    // plate.setMaxHeight((Bounds.getHeight() - y) * 0.4);
-                    // plate.setMinHeight((Bounds.getHeight() - y) * 0.4);
-                });
-            });
-
-        });
     }
 
     public static void main(String[] args) {
         launch(args);
     }
 
-    private PopupWindow getPopupWindow() {
-
-        // @SuppressWarnings("deprecation") 
-        // final Iterator<Window> windows = Window.impl_getWindows();
-
-        // while (windows.hasNext()) {
-        //     final Window window = windows.next();
-        //     if (window instanceof PopupWindow) {
-        //         if (window.getScene() != null && window.getScene().getRoot() != null) { 
-        //             Parent root = window.getScene().getRoot();
-        //             if (root.getChildrenUnmodifiable().size() > 0) {
-        //                 Node popup = root.getChildrenUnmodifiable().get(0);
-        //                 if (popup.lookup(".fxvk") != null) {
-        //                     FXVK vk = (FXVK) popup.lookup(".fxvk");
-        //                     // hide the key:
-        //                     vk.lookup(".hide").setVisible(false);
-        //                     return (PopupWindow) window;
-        //                 }
-        //             }
-        //         }
-        //         return null;
-        //     }
-        // }
-        return null;
-    }
 }
