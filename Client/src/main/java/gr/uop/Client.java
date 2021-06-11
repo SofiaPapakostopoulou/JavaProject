@@ -44,12 +44,42 @@ public class Client extends Application {
         VBox vb = new VBox(label, label_plate, plate);
         vb.setAlignment(Pos.CENTER);
         vb.setSpacing(20);
+
+        HBox keyboard = new HBox();
+
+        GridPane gridLetters = new GridPane();
+        gridLetters.setPadding(new Insets(5));
+        gridLetters.setHgap(5);
+        gridLetters.setVgap(5);
+        int letbutton = 65;
+        for (int r = 0; r < 2; r++) {
+            for (int c = 0; c < 10; c++) {
+                Button button = new Button(" " + (char) letbutton);
+                letbutton++;
+                gridLetters.add(button, c, r);
+            }
+
+            if (r == 0) {
+                Button backspace = new Button("Backspace");
+                gridLetters.add(backspace, 11, 0);
+            }
+
+        }
+
+        for (int c = 0; c < 6; c++) {
+            Button button = new Button(" " + (char) letbutton);
+            letbutton++;
+            gridLetters.add(button, c, 2);
+        }
+        Button space = new Button(" ");
+        space.setMaxWidth(600);
+        gridLetters.add(space, 6, 2);
         VBox numbers = new VBox();
         GridPane gridNumber = new GridPane();
         gridNumber.setPadding(new Insets(5));
         gridNumber.setHgap(5);
         gridNumber.setVgap(5);
-        // Tο μηδεν ??!?!?
+        // μηδεν ??!?!? :/
         int numbutton = 9;
         for (int r = 0; r < 3; r++) {
             for (int c = 0; c < 3; c++) {
@@ -62,10 +92,10 @@ public class Client extends Application {
         button0.setMinWidth(50);
         button0.setAlignment(Pos.BASELINE_CENTER);
         numbers.getChildren().addAll(gridNumber, button0);
-
+        keyboard.getChildren().addAll(gridLetters, numbers);
         BorderPane mainPane = new BorderPane();
         mainPane.setTop(vb);
-        mainPane.setCenter(numbers);
+        mainPane.setCenter(keyboard);
         mainPane.setPadding(new Insets(0, 0, 10, 0));
         var scene = new Scene(mainPane, 640, 480);
 
