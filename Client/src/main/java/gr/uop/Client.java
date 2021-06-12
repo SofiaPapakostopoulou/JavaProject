@@ -72,7 +72,7 @@ public class Client extends Application {
             gridLetters.add(button, c, 2);
         }
         Button space = new Button(" ");
-        space.setMaxWidth(600);
+        space.setMaxWidth(1200);
         gridLetters.add(space, 6, 2);
         VBox numbers = new VBox();
         GridPane gridNumber = new GridPane();
@@ -93,11 +93,14 @@ public class Client extends Application {
         button0.setAlignment(Pos.BASELINE_CENTER);
         numbers.getChildren().addAll(gridNumber, button0);
         keyboard.getChildren().addAll(gridLetters, numbers);
-        BorderPane mainPane = new BorderPane();
-        mainPane.setTop(vb);
-        mainPane.setCenter(keyboard);
-        mainPane.setPadding(new Insets(0, 0, 10, 0));
-        var scene = new Scene(mainPane, 640, 480);
+        // BorderPane mainPane = new BorderPane();
+        // mainPane.setTop(vb);
+        // mainPane.setCenter(keyboard);
+        // mainPane.setPadding(new Insets(0, 0, 10, 0));
+        // var scene = new Scene(mainPane, 640, 480);
+        keyboard.setAlignment(Pos.CENTER);
+        vb.getChildren().addAll(keyboard);
+        var scene = new Scene(new StackPane(vb), 640, 480);
 
         stage.setMinWidth(1024);
         stage.setMinHeight(768);
