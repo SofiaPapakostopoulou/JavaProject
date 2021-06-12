@@ -29,8 +29,6 @@ import javafx.stage.Window;
  */
 public class Client extends Application {
 
-    private PopupWindow keyboard;
-
     @Override
     public void start(Stage stage) {
 
@@ -40,7 +38,7 @@ public class Client extends Application {
         var label_plate = new Label("Παρακαλώ εισάγετε τον αριθμό της πινακίδας σας");
         TextField plate = new TextField();
         plate.setMinWidth(100);
-
+        plate.setMaxWidth(1000);
         VBox vb = new VBox(label, label_plate, plate);
         vb.setAlignment(Pos.CENTER);
         vb.setSpacing(20);
@@ -72,7 +70,7 @@ public class Client extends Application {
             gridLetters.add(button, c, 2);
         }
         Button space = new Button(" ");
-        space.setMaxWidth(1200);
+        // space.setMinWidth(100);
         gridLetters.add(space, 6, 2);
         VBox numbers = new VBox();
         GridPane gridNumber = new GridPane();
@@ -90,7 +88,8 @@ public class Client extends Application {
         }
         Button button0 = new Button("0");
         button0.setMinWidth(50);
-        button0.setAlignment(Pos.BASELINE_CENTER);
+
+        numbers.setAlignment(Pos.CENTER);
         numbers.getChildren().addAll(gridNumber, button0);
         keyboard.getChildren().addAll(gridLetters, numbers);
         // BorderPane mainPane = new BorderPane();
