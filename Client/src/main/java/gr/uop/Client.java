@@ -1,28 +1,20 @@
 package gr.uop;
 
-import java.util.Iterator;
-
+import java.util.ArrayList;
 import javafx.application.Application;
-import javafx.application.Platform;
-import javafx.geometry.Bounds;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
-import javafx.stage.PopupWindow;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 
 /**
  * JavaFX App
@@ -49,54 +41,157 @@ public class Client extends Application {
         gridLetters.setPadding(new Insets(5));
         gridLetters.setHgap(5);
         gridLetters.setVgap(5);
-        int letbutton = 65;
-        for (int r = 0; r < 2; r++) {
-            for (int c = 0; c < 10; c++) {
-                Button button = new Button(" " + (char) letbutton);
-                letbutton++;
-                gridLetters.add(button, c, r);
-            }
 
-            if (r == 0) {
-                Button backspace = new Button("Backspace");
-                gridLetters.add(backspace, 11, 0);
+        ArrayList<Button> letList = new ArrayList<Button>();
+        for (int r = 0; r < 3; r++) {
+            switch (r) {
+                case 0:
+                    Button Q = new Button("Q");
+                    gridLetters.add(Q, 0, r);
+                    letList.add(Q);
+                    Button W = new Button("W");
+                    gridLetters.add(W, 1, r);
+                    letList.add(W);
+                    Button E = new Button("E");
+                    gridLetters.add(E, 2, r);
+                    letList.add(E);
+                    Button R = new Button("R");
+                    gridLetters.add(R, 3, r);
+                    letList.add(R);
+                    Button T = new Button("T");
+                    gridLetters.add(T, 4, r);
+                    letList.add(T);
+                    Button Y = new Button("Y");
+                    gridLetters.add(Y, 5, r);
+                    letList.add(Y);
+                    Button U = new Button("U");
+                    gridLetters.add(U, 6, r);
+                    letList.add(U);
+                    Button I = new Button("I");
+                    gridLetters.add(I, 7, r);
+                    letList.add(I);
+                    Button O = new Button("O");
+                    gridLetters.add(O, 8, r);
+                    letList.add(O);
+                    Button P = new Button("P");
+                    gridLetters.add(P, 9, r);
+                    letList.add(P);
+                    Button backspace = new Button("Backspace");
+                    gridLetters.add(backspace, 10, 0);
+                    break;
+                case 1:
+                    Button A = new Button("A");
+                    gridLetters.add(A, 1, r);
+                    letList.add(A);
+                    Button S = new Button("S");
+                    gridLetters.add(S, 2, r);
+                    letList.add(S);
+                    Button D = new Button("D");
+                    gridLetters.add(D, 3, r);
+                    letList.add(D);
+                    Button F = new Button("F");
+                    gridLetters.add(F, 4, r);
+                    letList.add(F);
+                    Button G = new Button("G");
+                    gridLetters.add(G, 5, r);
+                    letList.add(G);
+                    Button H = new Button("H");
+                    gridLetters.add(H, 6, r);
+                    letList.add(H);
+                    Button J = new Button("J");
+                    gridLetters.add(J, 7, r);
+                    letList.add(J);
+                    Button K = new Button("K");
+                    gridLetters.add(K, 8, r);
+                    letList.add(K);
+                    Button L = new Button("L");
+                    gridLetters.add(L, 9, r);
+                    letList.add(L);
+                    break;
+                case 2:
+                    Button Z = new Button("Z");
+                    gridLetters.add(Z, 2, r);
+                    letList.add(Z);
+                    Button X = new Button("X");
+                    gridLetters.add(X, 3, r);
+                    letList.add(X);
+                    Button C = new Button("C");
+                    gridLetters.add(C, 4, r);
+                    letList.add(C);
+                    Button V = new Button("V");
+                    gridLetters.add(V, 5, r);
+                    letList.add(V);
+                    Button B = new Button("B");
+                    gridLetters.add(B, 6, r);
+                    letList.add(B);
+                    Button N = new Button("N");
+                    gridLetters.add(N, 7, r);
+                    letList.add(N);
+                    Button M = new Button("M");
+                    gridLetters.add(M, 8, r);
+                    letList.add(M);
+                    break;
             }
-
         }
-
-        for (int c = 0; c < 6; c++) {
-            Button button = new Button(" " + (char) letbutton);
-            letbutton++;
-            gridLetters.add(button, c, 2);
+        for (Button b : letList) {
+            b.setMinWidth(40);
         }
         Button space = new Button(" ");
-        // space.setMinWidth(100);
-        gridLetters.add(space, 6, 2);
+        space.setMinWidth(260);
+        VBox letters = new VBox(gridLetters, space);
         VBox numbers = new VBox();
         GridPane gridNumber = new GridPane();
         gridNumber.setPadding(new Insets(5));
         gridNumber.setHgap(5);
         gridNumber.setVgap(5);
-        // μηδεν ??!?!? :/
-        int numbutton = 9;
+        ArrayList<Button> numbList = new ArrayList<Button>();
         for (int r = 0; r < 3; r++) {
-            for (int c = 0; c < 3; c++) {
-                Button button = new Button(" " + numbutton);
-                numbutton--;
-                gridNumber.add(button, c, r);
+            switch (r) {
+                case 0:
+                    Button n7 = new Button("7");
+                    gridNumber.add(n7, 2, r);
+                    numbList.add(n7);
+                    Button n8 = new Button("8");
+                    gridNumber.add(n8, 1, r);
+                    numbList.add(n8);
+                    Button n9 = new Button("9");
+                    gridNumber.add(n9, 0, r);
+                    numbList.add(n9);
+                    break;
+                case 1:
+                    Button n4 = new Button("4");
+                    gridNumber.add(n4, 2, r);
+                    numbList.add(n4);
+                    Button n5 = new Button("5");
+                    gridNumber.add(n5, 1, r);
+                    numbList.add(n5);
+                    Button n6 = new Button("6");
+                    gridNumber.add(n6, 0, r);
+                    numbList.add(n6);
+                    break;
+                case 2:
+                    Button n1 = new Button("1");
+                    gridNumber.add(n1, 2, r);
+                    numbList.add(n1);
+                    Button n2 = new Button("2");
+                    gridNumber.add(n2, 1, r);
+                    numbList.add(n2);
+                    Button n3 = new Button("3");
+                    gridNumber.add(n3, 0, r);
+                    numbList.add(n3);
+                    break;
             }
         }
-        Button button0 = new Button("0");
-        button0.setMinWidth(50);
-
+        Button n0 = new Button("0");
+        ;
+        numbList.add(n0);
+        for (Button b : numbList) {
+            b.setMinWidth(40);
+        }
         numbers.setAlignment(Pos.CENTER);
-        numbers.getChildren().addAll(gridNumber, button0);
-        keyboard.getChildren().addAll(gridLetters, numbers);
-        // BorderPane mainPane = new BorderPane();
-        // mainPane.setTop(vb);
-        // mainPane.setCenter(keyboard);
-        // mainPane.setPadding(new Insets(0, 0, 10, 0));
-        // var scene = new Scene(mainPane, 640, 480);
+        numbers.getChildren().addAll(gridNumber, n0);
+        letters.setAlignment(Pos.CENTER);
+        keyboard.getChildren().addAll(letters, numbers);
         keyboard.setAlignment(Pos.CENTER);
         vb.getChildren().addAll(keyboard);
         var scene = new Scene(new StackPane(vb), 640, 480);
@@ -113,6 +208,7 @@ public class Client extends Application {
 
     public static void main(String[] args) {
         launch(args);
+
     }
 
 }
