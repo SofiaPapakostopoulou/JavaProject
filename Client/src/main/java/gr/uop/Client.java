@@ -2,6 +2,8 @@ package gr.uop;
 
 import java.util.ArrayList;
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -31,6 +33,8 @@ public class Client extends Application {
         TextField plate = new TextField();
         plate.setMinWidth(100);
         plate.setMaxWidth(1000);
+        plate.setMinHeight(100);
+        plate.setMaxHeight(1000);
         VBox vb = new VBox(label, label_plate, plate);
         vb.setAlignment(Pos.CENTER);
         vb.setSpacing(20);
@@ -76,8 +80,6 @@ public class Client extends Application {
                     Button P = new Button("P");
                     gridLetters.add(P, 9, r);
                     letList.add(P);
-                    Button backspace = new Button("Backspace");
-                    gridLetters.add(backspace, 10, 0);
                     break;
                 case 1:
                     Button A = new Button("A");
@@ -136,6 +138,8 @@ public class Client extends Application {
         for (Button b : letList) {
             b.setMinWidth(40);
         }
+        Button backspace = new Button("Backspace");
+        gridLetters.add(backspace, 10, 0);
         Button space = new Button(" ");
         space.setMinWidth(260);
         VBox letters = new VBox(gridLetters, space);
@@ -183,7 +187,7 @@ public class Client extends Application {
             }
         }
         Button n0 = new Button("0");
-        ;
+
         numbList.add(n0);
         for (Button b : numbList) {
             b.setMinWidth(40);
@@ -194,6 +198,45 @@ public class Client extends Application {
         keyboard.getChildren().addAll(letters, numbers);
         keyboard.setAlignment(Pos.CENTER);
         vb.getChildren().addAll(keyboard);
+
+        //////
+        plate.setText("                                                                   ");
+
+        for (Button b : letList) {
+            b.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent e) {
+                    String letter = b.getText();
+
+                    plate.setText(plate.getText() + letter);
+                }
+            });
+        }
+        for (Button b : numbList) {
+            b.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent e) {
+                    String n = b.getText();
+
+                    plate.setText(plate.getText() + n);
+                }
+            });
+        }
+        space.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+                plate.setText(plate.getText() + " ");
+            }
+        });
+
+        backspace.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+                plate.setText(plate.getText().substring(0, plate.getText().length() - 1));
+
+            }
+        });
+        /////
         var scene = new Scene(new StackPane(vb), 640, 480);
 
         stage.setMinWidth(1024);
