@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -32,9 +33,9 @@ public class Client extends Application {
         var label_plate = new Label("Παρακαλώ εισάγετε τον αριθμό της πινακίδας σας");
         TextField plate = new TextField();
         plate.setMinWidth(100);
-        plate.setMaxWidth(1000);
-        plate.setMinHeight(100);
-        plate.setMaxHeight(1000);
+        plate.setMaxWidth(500);
+        plate.setMinHeight(50);
+        plate.setMaxHeight(50);
         VBox vb = new VBox(label, label_plate, plate);
         vb.setAlignment(Pos.CENTER);
         vb.setSpacing(20);
@@ -152,36 +153,36 @@ public class Client extends Application {
         for (int r = 0; r < 3; r++) {
             switch (r) {
                 case 0:
-                    Button n7 = new Button("7");
-                    gridNumber.add(n7, 2, r);
-                    numbList.add(n7);
+                    Button n9 = new Button("9");
+                    gridNumber.add(n9, 2, r);
+                    numbList.add(n9);
                     Button n8 = new Button("8");
                     gridNumber.add(n8, 1, r);
                     numbList.add(n8);
-                    Button n9 = new Button("9");
-                    gridNumber.add(n9, 0, r);
-                    numbList.add(n9);
+                    Button n7 = new Button("7");
+                    gridNumber.add(n7, 0, r);
+                    numbList.add(n7);
                     break;
                 case 1:
-                    Button n4 = new Button("4");
-                    gridNumber.add(n4, 2, r);
-                    numbList.add(n4);
+                    Button n6 = new Button("6");
+                    gridNumber.add(n6, 2, r);
+                    numbList.add(n6);
                     Button n5 = new Button("5");
                     gridNumber.add(n5, 1, r);
                     numbList.add(n5);
-                    Button n6 = new Button("6");
-                    gridNumber.add(n6, 0, r);
-                    numbList.add(n6);
+                    Button n4 = new Button("4");
+                    gridNumber.add(n4, 0, r);
+                    numbList.add(n4);
                     break;
                 case 2:
                     Button n1 = new Button("1");
-                    gridNumber.add(n1, 2, r);
+                    gridNumber.add(n1, 0, r);
                     numbList.add(n1);
                     Button n2 = new Button("2");
                     gridNumber.add(n2, 1, r);
                     numbList.add(n2);
                     Button n3 = new Button("3");
-                    gridNumber.add(n3, 0, r);
+                    gridNumber.add(n3, 2, r);
                     numbList.add(n3);
                     break;
             }
@@ -200,14 +201,18 @@ public class Client extends Application {
         vb.getChildren().addAll(keyboard);
 
         //////
-        plate.setText("                                                                   ");
-
+        /*
+         * plate.setText(
+         * "                                                                                                                                                  "
+         * ); String test = plate.getText(); int sizePlate=0;
+         */
+        plate.setDisable(true);
         for (Button b : letList) {
             b.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent e) {
                     String letter = b.getText();
-
+                    // String ntest=test.substring(0, test.length()-1);
                     plate.setText(plate.getText() + letter);
                 }
             });
@@ -232,8 +237,9 @@ public class Client extends Application {
         backspace.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-                plate.setText(plate.getText().substring(0, plate.getText().length() - 1));
-
+                if (plate.getText().length() > 0) {
+                    plate.setText(plate.getText().substring(0, plate.getText().length() - 1));
+                }
             }
         });
         /////
