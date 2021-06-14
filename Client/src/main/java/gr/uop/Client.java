@@ -39,7 +39,6 @@ public class Client extends Application {
         label_plate.setFont(Font.font("comic Sans MS", 30));
         var plate = new Label(""); 
         plate.setAlignment(Pos.CENTER_RIGHT);
-        //plate.setStyle("-fx-border-color: Grey; padding: 10px;");
         plate.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 20));
         plate.setMinWidth(100);
         plate.setMaxWidth(100);
@@ -210,7 +209,6 @@ public class Client extends Application {
         vb.getChildren().addAll(keyboard);
 
         //////
-        //plate.setText("                                                                   ");
 
         for (Button b : letList) {
             b.setOnAction(new EventHandler<ActionEvent>() {
@@ -246,7 +244,18 @@ public class Client extends Application {
 
             }
         });
-       
+         
+        Button enter = new Button("Καταχώρηση Πινακίδας");
+        vb.getChildren().add(enter);
+        
+        enter.setOnAction(new EventHandler<ActionEvent>(){
+            @Override
+            public void handle(ActionEvent e){
+                new Vehicle(stage);
+                stage.showAndWait();
+            }
+        });
+
         /////
 
         vb.setBackground(new Background(new BackgroundFill(Color.web("#d5f4e6"), CornerRadii.EMPTY, Insets.EMPTY)));
@@ -259,6 +268,7 @@ public class Client extends Application {
 
         stage.setScene(scene);
         stage.show();
+        
 
     }
 
