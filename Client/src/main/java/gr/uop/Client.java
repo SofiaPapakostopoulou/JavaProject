@@ -11,10 +11,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
@@ -27,15 +31,20 @@ public class Client extends Application {
     @Override
     public void start(Stage stage) {
 
+        //-fx-background-color: #80ced6;
         var label = new Label("Καλωσήρθατε στο κατάστημα μας!");
         label.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 50));
-        label.setStyle("-fx-background-color: grey;padding: 20px;");
+        //label.setStyle("padding: 20px; -fx-text-fill: #0694AB");
         var label_plate = new Label("Παρακαλώ εισάγετε τον αριθμό της πινακίδας σας");
-        TextField plate = new TextField();
+        label_plate.setFont(Font.font("comic Sans MS", 30));
+        var plate = new Label(""); 
+        plate.setAlignment(Pos.CENTER_RIGHT);
+        //plate.setStyle("-fx-border-color: Grey; padding: 10px;");
+        plate.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 20));
         plate.setMinWidth(100);
-        plate.setMaxWidth(500);
+        plate.setMaxWidth(100);
         plate.setMinHeight(50);
-        plate.setMaxHeight(50);
+        plate.setMaxHeight(100);
         VBox vb = new VBox(label, label_plate, plate);
         vb.setAlignment(Pos.CENTER);
         vb.setSpacing(20);
@@ -153,36 +162,36 @@ public class Client extends Application {
         for (int r = 0; r < 3; r++) {
             switch (r) {
                 case 0:
-                    Button n9 = new Button("9");
-                    gridNumber.add(n9, 2, r);
-                    numbList.add(n9);
+                    Button n7 = new Button("7");
+                    gridNumber.add(n7, 2, r);
+                    numbList.add(n7);
                     Button n8 = new Button("8");
                     gridNumber.add(n8, 1, r);
                     numbList.add(n8);
-                    Button n7 = new Button("7");
-                    gridNumber.add(n7, 0, r);
-                    numbList.add(n7);
+                    Button n9 = new Button("9");
+                    gridNumber.add(n9, 0, r);
+                    numbList.add(n9);
                     break;
                 case 1:
-                    Button n6 = new Button("6");
-                    gridNumber.add(n6, 2, r);
-                    numbList.add(n6);
+                    Button n4 = new Button("4");
+                    gridNumber.add(n4, 2, r);
+                    numbList.add(n4);
                     Button n5 = new Button("5");
                     gridNumber.add(n5, 1, r);
                     numbList.add(n5);
-                    Button n4 = new Button("4");
-                    gridNumber.add(n4, 0, r);
-                    numbList.add(n4);
+                    Button n6 = new Button("6");
+                    gridNumber.add(n6, 0, r);
+                    numbList.add(n6);
                     break;
                 case 2:
                     Button n1 = new Button("1");
-                    gridNumber.add(n1, 0, r);
+                    gridNumber.add(n1, 2, r);
                     numbList.add(n1);
                     Button n2 = new Button("2");
                     gridNumber.add(n2, 1, r);
                     numbList.add(n2);
                     Button n3 = new Button("3");
-                    gridNumber.add(n3, 2, r);
+                    gridNumber.add(n3, 0, r);
                     numbList.add(n3);
                     break;
             }
@@ -201,18 +210,14 @@ public class Client extends Application {
         vb.getChildren().addAll(keyboard);
 
         //////
-        /*
-         * plate.setText(
-         * "                                                                                                                                                  "
-         * ); String test = plate.getText(); int sizePlate=0;
-         */
-        plate.setDisable(true);
+        //plate.setText("                                                                   ");
+
         for (Button b : letList) {
             b.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent e) {
                     String letter = b.getText();
-                    // String ntest=test.substring(0, test.length()-1);
+
                     plate.setText(plate.getText() + letter);
                 }
             });
@@ -237,12 +242,14 @@ public class Client extends Application {
         backspace.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-                if (plate.getText().length() > 0) {
-                    plate.setText(plate.getText().substring(0, plate.getText().length() - 1));
-                }
+                plate.setText(plate.getText().substring(0, plate.getText().length() - 1));
+
             }
         });
+       
         /////
+
+        vb.setBackground(new Background(new BackgroundFill(Color.web("#d5f4e6"), CornerRadii.EMPTY, Insets.EMPTY)));
         var scene = new Scene(new StackPane(vb), 640, 480);
 
         stage.setMinWidth(1024);
