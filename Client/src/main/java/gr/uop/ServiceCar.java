@@ -66,7 +66,7 @@ public class ServiceCar {
         stage.setScene(service);
         stage.setTitle("Υπηρεσίες");
         stage.show();
-        stage.setOnCloseRequest( event -> {stage.close();} );
+        stage.setOnCloseRequest( event -> {stage.getScene().getWindow().hide();} );
     }
     
 }

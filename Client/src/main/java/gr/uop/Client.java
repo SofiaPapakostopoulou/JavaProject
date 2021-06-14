@@ -252,7 +252,6 @@ public class Client extends Application {
             @Override
             public void handle(ActionEvent e){
                 new Vehicle(stage);
-                stage.showAndWait();
             }
         });
 

@@ -54,15 +54,12 @@ public class Vehicle {
 
                     if(radioGroup.getSelectedToggle() == rb1){
                         new ServiceCar(stage);
-                        stage.showAndWait();
                     }
                     if(radioGroup.getSelectedToggle() == rb2){
                         new ServiceJeep(stage);
-                        stage.showAndWait();
                     }
                     if(radioGroup.getSelectedToggle() == rb3){
                         new ServiceMoto(stage);
-                        stage.showAndWait();
                     }
     
                 }
