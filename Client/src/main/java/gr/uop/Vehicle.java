@@ -2,6 +2,8 @@ package gr.uop;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -76,6 +78,14 @@ public class Vehicle {
             }
         });
 
+        back.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+                stage.close();
+                new PrimaryStage(stage);
+            }
+        });
+
         VBox vb_f = new VBox(tp);
         vb_f.setAlignment(Pos.CENTER);
         // vb_f.setSpacing(20);
@@ -86,7 +96,7 @@ public class Vehicle {
         mainPane.setTop(backV);
         mainPane.setCenter(vb_f);
 
-        //mainPane.setPadding(new Insets(10, 10, 10, 0));
+        // mainPane.setPadding(new Insets(10, 10, 10, 0));
         Scene scene = new Scene(mainPane, 1024, 768);
         stage.setMinWidth(1024);
         stage.setMinHeight(768);
