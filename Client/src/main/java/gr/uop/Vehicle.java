@@ -81,12 +81,8 @@ public class Vehicle {
         back.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-<<<<<<< HEAD
-                new Vehicle(stage);
-=======
                 stage.close();
                 new PrimaryStage(stage);
->>>>>>> 314ed362485b6df0f6081473b1808249de059411
             }
         });
 
@@ -100,10 +96,7 @@ public class Vehicle {
         mainPane.setTop(backV);
         mainPane.setCenter(vb_f);
 
-<<<<<<< HEAD
-=======
         // mainPane.setPadding(new Insets(10, 10, 10, 0));
->>>>>>> 314ed362485b6df0f6081473b1808249de059411
         Scene scene = new Scene(mainPane, 1024, 768);
         stage.setMinWidth(1024);
         stage.setMinHeight(768);
