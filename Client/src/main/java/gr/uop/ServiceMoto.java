@@ -32,7 +32,10 @@ public class ServiceMoto {
         VBox vbox = new VBox(cb1, cb2,cb3,cb4);
         vbox.setSpacing(10);
         vbox.setMaxWidth(600);
-        
+
+        //checkbox restrictions
+        cb1.disableProperty().bind(cb2.selectedProperty());
+        cb2.disableProperty().bind(cb1.selectedProperty());
 
         var price = new Label("Συνολικό Κόστος: ");
         price.setAlignment(Pos.CENTER_LEFT);

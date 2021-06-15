@@ -39,7 +39,16 @@ public class ServiceCar {
         VBox vbox = new VBox(cb1, cb2,cb3,cb4,cb5,cb6,cb7,cb8,cb9,cb10);
         vbox.setSpacing(10);
         vbox.setMaxWidth(600);
-        
+
+        //   checkbox restrictions
+        cb1.disableProperty().bind(cb3.selectedProperty().or(cb4.selectedProperty()).or(cb6.selectedProperty()));
+        cb2.disableProperty().bind(cb3.selectedProperty().or(cb5.selectedProperty()).or(cb6.selectedProperty()).or(cb7.selectedProperty()));
+        cb3.disableProperty().bind(cb1.selectedProperty().or(cb2.selectedProperty()).or(cb4.selectedProperty()).or(cb5.selectedProperty()).or(cb6.selectedProperty()).or(cb7.selectedProperty()));
+        cb4.disableProperty().bind(cb1.selectedProperty().or(cb3.selectedProperty()).or(cb6.selectedProperty()));
+        cb5.disableProperty().bind(cb2.selectedProperty().or(cb3.selectedProperty()).or(cb6.selectedProperty()).or(cb7.selectedProperty()));
+        cb6.disableProperty().bind(cb1.selectedProperty().or(cb2.selectedProperty()).or(cb3.selectedProperty()).or(cb4.selectedProperty()).or(cb5.selectedProperty()).or(cb7.selectedProperty()));
+        cb7.disableProperty().bind(cb2.selectedProperty().or(cb3.selectedProperty()).or(cb5.selectedProperty()).or(cb6.selectedProperty()));
+
 
         var price = new Label("Συνολικό Κόστος: ");
         price.setAlignment(Pos.CENTER_LEFT);
