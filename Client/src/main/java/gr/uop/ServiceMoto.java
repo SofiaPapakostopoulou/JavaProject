@@ -1,5 +1,7 @@
 package gr.uop;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -28,25 +30,54 @@ public class ServiceMoto {
         CheckBox cb2 = new CheckBox("Πλύσιμο εξωτερικό σπέσιαλ, 8€");
         CheckBox cb3 = new CheckBox("Κέρωμα - Γυάλισμα, 40€");
         CheckBox cb4 = new CheckBox("Καθαρισμός κινητήρα, 10€");
-                        
-        VBox vbox = new VBox(cb1, cb2,cb3,cb4);
+
+        VBox vbox = new VBox(cb1, cb2, cb3, cb4);
         vbox.setSpacing(10);
         vbox.setMaxWidth(600);
 
-        //checkbox restrictions
+        // checkbox restrictions
         cb1.disableProperty().bind(cb2.selectedProperty());
         cb2.disableProperty().bind(cb1.selectedProperty());
 
         var price = new Label("Συνολικό Κόστος: ");
         price.setAlignment(Pos.CENTER_LEFT);
         Button btn = new Button("Καταχώρηση");
-        
-        StackPane sp = new StackPane(price,btn);
+
+        //
+        //
+        EventHandler<ActionEvent> ev = new EventHandler<ActionEvent>() {
+
+            public void handle(ActionEvent e) {
+                double cost = 0;
+                if (cb1.isSelected()) {
+                    cost = cost + 6;
+                }
+                if (cb2.isSelected()) {
+                    cost = cost + 8;
+                }
+                if (cb3.isSelected()) {
+                    cost = cost + 40;
+                }
+                if (cb4.isSelected()) {
+                    cost = cost + 10;
+                }
+
+                price.setText("Συνολικό Κόστος: " + cost);
+            }
+
+        };
+
+        cb1.setOnAction(ev);
+        cb2.setOnAction(ev);
+        cb3.setOnAction(ev);
+        cb4.setOnAction(ev);
+
+        ///
+        StackPane sp = new StackPane(price, btn);
         StackPane.setAlignment(price, Pos.CENTER_LEFT);
         StackPane.setAlignment(btn, Pos.CENTER_RIGHT);
 
-
-        VBox vb_f = new VBox(label,vbox,sp);
+        VBox vb_f = new VBox(label, vbox, sp);
         vb_f.setSpacing(20);
         vb_f.setPadding(new Insets(20, 110, 20, 110));
         vb_f.setAlignment(Pos.CENTER);
@@ -63,6 +94,5 @@ public class ServiceMoto {
         stage.setTitle("Υπηρεσίες");
         stage.show();
     }
-    
-    
+
 }

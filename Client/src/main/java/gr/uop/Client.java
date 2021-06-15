@@ -39,19 +39,17 @@ public class Client extends Application {
     @Override
     public void start(Stage stage) {
 
-        // try{ (Socket clientSocket = new Socket("localhost", 7777);
-        // PrintWriter toServer = new PrintWriter(clientSocket.getOutputStream(), true);
-        // Scanner fromServer = new Scanner(clientSocket.getInputStream())) {
-
-        // Scanner key = new Scanner(System.in);
-        // while (key.hasNextLine()) {
-        // String line = key.nextLine();
-        // toServer.println(line);
-        // // toServer.flush();
-
-        // String response = fromServer.nextLine();
-        // System.out.println("Response: " + response);
-        // }
+        /*
+         * try (Socket clientSocket = new Socket("localhost", 7777); PrintWriter
+         * toServer = new PrintWriter(clientSocket.getOutputStream(), true); Scanner
+         * fromServer = new Scanner(clientSocket.getInputStream())) {
+         * 
+         * Scanner key = new Scanner(System.in); while (key.hasNextLine()) { String line
+         * = key.nextLine(); toServer.println(line); // toServer.flush();
+         * 
+         * String response = fromServer.nextLine(); System.out.println("Response: " +
+         * response); }
+         */
 
         // -fx-background-color: #80ced6;
         var label = new Label("Καλωσήρθατε στο κατάστημα μας!");
@@ -280,7 +278,7 @@ public class Client extends Application {
                 new Vehicle(stage);
             }
         });
-
+        enter.setDisable(true);
         plate.textProperty().addListener(new ChangeListener<String>() {
 
             @Override
@@ -330,10 +328,9 @@ public class Client extends Application {
         stage.setScene(scene);
         stage.show();
 
-        // }
-        // catch (IOException e) {
-        // System.out.println(e);
-        // }
+        /*
+         * } catch (IOException e) { System.out.println(e); }
+         */
 
     }
 
