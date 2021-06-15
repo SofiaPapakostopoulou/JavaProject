@@ -17,21 +17,20 @@ public class Server extends Application {
     @Override
     public void start(Stage stage) {
         try (ServerSocket serverSocket = new ServerSocket(7777);
-             Socket connectionSocket = serverSocket.accept();
-             Scanner fromClient = new Scanner(connectionSocket.getInputStream());
-             PrintWriter toClient = new PrintWriter(connectionSocket.getOutputStream(), true)) {
+                Socket connectionSocket = serverSocket.accept();
+                Scanner fromClient = new Scanner(connectionSocket.getInputStream());
+                PrintWriter toClient = new PrintWriter(connectionSocket.getOutputStream(), true)) {
 
-            // do {
-            //     String line = fromClient.nextLine();
-            //     System.out.println("Received: " + line);
-
-            //     toClient.println(line);
-            // } while (fromClient.hasNextLine());
-        }
-        catch (IOException e) {
+            /*
+             * do { String line = fromClient.nextLine(); System.out.println("Received: " +
+             * line);
+             * 
+             * toClient.println(line); } while (fromClient.hasNextLine());
+             */
+        } catch (IOException e) {
             System.out.println(e);
         }
-        
+
     }
 
     public static void main(String[] args) {

@@ -1,30 +1,40 @@
 package gr.uop;
 
-import javafx.application.Application;
-
 import javafx.stage.Stage;
 
-/**
- * JavaFX App
- */
-public class Client extends Application {
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Cursor;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.ArrayList;
+import java.util.Scanner;
 
-    @Override
-    public void start(Stage stage) {
+public class PrimaryStage {
+    Stage stage;
 
-        /*
-         * try (Socket clientSocket = new Socket("localhost", 7777); PrintWriter
-         * toServer = new PrintWriter(clientSocket.getOutputStream(), true); Scanner
-         * fromServer = new Scanner(clientSocket.getInputStream())) {
-         * 
-         * Scanner key = new Scanner(System.in); while (key.hasNextLine()) { String line
-         * = key.nextLine(); toServer.println(line); // toServer.flush();
-         * 
-         * String response = fromServer.nextLine(); System.out.println("Response: " +
-         * response); }
-         */
+    public PrimaryStage(Stage stage) {
 
-<<<<<<< HEAD
         // -fx-background-color: #80ced6;
         var label = new Label("Καλωσήρθατε στο κατάστημα μας!");
         label.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 50));
@@ -281,7 +291,7 @@ public class Client extends Application {
                         check.setText(" ");
                     } else {
                         check.setText(
-                                "Ο αριθμός κυκλοφορίας πρέπει να περιέχει τουλάχιστον ένα γράμμα και ένα αριθμό.");
+                                "Ο αριθμός κυκλοφορίας πρέπει να έχει το λιγότερο απο γράμματα.Ο αριθμός κυκλοφορίας πρέπει να έχει λιγότερο απο έναν αριθμό.");
                         enter.setDisable(true);
                     }
 
@@ -301,19 +311,6 @@ public class Client extends Application {
 
         stage.setScene(scene);
         stage.show();
-=======
-        new PrimaryStage(stage);
->>>>>>> 314ed362485b6df0f6081473b1808249de059411
-
-        /*
-         * } catch (IOException e) { System.out.println(e); }
-         */
-
-    }
-
-    public static void main(String[] args) {
-        launch(args);
-
     }
 
 }

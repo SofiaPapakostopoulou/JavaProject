@@ -10,7 +10,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+<<<<<<< HEAD
 import javafx.scene.control.Alert.AlertType;
+=======
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+>>>>>>> 314ed362485b6df0f6081473b1808249de059411
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
@@ -157,8 +162,24 @@ public class ServiceCar {
         StackPane sp = new StackPane(price, btn);
         StackPane.setAlignment(price, Pos.CENTER_LEFT);
         StackPane.setAlignment(btn, Pos.CENTER_RIGHT);
-
-        VBox vb_f = new VBox(label, vbox, sp);
+        ///
+        Button back = new Button();
+        back.setMaxWidth(20);
+        back.setMaxHeight(20);
+        back.setAlignment(Pos.TOP_RIGHT);
+        ImageView backImageView = new ImageView(new Image(getClass().getResourceAsStream("images/back.png")));
+        back.setGraphic(backImageView);
+        VBox backV = new VBox(back);
+        backV.setPadding(new Insets(20, 0, 0, 20));
+        back.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+                stage.close();
+                new Vehicle(stage);
+            }
+        });
+        backV.setBackground(new Background(new BackgroundFill(Color.web("#d5f4e6"), CornerRadii.EMPTY, Insets.EMPTY)));
+        VBox vb_f = new VBox(backV, label, vbox, sp);
         vb_f.setSpacing(20);
         vb_f.setPadding(new Insets(20, 110, 20, 110));
         vb_f.setAlignment(Pos.CENTER);
