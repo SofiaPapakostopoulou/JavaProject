@@ -290,8 +290,7 @@ public class PrimaryStage {
                         enter.setDisable(false);
                         check.setText(" ");
                     } else {
-                        check.setText(
-                                "Ο αριθμός κυκλοφορίας πρέπει να έχει το λιγότερο απο γράμματα.Ο αριθμός κυκλοφορίας πρέπει να έχει λιγότερο απο έναν αριθμό.");
+                        check.setText("Ο αριθμός κυκλοφορίας πρέπει να περιέχει τουλάχιστον 2 γράμματα και 1 αριθμό.");
                         enter.setDisable(true);
                     }
 
