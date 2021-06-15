@@ -1,11 +1,12 @@
 package gr.uop;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Scanner;
 
 import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 /**
@@ -15,18 +16,21 @@ public class Server extends Application {
 
     @Override
     public void start(Stage stage) {
-        try{
-            Socket calcSocket = new Socket("localhost", 8001);
-            System.out.println("Just connected to " + calcSocket.getRemoteSocketAddress());
+        try (ServerSocket serverSocket = new ServerSocket(7777);
+             Socket connectionSocket = serverSocket.accept();
+             Scanner fromClient = new Scanner(connectionSocket.getInputStream());
+             PrintWriter toClient = new PrintWriter(connectionSocket.getOutputStream(), true)) {
 
-            var label = new Label("Hello, JavaFX Server");
-            var scene = new Scene(new StackPane(label), 640, 480);
-            stage.setScene(scene);
-            stage.show();
-        }catch(Exception e){e.printStackTrace();}
-        //calcSocket.close();
-        //OIS.close();
-         
+            // do {
+            //     String line = fromClient.nextLine();
+            //     System.out.println("Received: " + line);
+
+            //     toClient.println(line);
+            // } while (fromClient.hasNextLine());
+        }
+        catch (IOException e) {
+            System.out.println(e);
+        }
         
     }
 

@@ -1,7 +1,12 @@
 package gr.uop;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.ServerSocket;
+import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Scanner;
+
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -32,9 +37,19 @@ public class Client extends Application {
     @Override
     public void start(Stage stage) {
 
-        try{
-        ServerSocket sfcInput = new ServerSocket(8001);
-        System.out.println("Server listening on port 8001");
+        try (Socket clientSocket = new Socket("localhost", 7777);
+        PrintWriter toServer = new PrintWriter(clientSocket.getOutputStream(), true);
+        Scanner fromServer = new Scanner(clientSocket.getInputStream())) {
+
+        //    Scanner key = new Scanner(System.in);
+        //    while (key.hasNextLine()) {
+        //        String line = key.nextLine();
+        //        toServer.println(line);
+        //        // toServer.flush();
+
+        //        String response = fromServer.nextLine();
+        //        System.out.println("Response: " + response);
+        //     }
 
         //-fx-background-color: #80ced6;
         var label = new Label("Καλωσήρθατε στο κατάστημα μας!");
@@ -274,7 +289,11 @@ public class Client extends Application {
         stage.show();
         
 
-    }
+        }
+        catch (IOException e) {
+            System.out.println(e);
+        }
+    
     }
 
     public static void main(String[] args) {
