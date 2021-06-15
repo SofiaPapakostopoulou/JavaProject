@@ -1,5 +1,6 @@
 package gr.uop;
 
+import java.net.ServerSocket;
 import java.util.ArrayList;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -31,6 +32,10 @@ public class Client extends Application {
     @Override
     public void start(Stage stage) {
 
+        try{
+        ServerSocket sfcInput = new ServerSocket(8001);
+        System.out.println("Server listening on port 8001");
+
         //-fx-background-color: #80ced6;
         var label = new Label("Καλωσήρθατε στο κατάστημα μας!");
         label.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 50));
@@ -40,8 +45,8 @@ public class Client extends Application {
         var plate = new Label(""); 
         plate.setAlignment(Pos.CENTER_RIGHT);
         plate.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 20));
-        plate.setMinWidth(100);
-        plate.setMaxWidth(100);
+        plate.setMinWidth(200);
+        plate.setMaxWidth(200);
         plate.setMinHeight(50);
         plate.setMaxHeight(100);
         VBox vb = new VBox(label, label_plate, plate);
@@ -269,6 +274,7 @@ public class Client extends Application {
         stage.show();
         
 
+    }
     }
 
     public static void main(String[] args) {
