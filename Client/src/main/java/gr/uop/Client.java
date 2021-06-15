@@ -37,9 +37,9 @@ public class Client extends Application {
     @Override
     public void start(Stage stage) {
 
-        try (Socket clientSocket = new Socket("localhost", 7777);
-        PrintWriter toServer = new PrintWriter(clientSocket.getOutputStream(), true);
-        Scanner fromServer = new Scanner(clientSocket.getInputStream())) {
+        //try{ (Socket clientSocket = new Socket("localhost", 7777);
+        // PrintWriter toServer = new PrintWriter(clientSocket.getOutputStream(), true);
+        // Scanner fromServer = new Scanner(clientSocket.getInputStream())) {
 
         //    Scanner key = new Scanner(System.in);
         //    while (key.hasNextLine()) {
@@ -289,10 +289,10 @@ public class Client extends Application {
         stage.show();
         
 
-        }
-        catch (IOException e) {
-            System.out.println(e);
-        }
+        // }
+        // catch (IOException e) {
+        //     System.out.println(e);
+        // }
     
     }
 
