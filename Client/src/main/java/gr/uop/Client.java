@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -37,34 +39,37 @@ public class Client extends Application {
     @Override
     public void start(Stage stage) {
 
-        //try{ (Socket clientSocket = new Socket("localhost", 7777);
+        // try{ (Socket clientSocket = new Socket("localhost", 7777);
         // PrintWriter toServer = new PrintWriter(clientSocket.getOutputStream(), true);
         // Scanner fromServer = new Scanner(clientSocket.getInputStream())) {
 
-        //    Scanner key = new Scanner(System.in);
-        //    while (key.hasNextLine()) {
-        //        String line = key.nextLine();
-        //        toServer.println(line);
-        //        // toServer.flush();
+        // Scanner key = new Scanner(System.in);
+        // while (key.hasNextLine()) {
+        // String line = key.nextLine();
+        // toServer.println(line);
+        // // toServer.flush();
 
-        //        String response = fromServer.nextLine();
-        //        System.out.println("Response: " + response);
-        //     }
+        // String response = fromServer.nextLine();
+        // System.out.println("Response: " + response);
+        // }
 
-        //-fx-background-color: #80ced6;
+        // -fx-background-color: #80ced6;
         var label = new Label("Καλωσήρθατε στο κατάστημα μας!");
         label.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 50));
-        //label.setStyle("padding: 20px; -fx-text-fill: #0694AB");
+        // label.setStyle("padding: 20px; -fx-text-fill: #0694AB");
         var label_plate = new Label("Παρακαλώ εισάγετε τον αριθμό της πινακίδας σας");
         label_plate.setFont(Font.font("comic Sans MS", 30));
-        var plate = new Label(""); 
+        var plate = new Label("");
         plate.setAlignment(Pos.CENTER_RIGHT);
         plate.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 20));
         plate.setMinWidth(200);
         plate.setMaxWidth(200);
         plate.setMinHeight(50);
         plate.setMaxHeight(100);
-        VBox vb = new VBox(label, label_plate, plate);
+        var check = new Label("");
+
+        VBox vb = new VBox(label, label_plate, plate, check);
+
         vb.setAlignment(Pos.CENTER);
         vb.setSpacing(20);
 
@@ -260,21 +265,58 @@ public class Client extends Application {
         backspace.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-                plate.setText(plate.getText().substring(0, plate.getText().length() - 1));
-
+                if (!plate.getText().equals("")) {
+                    plate.setText(plate.getText().substring(0, plate.getText().length() - 1));
+                }
             }
         });
-         
+
         Button enter = new Button("Καταχώρηση Πινακίδας");
         vb.getChildren().add(enter);
-        
-        enter.setOnAction(new EventHandler<ActionEvent>(){
+
+        enter.setOnAction(new EventHandler<ActionEvent>() {
             @Override
-            public void handle(ActionEvent e){
+            public void handle(ActionEvent e) {
                 new Vehicle(stage);
             }
         });
 
+        plate.textProperty().addListener(new ChangeListener<String>() {
+
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+
+                if (plate.getText().equals("")) {
+                    check.setText("Ο αριθμός κυκλοφορίας δεν μπορεί να είναι κενός.");
+                    enter.setDisable(true);
+                    backspace.setDisable(true);
+
+                } else {
+                    enter.setDisable(false);
+                    backspace.setDisable(false);
+                    int let = 0;
+                    int numb = 0;
+                    for (char a : plate.getText().toCharArray()) {
+                        if ((a >= 'A' && a <= 'Z')) {
+                            let++;
+                        }
+                        if ((a >= '0' && a <= '9')) {
+                            numb++;
+                        }
+                    }
+                    if ((let > 1) && (numb > 0)) {
+                        enter.setDisable(false);
+                        check.setText(" ");
+                    } else {
+                        check.setText(
+                                "Ο αριθμός κυκλοφορίας πρέπει να έχει το λιγότερο απο γράμματα.Ο αριθμός κυκλοφορίας πρέπει να έχει λιγότερο απο έναν αριθμό.");
+                        enter.setDisable(true);
+                    }
+
+                }
+
+            }
+        });
         /////
 
         vb.setBackground(new Background(new BackgroundFill(Color.web("#d5f4e6"), CornerRadii.EMPTY, Insets.EMPTY)));
@@ -287,13 +329,12 @@ public class Client extends Application {
 
         stage.setScene(scene);
         stage.show();
-        
 
         // }
         // catch (IOException e) {
-        //     System.out.println(e);
+        // System.out.println(e);
         // }
-    
+
     }
 
     public static void main(String[] args) {
