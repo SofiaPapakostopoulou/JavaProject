@@ -62,7 +62,7 @@ public class ServiceMoto {
                     cost = cost + 10;
                 }
 
-                price.setText("Συνολικό Κόστος: " + cost);
+                price.setText("Συνολικό Κόστος: " + cost + "€");
             }
 
         };

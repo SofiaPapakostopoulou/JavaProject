@@ -95,7 +95,7 @@ public class ServiceCar {
                 if (cb10.isSelected()) {
                     cost = cost + 3;
                 }
-                price.setText("Συνολικό Κόστος: " + cost);
+                price.setText("Συνολικό Κόστος: " + cost + "€");
             }
 
         };
