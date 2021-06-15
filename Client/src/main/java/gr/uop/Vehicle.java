@@ -46,6 +46,7 @@ public class Vehicle {
         ImageView backImageView = new ImageView(new Image(getClass().getResourceAsStream("images/back.png")));
         back.setGraphic(backImageView);
         VBox backV = new VBox(back);
+        backV.setPadding(new Insets(20, 0, 0, 20));
         VBox check = new VBox(rb1, rb2, rb3);
 
         TitledPane tp = new TitledPane();
@@ -85,7 +86,7 @@ public class Vehicle {
         mainPane.setTop(backV);
         mainPane.setCenter(vb_f);
 
-        mainPane.setPadding(new Insets(10, 10, 10, 0));
+        //mainPane.setPadding(new Insets(10, 10, 10, 0));
         Scene scene = new Scene(mainPane, 1024, 768);
         stage.setMinWidth(1024);
         stage.setMinHeight(768);
