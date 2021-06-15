@@ -89,12 +89,14 @@ public class ServiceMoto {
             public void handle(ActionEvent e)
             {
                 alert.setAlertType(AlertType.CONFIRMATION);
-                String contet = "Έχετε επιλέξει τις παρακάτω υπηρεσίες με συνολικό κόστος " + f_cost + "€\n";
+                String contet = "Υπηρεσίες: \n";
                 if(cb1.isSelected()){contet += cb1.getText() + "\n";}
                 if(cb2.isSelected()){contet += cb2.getText() + "\n";}
                 if(cb3.isSelected()){contet += cb3.getText() + "\n";}
                 if(cb4.isSelected()){contet += cb4.getText() + "\n";}
                 alert.setContentText(contet);
+                alert.setHeaderText("Συνολικό κόστος: " + f_cost + "€");
+                alert.setTitle("Επιβεβαίωση Επιλογών");
 
                 alert.show();
             }
