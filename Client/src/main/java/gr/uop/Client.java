@@ -1,6 +1,7 @@
 package gr.uop;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.UUID;
 
 import javafx.application.Application;
@@ -26,12 +27,14 @@ public class Client extends Application {
          * String response = fromServer.nextLine(); System.out.println("Response: " +
          * response); }
          */
+        ArrayList<Washing> warray = new ArrayList<Washing>();
 
-        new PrimaryStage(stage);
+        new PrimaryStage(stage, warray);
+
         // Found how to have datetime and
-        LocalDate datetime = LocalDate.now();
-        String uniqueID = UUID.randomUUID().toString();
-        System.out.println("LD:" + datetime + " ID: " + uniqueID);
+        // LocalDate datetime = LocalDate.now();
+        // String uniqueID = UUID.randomUUID().toString();
+        // System.out.println("LD:" + datetime + " ID: " + uniqueID);
         /*
          * } catch (IOException e) { System.out.println(e); }
          */

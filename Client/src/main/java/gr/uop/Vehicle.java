@@ -1,5 +1,7 @@
 package gr.uop;
 
+import java.util.ArrayList;
+
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -26,7 +28,7 @@ import javafx.stage.Stage;
 public class Vehicle {
     Stage stage;
 
-    public Vehicle(Stage stage) {
+    public Vehicle(Stage stage, String plate, ArrayList<Washing> warray) {
 
         RadioButton rb1 = new RadioButton("Αυτοκίνητο");
         RadioButton rb2 = new RadioButton("Τζίπ");
@@ -64,13 +66,13 @@ public class Vehicle {
                 if (radioGroup.getSelectedToggle() != null) {
 
                     if (radioGroup.getSelectedToggle() == rb1) {
-                        new ServiceCar(stage);
+                        new ServiceCar(stage, plate, warray);
                     }
                     if (radioGroup.getSelectedToggle() == rb2) {
-                        new ServiceJeep(stage);
+                        new ServiceJeep(stage, plate, warray);
                     }
                     if (radioGroup.getSelectedToggle() == rb3) {
-                        new ServiceMoto(stage);
+                        new ServiceMoto(stage, plate, warray);
                     }
 
                 }
@@ -82,7 +84,7 @@ public class Vehicle {
             @Override
             public void handle(ActionEvent e) {
                 stage.close();
-                new PrimaryStage(stage);
+                new PrimaryStage(stage, warray);
             }
         });
 

@@ -14,6 +14,10 @@ public abstract class Washing {
     private double cost;
     private Map<String, Double> servises = new HashMap<String, Double>();
 
+    public Washing() {
+
+    }
+
     public Washing(String plate, double cost) {
         /*
          * uniqueID = UUID.randomUUID().toString(); date = LocalDate.now(); time =
@@ -30,6 +34,13 @@ public abstract class Washing {
      * 
      * public String getID(){ return uniqueID; }
      */
+    public void setPlate(String plate) {
+        this.plate = plate;
+    }
+
+    public void setCost(double cost) {
+        this.cost = cost;
+    }
 
     public String getPlate() {
         return plate;
@@ -41,5 +52,9 @@ public abstract class Washing {
 
     public Map getServices() {
         return servises;
+    }
+
+    public String toString() {
+        return "Plate:" + plate + " Cost:" + cost;
     }
 }

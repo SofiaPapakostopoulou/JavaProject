@@ -1,5 +1,8 @@
 package gr.uop;
 
+import java.util.ArrayList;
+import java.util.Optional;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -29,8 +32,8 @@ public class ServiceCar {
     Stage stage;
     double f_cost = 0;
     String s = "";
- 
-    public ServiceCar(Stage stage) {
+
+    public ServiceCar(Stage stage, String plate, ArrayList<Washing> warray) {
 
         var label = new Label("Επιλέξτε την υπηρεσία ή τις υπηρεσίες που επιθυμείτε απο τον παρακάτω τιμοκατάλογο.");
         label.setFont(Font.font("comic Sans MS", 20));
@@ -69,7 +72,6 @@ public class ServiceCar {
         Button btn = new Button("Καταχώρηση");
         // try
 
-        
         EventHandler<ActionEvent> ev = new EventHandler<ActionEvent>() {
 
             public void handle(ActionEvent e) {
@@ -122,42 +124,65 @@ public class ServiceCar {
         cb10.setOnAction(ev);
         //
 
-        btn.disableProperty().bind( cb1.selectedProperty().not()
-        .and(cb2.selectedProperty().not())
-        .and(cb3.selectedProperty().not())
-        .and(cb4.selectedProperty().not())
-        .and(cb5.selectedProperty().not())
-        .and(cb6.selectedProperty().not())
-        .and(cb7.selectedProperty().not())
-        .and(cb8.selectedProperty().not())
-        .and(cb9.selectedProperty().not())
-        .and(cb10.selectedProperty().not()));
+        btn.disableProperty().bind(cb1.selectedProperty().not().and(cb2.selectedProperty().not())
+                .and(cb3.selectedProperty().not()).and(cb4.selectedProperty().not()).and(cb5.selectedProperty().not())
+                .and(cb6.selectedProperty().not()).and(cb7.selectedProperty().not()).and(cb8.selectedProperty().not())
+                .and(cb9.selectedProperty().not()).and(cb10.selectedProperty().not()));
 
         Alert alert = new Alert(AlertType.NONE);
         EventHandler<ActionEvent> event2 = new EventHandler<ActionEvent>() {
-            public void handle(ActionEvent e)
-            {
+            public void handle(ActionEvent e) {
                 alert.setAlertType(AlertType.CONFIRMATION);
                 String contet = "Υπηρεσίες: \n";
-                if(cb1.isSelected()){contet += cb1.getText() + "\n";}
-                if(cb2.isSelected()){contet += cb2.getText() + "\n";}
-                if(cb3.isSelected()){contet += cb3.getText() + "\n";}
-                if(cb4.isSelected()){contet += cb4.getText() + "\n";}
-                if(cb5.isSelected()){contet += cb5.getText() + "\n";}
-                if(cb6.isSelected()){contet += cb6.getText() + "\n";}
-                if(cb7.isSelected()){contet += cb7.getText() + "\n";}
-                if(cb8.isSelected()){contet += cb8.getText() + "\n";}
-                if(cb9.isSelected()){contet += cb9.getText() + "\n";}
-                if(cb10.isSelected()){contet += cb10.getText() + "\n";}
+                if (cb1.isSelected()) {
+                    contet += cb1.getText() + "\n";
+                }
+                if (cb2.isSelected()) {
+                    contet += cb2.getText() + "\n";
+                }
+                if (cb3.isSelected()) {
+                    contet += cb3.getText() + "\n";
+                }
+                if (cb4.isSelected()) {
+                    contet += cb4.getText() + "\n";
+                }
+                if (cb5.isSelected()) {
+                    contet += cb5.getText() + "\n";
+                }
+                if (cb6.isSelected()) {
+                    contet += cb6.getText() + "\n";
+                }
+                if (cb7.isSelected()) {
+                    contet += cb7.getText() + "\n";
+                }
+                if (cb8.isSelected()) {
+                    contet += cb8.getText() + "\n";
+                }
+                if (cb9.isSelected()) {
+                    contet += cb9.getText() + "\n";
+                }
+                if (cb10.isSelected()) {
+                    contet += cb10.getText() + "\n";
+                }
                 alert.setContentText(contet);
                 alert.setHeaderText("Συνολικό κόστος: " + f_cost + "€");
                 alert.setTitle("Επιβεβαίωση Επιλογών");
+                Optional<ButtonType> result = alert.showAndWait();
 
+                if (result.get() == ButtonType.OK) {
+                    // System.out.println("OK");
+                    WashingCar wc = new WashingCar(plate, f_cost);
+                    // services ....
+                    warray.add(wc);
+                    for (Washing a : warray) {
+                        System.out.println(a.toString());
+                    }
+
+                }
                 alert.show();
             }
         };
         btn.setOnAction(event2);
-
 
         StackPane sp = new StackPane(price, btn);
         StackPane.setAlignment(price, Pos.CENTER_LEFT);
@@ -175,7 +200,7 @@ public class ServiceCar {
             @Override
             public void handle(ActionEvent e) {
                 stage.close();
-                new Vehicle(stage);
+                new Vehicle(stage, plate, warray);
             }
         });
         backV.setBackground(new Background(new BackgroundFill(Color.web("#d5f4e6"), CornerRadii.EMPTY, Insets.EMPTY)));
