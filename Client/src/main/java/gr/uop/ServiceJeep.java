@@ -176,7 +176,7 @@ public class ServiceJeep {
                     stage.close();
                     new PrimaryStage(stage, warray);
                 }
-                alert.show();
+
             }
         };
         btn.setOnAction(event2);

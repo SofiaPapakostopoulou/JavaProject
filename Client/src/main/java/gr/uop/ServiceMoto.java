@@ -25,6 +25,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class ServiceMoto {
@@ -91,6 +92,7 @@ public class ServiceMoto {
         EventHandler<ActionEvent> event2 = new EventHandler<ActionEvent>() {
             public void handle(ActionEvent e) {
                 alert.setAlertType(AlertType.CONFIRMATION);
+
                 String contet = "Υπηρεσίες: \n";
                 if (cb1.isSelected()) {
                     contet += cb1.getText() + "\n";
@@ -107,19 +109,24 @@ public class ServiceMoto {
                 alert.setContentText(contet);
                 alert.setHeaderText("Συνολικό κόστος: " + f_cost + "€");
                 alert.setTitle("Επιβεβαίωση Επιλογών");
+
                 Optional<ButtonType> result = alert.showAndWait();
+
                 if (result.get() == ButtonType.OK) {
-                    // System.out.println("OK");
+
                     WashingMoto wm = new WashingMoto(plate, f_cost);
                     // services ....
                     warray.add(wm);
+
                     for (Washing a : warray) {
                         System.out.println(a.toString());
                     }
+
                     stage.close();
                     new PrimaryStage(stage, warray);
+
                 }
-                alert.show();
+
             }
         };
         btn.setOnAction(event2);

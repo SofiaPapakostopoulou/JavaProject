@@ -183,7 +183,7 @@ public class ServiceCar {
                     stage.close();
                     new PrimaryStage(stage, warray);
                 }
-                alert.show();
+
             }
         };
         btn.setOnAction(event2);
