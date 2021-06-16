@@ -77,6 +77,7 @@ public class ServiceMoto {
                 }
 
                 price.setText("Συνολικό Κόστος: " + cost + "€");
+                f_cost = cost;
             }
 
         };
@@ -115,7 +116,8 @@ public class ServiceMoto {
                     for (Washing a : warray) {
                         System.out.println(a.toString());
                     }
-
+                    stage.close();
+                    new PrimaryStage(stage, warray);
                 }
                 alert.show();
             }

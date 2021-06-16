@@ -173,7 +173,8 @@ public class ServiceJeep {
                     for (Washing a : warray) {
                         System.out.println(a.toString());
                     }
-
+                    stage.close();
+                    new PrimaryStage(stage, warray);
                 }
                 alert.show();
             }
