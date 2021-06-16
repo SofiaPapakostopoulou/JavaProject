@@ -174,10 +174,40 @@ public class ServiceCar {
 
                 if (result.get() == ButtonType.OK) {
                     WashingCar wc = new WashingCar(plate, f_cost);
-                    // services ....
+                    if (cb1.isSelected()) {
+                        wc.getServices().put("Πλύσιμο εξωτερικό", 7.00);
+                    }
+                    if (cb2.isSelected()) {
+                        wc.getServices().put("Πλύσιμο εσωτερικό", 6.00);
+                    }
+                    if (cb3.isSelected()) {
+                        wc.getServices().put("Πλύσιμο εξωτερικό και εσωτερικό", 12.00);
+                    }
+                    if (cb4.isSelected()) {
+                        wc.getServices().put("Πλύσιμο εξωτερικό σπέσιαλ", 9.00);
+                    }
+                    if (cb5.isSelected()) {
+                        wc.getServices().put("Πλύσιμο εσωτερικό σπέσιαλ", 8.00);
+                    }
+                    if (cb6.isSelected()) {
+                        wc.getServices().put("Πλύσιμο εσωτερικό και εξωτερικό σπέσιαλ", 15.00);
+                    }
+                    if (cb7.isSelected()) {
+                        wc.getServices().put("Βιολογικός καθαρισμός εσωτερικός", 80.00);
+                    }
+                    if (cb8.isSelected()) {
+                        wc.getServices().put("Κέρωμα - Γυάλισμα", 80.00);
+                    }
+                    if (cb9.isSelected()) {
+                        wc.getServices().put("Καθαρισμός κινητήρα", 20.00);
+                    }
+                    if (cb10.isSelected()) {
+                        wc.getServices().put("Πλύσιμο σασί", 3.00);
+                    }
                     warray.add(wc);
                     for (Washing a : warray) {
                         System.out.println(a.toString());
+                        a.getServices().forEach((k, v) -> System.out.println("Servise: = " + k + ", Cost= " + v + "€"));
                     }
                     alert.close();
                     stage.close();

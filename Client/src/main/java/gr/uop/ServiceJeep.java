@@ -168,10 +168,40 @@ public class ServiceJeep {
                 if (result.get() == ButtonType.OK) {
                     // System.out.println("OK");
                     WashingJeep wj = new WashingJeep(plate, f_cost);
-                    // services ....
+                    if (cb1.isSelected()) {
+                        wj.getServices().put("Πλύσιμο εξωτερικό", 8.00);
+                    }
+                    if (cb2.isSelected()) {
+                        wj.getServices().put("Πλύσιμο εσωτερικό", 7.00);
+                    }
+                    if (cb3.isSelected()) {
+                        wj.getServices().put("Πλύσιμο εξωτερικό και εσωτερικό", 14.00);
+                    }
+                    if (cb4.isSelected()) {
+                        wj.getServices().put("Πλύσιμο εξωτερικό σπέσιαλ", 10.00);
+                    }
+                    if (cb5.isSelected()) {
+                        wj.getServices().put("Πλύσιμο εσωτερικό σπέσιαλ", 9.00);
+                    }
+                    if (cb6.isSelected()) {
+                        wj.getServices().put("Πλύσιμο εσωτερικό και εξωτερικό σπέσιαλ", 17.00);
+                    }
+                    if (cb7.isSelected()) {
+                        wj.getServices().put("Βιολογικός καθαρισμός εσωτερικός", 80.00);
+                    }
+                    if (cb8.isSelected()) {
+                        wj.getServices().put("Κέρωμα - Γυάλισμα", 90.00);
+                    }
+                    if (cb9.isSelected()) {
+                        wj.getServices().put("Καθαρισμός κινητήρα", 20.00);
+                    }
+                    if (cb10.isSelected()) {
+                        wj.getServices().put("Πλύσιμο σασί", 3.00);
+                    }
                     warray.add(wj);
                     for (Washing a : warray) {
                         System.out.println(a.toString());
+                        a.getServices().forEach((k, v) -> System.out.println("Servise: = " + k + ", Cost= " + v + "€"));
                     }
                     stage.close();
                     new PrimaryStage(stage, warray);

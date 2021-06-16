@@ -115,11 +115,23 @@ public class ServiceMoto {
                 if (result.get() == ButtonType.OK) {
 
                     WashingMoto wm = new WashingMoto(plate, f_cost);
-                    // services ....
+                    if (cb1.isSelected()) {
+                        wm.getServices().put("Πλύσιμο εξωτερικό", 6.00);
+                    }
+                    if (cb2.isSelected()) {
+                        wm.getServices().put("Πλύσιμο εξωτερικό σπέσιαλ", 8.00);
+                    }
+                    if (cb3.isSelected()) {
+                        wm.getServices().put("Κέρωμα - Γυάλισμα", 40.00);
+                    }
+                    if (cb4.isSelected()) {
+                        wm.getServices().put("Καθαρισμός κινητήρα", 10.00);
+                    }
                     warray.add(wm);
 
                     for (Washing a : warray) {
                         System.out.println(a.toString());
+                        a.getServices().forEach((k, v) -> System.out.println("Servise: = " + k + ", Cost= " + v + "€"));
                     }
 
                     stage.close();
