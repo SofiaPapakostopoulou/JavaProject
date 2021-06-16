@@ -33,7 +33,7 @@ import java.util.Scanner;
 public class PrimaryStage {
     Stage stage;
 
-    public PrimaryStage(Stage stage) {
+    public PrimaryStage(Stage stage, ArrayList<Washing> warray) {
 
         // -fx-background-color: #80ced6;
         var label = new Label("Καλωσήρθατε στο κατάστημα μας!");
@@ -259,7 +259,7 @@ public class PrimaryStage {
         enter.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-                new Vehicle(stage);
+                new Vehicle(stage, plate.getText(), warray);
             }
         });
         enter.setDisable(true);
