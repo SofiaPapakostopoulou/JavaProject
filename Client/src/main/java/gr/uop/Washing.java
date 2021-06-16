@@ -28,7 +28,7 @@ public abstract class Washing {
         this.cost = cost;
     }
 
-    
+    //date
     public String getDate(){ 
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         Calendar cal = Calendar.getInstance();

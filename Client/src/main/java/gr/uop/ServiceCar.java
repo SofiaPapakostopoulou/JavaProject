@@ -173,15 +173,13 @@ public class ServiceCar {
                 Optional<ButtonType> result = alert.showAndWait();
 
                 if (result.get() == ButtonType.OK) {
-                    // System.out.println("OK");
                     WashingCar wc = new WashingCar(plate, f_cost);
                     // services ....
                     warray.add(wc);
                     for (Washing a : warray) {
                         System.out.println(a.toString());
                     }
-                    // System.out.println("date:" + wc.getDate());
-                    // System.out.println("time:" + wc.getTime());
+                    alert.close();
                     stage.close();
                     new PrimaryStage(stage, warray);
                 }
