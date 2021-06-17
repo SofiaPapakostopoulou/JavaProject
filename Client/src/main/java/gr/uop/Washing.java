@@ -2,8 +2,10 @@ package gr.uop;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -13,11 +15,7 @@ public abstract class Washing {
      */
     private String plate;
     private double cost;
-    private Map<String, Double> servises = new HashMap<String, Double>();
-
-    public Washing() {
-
-    }
+    private List<Services> services = new ArrayList<Services>();
 
     public Washing(String plate, double cost) {
         /*
@@ -28,21 +26,21 @@ public abstract class Washing {
         this.cost = cost;
     }
 
-    //date
-    public String getDate(){ 
+    // date
+    public String getDate() {
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         Calendar cal = Calendar.getInstance();
-        return dateFormat.format(cal.getTime()); 
+        return dateFormat.format(cal.getTime());
     }
-    
-    public String getTime(){ 
+
+    public String getTime() {
         DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
         Calendar cal = Calendar.getInstance();
-        return dateFormat.format(cal.getTime()); 
+        return dateFormat.format(cal.getTime());
     }
-     
-    //public String getID(){ return uniqueID; }
-    
+
+    // public String getID(){ return uniqueID; }
+
     public void setPlate(String plate) {
         this.plate = plate;
     }
@@ -59,8 +57,8 @@ public abstract class Washing {
         return cost;
     }
 
-    public Map getServices() {
-        return servises;
+    public List getServices() {
+        return services;
     }
 
     public String toString() {
