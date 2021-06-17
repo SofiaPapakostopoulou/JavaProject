@@ -155,8 +155,12 @@ public class ServiceMoto {
         back.setAlignment(Pos.TOP_RIGHT);
         ImageView backImageView = new ImageView(new Image(getClass().getResourceAsStream("images/back.png")));
         back.setGraphic(backImageView);
-        VBox backV = new VBox(back);
-        backV.setPadding(new Insets(20, 0, 0, 20));
+        Button start = new Button("Αρχική Σελίδα");
+        start.setAlignment(Pos.CENTER_LEFT);
+        StackPane top = new StackPane(back, start);
+        top.setPadding(new Insets(20, 50, 20, 50));
+        StackPane.setAlignment(back, Pos.CENTER_LEFT);
+        StackPane.setAlignment(start, Pos.CENTER_RIGHT);
         back.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
@@ -164,7 +168,7 @@ public class ServiceMoto {
                 new Vehicle(stage, plate, warray);
             }
         });
-        backV.setBackground(new Background(new BackgroundFill(Color.web("#d5f4e6"), CornerRadii.EMPTY, Insets.EMPTY)));
+        top.setBackground(new Background(new BackgroundFill(Color.web("#d5f4e6"), CornerRadii.EMPTY, Insets.EMPTY)));
 
         VBox vb_f = new VBox(label, vbox, sp);
         vb_f.setSpacing(20);
@@ -172,7 +176,7 @@ public class ServiceMoto {
         vb_f.setAlignment(Pos.CENTER);
         vb_f.setBackground(new Background(new BackgroundFill(Color.web("#d5f4e6"), CornerRadii.EMPTY, Insets.EMPTY)));
         BorderPane mainPane = new BorderPane();
-        mainPane.setTop(backV);
+        mainPane.setTop(top);
         mainPane.setCenter(vb_f);
         Scene service = new Scene(mainPane, 1024, 768);
         service.setFill(Color.web("#d5f4e6"));
