@@ -242,6 +242,14 @@ public class ServiceCar {
                 new Vehicle(stage, plate, warray);
             }
         });
+        start.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+                stage.close();
+                new PrimaryStage(stage, warray);
+            }
+        });
+
         top.setBackground(new Background(new BackgroundFill(Color.web("#d5f4e6"), CornerRadii.EMPTY, Insets.EMPTY)));
         VBox vb_f = new VBox(label, vbox, sp);
         vb_f.setSpacing(20);
