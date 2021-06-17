@@ -1,6 +1,7 @@
 package gr.uop;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import javafx.event.ActionEvent;
@@ -169,40 +170,45 @@ public class ServiceJeep {
                     // System.out.println("OK");
                     WashingJeep wj = new WashingJeep(plate, f_cost);
                     if (cb1.isSelected()) {
-                        wj.getServices().put("Πλύσιμο εξωτερικό", 8.00);
+                        wj.getServices().add(new Services("wj1", "Πλύσιμο εξωτερικό", 8.00));
                     }
                     if (cb2.isSelected()) {
-                        wj.getServices().put("Πλύσιμο εσωτερικό", 7.00);
+                        wj.getServices().add(new Services("wj2", "Πλύσιμο εσωτερικό", 7.00));
                     }
                     if (cb3.isSelected()) {
-                        wj.getServices().put("Πλύσιμο εξωτερικό και εσωτερικό", 14.00);
+                        wj.getServices().add(new Services("wj3", "Πλύσιμο εξωτερικό και εσωτερικό", 14.00));
                     }
                     if (cb4.isSelected()) {
-                        wj.getServices().put("Πλύσιμο εξωτερικό σπέσιαλ", 10.00);
+                        wj.getServices().add(new Services("wj4", "Πλύσιμο εξωτερικό σπέσιαλ", 10.00));
                     }
                     if (cb5.isSelected()) {
-                        wj.getServices().put("Πλύσιμο εσωτερικό σπέσιαλ", 9.00);
+                        wj.getServices().add(new Services("wj5", "Πλύσιμο εσωτερικό σπέσιαλ", 9.00));
                     }
                     if (cb6.isSelected()) {
-                        wj.getServices().put("Πλύσιμο εσωτερικό και εξωτερικό σπέσιαλ", 17.00);
+                        wj.getServices().add(new Services("wj6", "Πλύσιμο εσωτερικό και εξωτερικό σπέσιαλ", 17.00));
                     }
                     if (cb7.isSelected()) {
-                        wj.getServices().put("Βιολογικός καθαρισμός εσωτερικός", 80.00);
+                        wj.getServices().add(new Services("wj7", "Βιολογικός καθαρισμός εσωτερικός", 80.00));
                     }
                     if (cb8.isSelected()) {
-                        wj.getServices().put("Κέρωμα - Γυάλισμα", 90.00);
+                        wj.getServices().add(new Services("wj8", "Κέρωμα - Γυάλισμα", 90.00));
                     }
                     if (cb9.isSelected()) {
-                        wj.getServices().put("Καθαρισμός κινητήρα", 20.00);
+                        wj.getServices().add(new Services("wj9", "Καθαρισμός κινητήρα", 20.00));
                     }
                     if (cb10.isSelected()) {
-                        wj.getServices().put("Πλύσιμο σασί", 3.00);
+                        wj.getServices().add(new Services("wj10", "Πλύσιμο σασί", 3.00));
                     }
                     warray.add(wj);
+
                     for (Washing a : warray) {
                         System.out.println(a.toString());
-                        a.getServices().forEach((k, v) -> System.out.println("Servise: = " + k + ", Cost= " + v + "€"));
+                        List<Services> services = a.getServices();
+                        for (Services s : services) {
+                            System.out.println(s.toString());
+                        }
                     }
+
                     stage.close();
                     new PrimaryStage(stage, warray);
                 }

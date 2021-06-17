@@ -1,6 +1,7 @@
 package gr.uop;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import javafx.event.ActionEvent;
@@ -116,22 +117,26 @@ public class ServiceMoto {
 
                     WashingMoto wm = new WashingMoto(plate, f_cost);
                     if (cb1.isSelected()) {
-                        wm.getServices().put("Πλύσιμο εξωτερικό", 6.00);
+                        wm.getServices().add(new Services("wm1", "Πλύσιμο εξωτερικό", 6.00));
                     }
                     if (cb2.isSelected()) {
-                        wm.getServices().put("Πλύσιμο εξωτερικό σπέσιαλ", 8.00);
+                        wm.getServices().add(new Services("wm2", "Πλύσιμο εξωτερικό σπέσιαλ", 8.00));
                     }
                     if (cb3.isSelected()) {
-                        wm.getServices().put("Κέρωμα - Γυάλισμα", 40.00);
+                        wm.getServices().add(new Services("wm3", "Κέρωμα - Γυάλισμα", 40.00));
                     }
                     if (cb4.isSelected()) {
-                        wm.getServices().put("Καθαρισμός κινητήρα", 10.00);
+                        wm.getServices().add(new Services("wm4", "Καθαρισμός κινητήρα", 10.00));
                     }
+
                     warray.add(wm);
 
                     for (Washing a : warray) {
                         System.out.println(a.toString());
-                        a.getServices().forEach((k, v) -> System.out.println("Servise: = " + k + ", Cost= " + v + "€"));
+                        List<Services> services = a.getServices();
+                        for (Services s : services) {
+                            System.out.println(s.toString());
+                        }
                     }
 
                     stage.close();
