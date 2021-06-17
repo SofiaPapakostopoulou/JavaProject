@@ -4,15 +4,21 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Optional;
 import java.util.Scanner;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
@@ -82,6 +88,21 @@ public class Server extends Application {
 
             stage.setScene(scene);
             stage.show();
+
+            //Λειτουργίες κουμπιών
+            Alert alert = new Alert(AlertType.NONE);
+            EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
+                public void handle(ActionEvent e) {
+                    alert.setAlertType(AlertType.CONFIRMATION);
+                    String contet = "Υπηρεσίες: \n";
+                    alert.setContentText(contet);
+                    alert.setHeaderText("Συνολικό κόστος: " + 1120 + "€");
+                    alert.setTitle("Επιβεβαίωση Επιλογών");
+                    //leitourgies gia kataxorisi
+                    alert.showAndWait();
+                }
+            };
+            submit.setOnAction(event);
 
         // } catch (IOException e) {
         //     System.out.println(e);
