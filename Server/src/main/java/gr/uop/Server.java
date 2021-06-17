@@ -1,13 +1,19 @@
 package gr.uop;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.Writer;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Optional;
 import java.util.Scanner;
 
 import javafx.application.Application;
+import javafx.beans.property.ReadOnlyStringWrapper;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -17,6 +23,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
@@ -36,6 +43,10 @@ import javafx.stage.Stage;
  * JavaFX App
  */
 public class Server extends Application {
+
+    Writer writer = null;
+    File file = new File("MobileP.csv");
+    
 
     @Override
     public void start(Stage stage) {
@@ -59,7 +70,17 @@ public class Server extends Application {
 
             //εδω εβαλα ενδεικτηκα tableview για να δω το συνολο. Βαζουμε οτι πινακα βολευει
             TableView<String> table = new TableView<>();
+            TableColumn<String, String> tableColumn = new TableColumn<>("Name");
+
+            tableColumn.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue()));
+
+            table.getColumns().add(tableColumn);
+            ObservableList<String> items = FXCollections.observableArrayList("Itachi");
+            table.setItems(items);
             table.setMaxSize(900, 1300);
+            //table.setItems(value);
+            table.getItems().add("lel");
+            table.getItems().add("lal");
 
             Button cancel = new Button("Ακύρωση Οχήματος");
             cancel.setMinWidth(200);
@@ -98,11 +119,48 @@ public class Server extends Application {
                     alert.setContentText(contet);
                     alert.setHeaderText("Συνολικό κόστος: " + 1120 + "€");
                     alert.setTitle("Επιβεβαίωση Επιλογών");
-                    //leitourgies gia kataxorisi
-                    alert.showAndWait();
+                    //alert.showAndWait();
+                    Optional<ButtonType> result = alert.showAndWait();
+
+                    if (result.get() == ButtonType.OK) {
+                        try {
+                            writeExcel(table.getSelectionModel().getSelectedItem());
+                            System.out.println(table.getSelectionModel().getSelectedItem());
+                        }
+                        catch (Exception ex) {
+                            ex.printStackTrace();
+                        }
+                    }
+                    // if (result.get() == ButtonType.OK) {
+                    //     final Button export = new Button("Export to Excel");
+                    //     export.setOnAction(new EventHandler<ActionEvent>() {
+
+                    //         @Override
+                    //         public void handle(ActionEvent e)  {
+                    //             try {
+                    //                 writeExcel(table.getSelectionModel().getSelectedItem());
+                    //             }
+                    //             catch (Exception ex) {
+                    //                 ex.printStackTrace();
+                    //             }
+                    //         }
+                    //     });
+                    // }
                 }
             };
             submit.setOnAction(event);
+            // table.setOnMouseReleased(new EventHandler<ActionEvent>() {
+
+            //     @Override
+            //     public void handle(ActionEvent e)  {
+            //         try {
+            //             writeExcel(table.getSelectionModel().getSelectedItem());
+            //         }
+            //         catch (Exception ex) {
+            //             ex.printStackTrace();
+            //         }
+            //     }
+            // });
 
         // } catch (IOException e) {
         //     System.out.println(e);
@@ -112,6 +170,27 @@ public class Server extends Application {
 
     public static void main(String[] args) {
         launch(args);
+    }
+
+    public void writeExcel(String text) throws Exception {
+        
+        try {
+            writer = new FileWriter(file);
+            // for (String person : table) {
+
+            //     String text = person.getFirstName() + "," + person.getLastName() + "," + person.getEmail() + "\n";
+
+            //     writer.write(text);
+            // }
+            writer.write(text);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        finally {
+
+            writer.flush();
+             writer.close();
+        }
     }
 
 }
