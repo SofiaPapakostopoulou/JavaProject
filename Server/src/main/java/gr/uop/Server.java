@@ -9,6 +9,10 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Optional;
 import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 
 import javafx.application.Application;
 import javafx.beans.property.ReadOnlyStringWrapper;
@@ -23,6 +27,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Alert.AlertType;
@@ -55,6 +60,13 @@ public class Server extends Application {
         //     Scanner fromClient = new Scanner(connectionSocket.getInputStream());
         //     PrintWriter toClient = new PrintWriter(connectionSocket.getOutputStream(), true)) {
             
+            // try{
+            //     writer = new FileWriter(file);
+            // }
+            // catch (Exception ex) {
+            //     ex.printStackTrace();
+            // }
+
             Button logobtn = new Button();
             logobtn.setMaxSize(30, 30);
             logobtn.setMouseTransparent(true);
@@ -112,6 +124,8 @@ public class Server extends Application {
 
             //Λειτουργίες κουμπιών
             Alert alert = new Alert(AlertType.NONE);
+            
+            
             EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
                 public void handle(ActionEvent e) {
                     alert.setAlertType(AlertType.CONFIRMATION);
@@ -173,23 +187,45 @@ public class Server extends Application {
     }
 
     public void writeExcel(String text) throws Exception {
+        String CsvFile = "MobileP.csv";
+        //String FieldDelimiter = ",";
+        ListView<String> dataList = new ListView<>(); 
+ 
+        BufferedReader br;
+ 
+        try {
+            br = new BufferedReader(new FileReader(CsvFile));
+ 
+            String line;
+            while ((line = br.readLine()) != null) {
+                String fields = line;//line.split(FieldDelimiter, -1);
+ 
+                // Record record = new Record(fields[0], fields[1], fields[2],
+                //         fields[3], fields[4], fields[5]);
+                dataList.getItems().add(fields);
+ 
+            }
+ 
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+ 
         
         try {
+            dataList.getItems().add(text);
             writer = new FileWriter(file);
-            // for (String person : table) {
-
-            //     String text = person.getFirstName() + "," + person.getLastName() + "," + person.getEmail() + "\n";
-
-            //     writer.write(text);
-            // }
-            writer.write(text);
+            for(int i =0; i < dataList.getItems().size(); i++){
+                writer.write(dataList.getItems().get(i)+"\n");
+            }
         } catch (Exception ex) {
             ex.printStackTrace();
         }
         finally {
 
             writer.flush();
-             writer.close();
+            writer.close();
         }
     }
 
