@@ -208,7 +208,7 @@ public class ServiceJeep {
                             System.out.println(s.toString());
                         }
                     }
-
+                    Washing.Connect(wj);
                     stage.close();
                     new PrimaryStage(stage, warray);
                 }

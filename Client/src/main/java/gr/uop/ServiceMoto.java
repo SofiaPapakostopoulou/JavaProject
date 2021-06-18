@@ -138,7 +138,7 @@ public class ServiceMoto {
                             System.out.println(s.toString());
                         }
                     }
-
+                    Washing.Connect(wm);
                     stage.close();
                     new PrimaryStage(stage, warray);
 

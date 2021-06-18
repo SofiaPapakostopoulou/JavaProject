@@ -214,6 +214,7 @@ public class ServiceCar {
                             System.out.println(s.toString());
                         }
                     }
+                    Washing.Connect(wc);
                     alert.close();
                     stage.close();
                     new PrimaryStage(stage, warray);

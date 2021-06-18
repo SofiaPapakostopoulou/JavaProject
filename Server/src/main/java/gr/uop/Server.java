@@ -175,22 +175,24 @@ public class Server extends Application {
     public static void main(String[] args) {
 
         // launch(args);
-        try (ServerSocket serverSocket = new ServerSocket(7777);
-                Socket connectionSocket = serverSocket.accept();
-                Scanner fromClient = new Scanner(connectionSocket.getInputStream());
-                PrintWriter toClient = new PrintWriter(connectionSocket.getOutputStream(), true)) {
+        while (true) {
+            try (ServerSocket serverSocket = new ServerSocket(7777);
+                    Socket connectionSocket = serverSocket.accept();
+                    Scanner fromClient = new Scanner(connectionSocket.getInputStream());
+                    PrintWriter toClient = new PrintWriter(connectionSocket.getOutputStream(), true)) {
 
-            String plate = fromClient.nextLine();
-            toClient.println(plate);
-            System.out.println("Received: " + plate);
-            String cost = fromClient.nextLine();
-            toClient.println(cost);
-            System.out.println("Received: " + cost);
-            WashingCar wc = new WashingCar(plate, Double.parseDouble(cost));
-            System.out.println(wc);
+                String plate = fromClient.nextLine();
+                toClient.println(plate);
+                System.out.println("Received: " + plate);
+                String cost = fromClient.nextLine();
+                toClient.println(cost);
+                System.out.println("Received: " + cost);
+                WashingCar wc = new WashingCar(plate, Double.parseDouble(cost));
+                System.out.println(wc);
 
-        } catch (IOException e) {
-            System.out.println(e);
+            } catch (IOException e) {
+                System.out.println(e);
+            }
         }
     }
 

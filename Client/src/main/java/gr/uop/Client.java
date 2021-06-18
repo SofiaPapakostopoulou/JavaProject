@@ -32,30 +32,30 @@ public class Client extends Application {
     }
 
     public static void main(String[] args) {
-        // launch(args);
+        launch(args);
 
-        try (Socket clientSocket = new Socket("localhost", 7777);
-                PrintWriter toServer = new PrintWriter(clientSocket.getOutputStream(), true);
-                Scanner fromServer = new Scanner(clientSocket.getInputStream())) {
+        // try (Socket clientSocket = new Socket("localhost", 7777);
+        // PrintWriter toServer = new PrintWriter(clientSocket.getOutputStream(), true);
+        // Scanner fromServer = new Scanner(clientSocket.getInputStream())) {
 
-            WashingCar wc = new WashingCar("DJJ 9923", 44);
-            // while (key.hasNextLine()) {
-            String plate = wc.getPlate();
-            toServer.println(plate);
+        // WashingCar wc = new WashingCar("DJJ 9923", 44);
+        // // while (key.hasNextLine()) {
+        // String plate = wc.getPlate();
+        // toServer.println(plate);
 
-            // toServer.flush();
+        // // toServer.flush();
 
-            String response = fromServer.nextLine();
-            System.out.println("Response: " + response);
-            String cost = String.valueOf(wc.getCost());
-            toServer.println(cost);
-            String response2 = fromServer.nextLine();
-            System.out.println("Response: " + response2);
-            // }
+        // String response = fromServer.nextLine();
+        // System.out.println("Response: " + response);
+        // String cost = String.valueOf(wc.getCost());
+        // toServer.println(cost);
+        // String response2 = fromServer.nextLine();
+        // System.out.println("Response: " + response2);
+        // // }
 
-        } catch (IOException e) {
-            System.out.println(e);
-        }
+        // } catch (IOException e) {
+        // System.out.println(e);
+        // }
 
     }
 

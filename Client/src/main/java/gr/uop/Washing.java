@@ -1,5 +1,8 @@
 package gr.uop;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.net.Socket;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -7,6 +10,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 import java.util.UUID;
 
 public abstract class Washing {
@@ -63,5 +67,30 @@ public abstract class Washing {
 
     public String toString() {
         return "Plate:" + plate + " Cost:" + cost;
+    }
+
+    public static void Connect(Washing wc) {
+        try (Socket clientSocket = new Socket("localhost", 7777);
+                PrintWriter toServer = new PrintWriter(clientSocket.getOutputStream(), true);
+                Scanner fromServer = new Scanner(clientSocket.getInputStream())) {
+
+            // wc = new WashingCar("DJJ 9923", 44);
+            // while (key.hasNextLine()) {
+            String plate = wc.getPlate();
+            toServer.println(plate);
+
+            // toServer.flush();
+
+            String response = fromServer.nextLine();
+            System.out.println("Response: " + response);
+            String cost = String.valueOf(wc.getCost());
+            toServer.println(cost);
+            String response2 = fromServer.nextLine();
+            System.out.println("Response: " + response2);
+            // }
+
+        } catch (IOException e) {
+            System.out.println(e);
+        }
     }
 }
