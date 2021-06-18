@@ -80,13 +80,8 @@ public class Washing {
                 PrintWriter toServer = new PrintWriter(clientSocket.getOutputStream(), true);
                 Scanner fromServer = new Scanner(clientSocket.getInputStream())) {
 
-            // wc = new WashingCar("DJJ 9923", 44);
-            // while (key.hasNextLine()) {
             String plate = wc.getPlate();
             toServer.println(plate);
-
-            // toServer.flush();
-
             String response = fromServer.nextLine();
             System.out.println("Response: " + response);
             String cost = String.valueOf(wc.getCost());
@@ -97,7 +92,25 @@ public class Washing {
             toServer.println(type);
             String response3 = fromServer.nextLine();
             System.out.println("Response: " + response3);
-            // }
+            String size = String.valueOf(wc.getServices().size());
+            toServer.println(size);
+            String response4 = fromServer.nextLine();
+            System.out.println("Response: " + response4);
+            List<Services> ser = wc.getServices();
+            for (Services m : ser) {
+                String id = m.getID();
+                toServer.println(id);
+                String response5 = fromServer.nextLine();
+                System.out.println("Response: " + response5);
+                String name_services = m.getName_services();
+                toServer.println(name_services);
+                String response6 = fromServer.nextLine();
+                System.out.println("Response: " + response6);
+                String costserv = String.valueOf(m.getCost());
+                toServer.println(costserv);
+                String response7 = fromServer.nextLine();
+                System.out.println("Response: " + response7);
+            }
 
         } catch (IOException e) {
             System.out.println(e);

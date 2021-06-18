@@ -13,6 +13,18 @@ public class Services {
         // this.wtype = wtype;
     }
 
+    public String getID() {
+        return id;
+    }
+
+    public String getName_services() {
+        return name_services;
+    }
+
+    public double getCost() {
+        return cost;
+    }
+
     public String toString() {
         return "ID: " + id + " Name of service: " + name_services + " Cost: " + cost;
     }

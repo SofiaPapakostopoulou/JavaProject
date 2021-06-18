@@ -7,6 +7,7 @@ import java.io.PrintWriter;
 import java.io.Writer;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 import java.io.BufferedReader;
@@ -192,7 +193,27 @@ public class Server extends Application {
                 System.out.println("Received: " + type);
                 Washing wc = new Washing(plate, Double.parseDouble(cost), type);
                 System.out.println(wc);
-
+                String size = fromClient.nextLine();
+                toClient.println(size);
+                System.out.println("Received: " + size);
+                int sizelist = Integer.parseInt(size);
+                for (int i = 0; i < sizelist; i++) {
+                    String id = fromClient.nextLine();
+                    toClient.println(id);
+                    System.out.println("Received: " + id);
+                    String name_services = fromClient.nextLine();
+                    toClient.println(name_services);
+                    System.out.println("Received: " + name_services);
+                    String costserv = fromClient.nextLine();
+                    toClient.println(costserv);
+                    System.out.println("Received: " + costserv);
+                    Services ser = new Services(id, name_services, Double.parseDouble(costserv));
+                    wc.getServices().add(ser);
+                }
+                List<Services> se = wc.getServices();
+                for (Services m : se) {
+                    System.out.println(m.toString());
+                }
             } catch (IOException e) {
                 System.out.println(e);
             }
