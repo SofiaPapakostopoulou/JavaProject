@@ -51,143 +51,158 @@ public class Server extends Application {
 
     Writer writer = null;
     File file = new File("MobileP.csv");
-    
 
     @Override
     public void start(Stage stage) {
         // try (ServerSocket serverSocket = new ServerSocket(7777);
-        //     Socket connectionSocket = serverSocket.accept();
-        //     Scanner fromClient = new Scanner(connectionSocket.getInputStream());
-        //     PrintWriter toClient = new PrintWriter(connectionSocket.getOutputStream(), true)) {
-            
+        // Socket connectionSocket = serverSocket.accept();
+        // Scanner fromClient = new Scanner(connectionSocket.getInputStream());
+        // PrintWriter toClient = new PrintWriter(connectionSocket.getOutputStream(),
+        // true)) {
 
-            Button logobtn = new Button();
-            logobtn.setMaxSize(30, 30);
-            logobtn.setMouseTransparent(true);
-            logobtn.setBackground(new Background(new BackgroundFill(Color.web("#d5f4e6"), CornerRadii.EMPTY, Insets.EMPTY)));
-            ImageView logoImageView = new ImageView(new Image(getClass().getResourceAsStream("images/car.png")));
-            logobtn.setGraphic(logoImageView);
-            var logoLabel = new Label("MobileP");
-            logoLabel.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 50));
-            HBox logoBox = new HBox(logobtn,logoLabel);
-            logoBox.setSpacing(15);
-            logoBox.setAlignment(Pos.TOP_LEFT);
-            logoBox.setPadding(new Insets(20, 0, 0, 40));
+        Button logobtn = new Button();
+        logobtn.setMaxSize(30, 30);
+        logobtn.setMouseTransparent(true);
+        logobtn.setBackground(
+                new Background(new BackgroundFill(Color.web("#d5f4e6"), CornerRadii.EMPTY, Insets.EMPTY)));
+        ImageView logoImageView = new ImageView(new Image(getClass().getResourceAsStream("images/car.png")));
+        logobtn.setGraphic(logoImageView);
+        var logoLabel = new Label("MobileP");
+        logoLabel.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 50));
+        HBox logoBox = new HBox(logobtn, logoLabel);
+        logoBox.setSpacing(15);
+        logoBox.setAlignment(Pos.TOP_LEFT);
+        logoBox.setPadding(new Insets(20, 0, 0, 40));
 
-            TableView<String> table = new TableView<>();
-            TableColumn<String, String> tableColumn = new TableColumn<>("Name");
-            TableColumn<String, String> tableColumn2 = new TableColumn<>("Surname");
+        TableView<String> table = new TableView<>();
+        TableColumn<String, String> tableColumn = new TableColumn<>("Name");
+        TableColumn<String, String> tableColumn2 = new TableColumn<>("Surname");
 
-            tableColumn.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue()));
-            tableColumn2.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue()));
+        tableColumn.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue()));
+        tableColumn2.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue()));
 
-            table.getColumns().add(tableColumn);
-            ObservableList<String> items = FXCollections.observableArrayList("Itachi","takamouri","yolo","pizza");
-            table.setItems(items);
-            table.setMaxSize(900, 1300);
-            //table.getItems().;
-            table.getItems().add("lal");
+        table.getColumns().add(tableColumn);
+        ObservableList<String> items = FXCollections.observableArrayList("Itachi", "takamouri", "yolo", "pizza");
+        table.setItems(items);
+        table.setMaxSize(900, 1300);
+        // table.getItems().;
+        table.getItems().add("lal");
 
-            table.getColumns().add(tableColumn2);
-            ObservableList<String> items2 = FXCollections.observableArrayList("Itachi","takamouri","yolo","pizza");
-            table.setItems(items2);
+        table.getColumns().add(tableColumn2);
+        ObservableList<String> items2 = FXCollections.observableArrayList("Itachi", "takamouri", "yolo", "pizza");
+        table.setItems(items2);
 
-            Button cancel = new Button("Ακύρωση Οχήματος");
-            cancel.setMinWidth(200);
-            cancel.setMaxWidth(200);
-            Button submit = new Button("Καταχώρηση Οχήματος");
-            submit.setMinWidth(200);
-            submit.setMaxWidth(200);
-            StackPane bottomBtns = new StackPane(cancel,submit);
-            bottomBtns.setPadding(new Insets(20, 50, 20, 50));
-            StackPane.setAlignment(cancel, Pos.CENTER_LEFT);
-            StackPane.setAlignment(submit, Pos.CENTER_RIGHT);
+        Button cancel = new Button("Ακύρωση Οχήματος");
+        cancel.setMinWidth(200);
+        cancel.setMaxWidth(200);
+        Button submit = new Button("Καταχώρηση Οχήματος");
+        submit.setMinWidth(200);
+        submit.setMaxWidth(200);
+        StackPane bottomBtns = new StackPane(cancel, submit);
+        bottomBtns.setPadding(new Insets(20, 50, 20, 50));
+        StackPane.setAlignment(cancel, Pos.CENTER_LEFT);
+        StackPane.setAlignment(submit, Pos.CENTER_RIGHT);
 
+        VBox finalsp = new VBox(logoBox, table, bottomBtns);
+        finalsp.setAlignment(Pos.CENTER);
+        finalsp.setSpacing(40);
+        // StackPane.
+        finalsp.setBackground(
+                new Background(new BackgroundFill(Color.web("#d5f4e6"), CornerRadii.EMPTY, Insets.EMPTY)));
 
-            VBox finalsp = new VBox(logoBox,table,bottomBtns);
-            finalsp.setAlignment(Pos.CENTER);
-            finalsp.setSpacing(40);
-            //StackPane. 
-            finalsp.setBackground(new Background(new BackgroundFill(Color.web("#d5f4e6"), CornerRadii.EMPTY, Insets.EMPTY)));
+        var scene = new Scene(finalsp, 1024, 768);
 
-            var scene = new Scene(finalsp, 1024, 768);
+        stage.setMinWidth(1024);
+        stage.setMinHeight(768);
+        stage.setMaxWidth(1920);
+        stage.setMaxHeight(1080);
 
-            stage.setMinWidth(1024);
-            stage.setMinHeight(768);
-            stage.setMaxWidth(1920);
-            stage.setMaxHeight(1080);
+        stage.setScene(scene);
+        stage.show();
 
-            stage.setScene(scene);
-            stage.show();
+        // Λειτουργίες κουμπιών
+        Alert alert = new Alert(AlertType.NONE);
 
-            //Λειτουργίες κουμπιών
-            Alert alert = new Alert(AlertType.NONE);
-            
-            
-            EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
-                public void handle(ActionEvent e) {
-                    alert.setAlertType(AlertType.CONFIRMATION);
-                    String contet = "Υπηρεσίες: \n";
-                    alert.setContentText(contet);
-                    alert.setHeaderText("Συνολικό κόστος: " + 1120 + "€");
-                    alert.setTitle("Επιβεβαίωση Επιλογών");
-                    //alert.showAndWait();
-                    Optional<ButtonType> result = alert.showAndWait();
+        EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent e) {
+                alert.setAlertType(AlertType.CONFIRMATION);
+                String contet = "Υπηρεσίες: \n";
+                alert.setContentText(contet);
+                alert.setHeaderText("Συνολικό κόστος: " + 1120 + "€");
+                alert.setTitle("Επιβεβαίωση Επιλογών");
+                // alert.showAndWait();
+                Optional<ButtonType> result = alert.showAndWait();
 
-                    if (result.get() == ButtonType.OK) {
-                        try {
-                            writeExcel(table.getSelectionModel().getSelectedItem());
-                            System.out.println(table.getSelectionModel().getSelectedItem());
-                        }
-                        catch (Exception ex) {
-                            ex.printStackTrace();
-                        }
+                if (result.get() == ButtonType.OK) {
+                    try {
+                        writeExcel(table.getSelectionModel().getSelectedItem());
+                        System.out.println(table.getSelectionModel().getSelectedItem());
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
                     }
                 }
-            };
-            submit.setOnAction(event);
+            }
+        };
+        submit.setOnAction(event);
 
-            table.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-                if (newSelection != null) {
-                    alert.setAlertType(AlertType.CONFIRMATION);
-                    String contet = "Υπηρεσίες: \n";
-                    alert.setContentText(contet);
-                    alert.setHeaderText("Συνολικό κόστος: " + 1120 + "€");
-                    alert.setTitle("Επιβεβαίωση Επιλογών");
-                    Optional<ButtonType> result = alert.showAndWait();
-    
-                    if (result.get() == ButtonType.OK) {
-                        try {
-                            writeExcel(table.getSelectionModel().getSelectedItem());
-                            System.out.println(table.getSelectionModel().getSelectedItem());
-                            //table.getItems().remove(table.getSelectionModel().getSelectedIndex());
-                        }
-                        catch (Exception ex) {
-                            ex.printStackTrace();
-                        }
+        table.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                alert.setAlertType(AlertType.CONFIRMATION);
+                String contet = "Υπηρεσίες: \n";
+                alert.setContentText(contet);
+                alert.setHeaderText("Συνολικό κόστος: " + 1120 + "€");
+                alert.setTitle("Επιβεβαίωση Επιλογών");
+                Optional<ButtonType> result = alert.showAndWait();
+
+                if (result.get() == ButtonType.OK) {
+                    try {
+                        writeExcel(table.getSelectionModel().getSelectedItem());
+                        System.out.println(table.getSelectionModel().getSelectedItem());
+                        // table.getItems().remove(table.getSelectionModel().getSelectedIndex());
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
                     }
                 }
-            });
+            }
+        });
 
         // } catch (IOException e) {
-        //     System.out.println(e);
+        // System.out.println(e);
         // }
 
     }
 
     public static void main(String[] args) {
-        launch(args);
+
+        // launch(args);
+        try (ServerSocket serverSocket = new ServerSocket(7777);
+                Socket connectionSocket = serverSocket.accept();
+                Scanner fromClient = new Scanner(connectionSocket.getInputStream());
+                PrintWriter toClient = new PrintWriter(connectionSocket.getOutputStream(), true)) {
+
+            String plate = fromClient.nextLine();
+            toClient.println(plate);
+            System.out.println("Received: " + plate);
+            String cost = fromClient.nextLine();
+            toClient.println(cost);
+            System.out.println("Received: " + cost);
+            WashingCar wc = new WashingCar(plate, Double.parseDouble(cost));
+            System.out.println(wc);
+
+        } catch (IOException e) {
+            System.out.println(e);
+        }
     }
 
     public void writeExcel(String text) throws Exception {
         String CsvFile = "MobileP.csv";
-        ListView<String> dataList = new ListView<>(); 
- 
+        ListView<String> dataList = new ListView<>();
+
         BufferedReader br;
- 
+
         try {
             br = new BufferedReader(new FileReader(CsvFile));
- 
+
             String line;
             while ((line = br.readLine()) != null) {
                 String fields = line;
@@ -198,17 +213,16 @@ public class Server extends Application {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
- 
+
         try {
             dataList.getItems().add(text);
             writer = new FileWriter(file);
-            for(int i =0; i < dataList.getItems().size(); i++){
-                writer.write(dataList.getItems().get(i)+"\n");
+            for (int i = 0; i < dataList.getItems().size(); i++) {
+                writer.write(dataList.getItems().get(i) + "\n");
             }
         } catch (Exception ex) {
             ex.printStackTrace();
-        }
-        finally {
+        } finally {
             writer.flush();
             writer.close();
         }
