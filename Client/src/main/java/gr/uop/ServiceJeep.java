@@ -168,7 +168,7 @@ public class ServiceJeep {
                 Optional<ButtonType> result = alert.showAndWait();
                 if (result.get() == ButtonType.OK) {
                     // System.out.println("OK");
-                    WashingJeep wj = new WashingJeep(plate, f_cost);
+                    Washing wj = new Washing(plate, f_cost, "Jeep");
                     if (cb1.isSelected()) {
                         wj.getServices().add(new Services("wj1", "Πλύσιμο εξωτερικό", 8.00));
                     }

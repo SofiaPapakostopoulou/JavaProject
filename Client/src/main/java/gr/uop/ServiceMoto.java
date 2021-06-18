@@ -115,7 +115,7 @@ public class ServiceMoto {
 
                 if (result.get() == ButtonType.OK) {
 
-                    WashingMoto wm = new WashingMoto(plate, f_cost);
+                    Washing wm = new Washing(plate, f_cost, "Moto");
                     if (cb1.isSelected()) {
                         wm.getServices().add(new Services("wm1", "Πλύσιμο εξωτερικό", 6.00));
                     }

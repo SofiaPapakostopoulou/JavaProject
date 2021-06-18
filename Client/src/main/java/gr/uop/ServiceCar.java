@@ -174,7 +174,7 @@ public class ServiceCar {
                 Optional<ButtonType> result = alert.showAndWait();
 
                 if (result.get() == ButtonType.OK) {
-                    WashingCar wc = new WashingCar(plate, f_cost);
+                    Washing wc = new Washing(plate, f_cost, "Car");
                     if (cb1.isSelected()) {
                         wc.getServices().add(new Services("wc1", "Πλύσιμο εξωτερικό", 7.00));
                     }

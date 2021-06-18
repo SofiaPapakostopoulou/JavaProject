@@ -13,21 +13,23 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.UUID;
 
-public abstract class Washing {
+public class Washing {
     /*
      * private LocalDate date; private LocalTime time; private String uniqueID;
      */
     private String plate;
     private double cost;
+    private String type;
     private List<Services> services = new ArrayList<Services>();
 
-    public Washing(String plate, double cost) {
+    public Washing(String plate, double cost, String type) {
         /*
          * uniqueID = UUID.randomUUID().toString(); date = LocalDate.now(); time =
          * LocalTime.now();
          */
         this.plate = plate;
         this.cost = cost;
+        this.type = type;
     }
 
     // date
@@ -65,8 +67,12 @@ public abstract class Washing {
         return services;
     }
 
+    public String getType() {
+        return type;
+    }
+
     public String toString() {
-        return "Plate:" + plate + " Cost:" + cost;
+        return "Plate:" + plate + " Cost:" + cost + " Type:" + type;
     }
 
     public static void Connect(Washing wc) {
@@ -87,6 +93,10 @@ public abstract class Washing {
             toServer.println(cost);
             String response2 = fromServer.nextLine();
             System.out.println("Response: " + response2);
+            String type = wc.getType();
+            toServer.println(type);
+            String response3 = fromServer.nextLine();
+            System.out.println("Response: " + response3);
             // }
 
         } catch (IOException e) {

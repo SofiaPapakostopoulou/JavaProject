@@ -4,26 +4,25 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.UUID;
 
-public abstract class Washing {
+public class Washing {
     /*
      * private LocalDate date; private LocalTime time; private String uniqueID;
      */
     private String plate;
     private double cost;
+    private String type;
     private List<Services> services = new ArrayList<Services>();
 
-    public Washing(String plate, double cost) {
+    public Washing(String plate, double cost, String type) {
         /*
          * uniqueID = UUID.randomUUID().toString(); date = LocalDate.now(); time =
          * LocalTime.now();
          */
         this.plate = plate;
         this.cost = cost;
+        this.type = type;
     }
 
     // date
@@ -62,6 +61,7 @@ public abstract class Washing {
     }
 
     public String toString() {
-        return "Plate:" + plate + " Cost:" + cost;
+        return "Plate:" + plate + " Cost:" + cost + " Type:" + type;
     }
+
 }

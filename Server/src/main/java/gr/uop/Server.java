@@ -187,7 +187,10 @@ public class Server extends Application {
                 String cost = fromClient.nextLine();
                 toClient.println(cost);
                 System.out.println("Received: " + cost);
-                WashingCar wc = new WashingCar(plate, Double.parseDouble(cost));
+                String type = fromClient.nextLine();
+                toClient.println(type);
+                System.out.println("Received: " + type);
+                Washing wc = new Washing(plate, Double.parseDouble(cost), type);
                 System.out.println(wc);
 
             } catch (IOException e) {
