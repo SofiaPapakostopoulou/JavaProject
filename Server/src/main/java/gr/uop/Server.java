@@ -76,16 +76,21 @@ public class Server extends Application {
 
             TableView<String> table = new TableView<>();
             TableColumn<String, String> tableColumn = new TableColumn<>("Name");
+            TableColumn<String, String> tableColumn2 = new TableColumn<>("Surname");
 
             tableColumn.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue()));
+            tableColumn2.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue()));
 
             table.getColumns().add(tableColumn);
-            ObservableList<String> items = FXCollections.observableArrayList("Itachi");
+            ObservableList<String> items = FXCollections.observableArrayList("Itachi","takamouri","yolo","pizza");
             table.setItems(items);
             table.setMaxSize(900, 1300);
-            //table.setItems(value);
-            table.getItems().add("lel");
+            //table.getItems().;
             table.getItems().add("lal");
+
+            table.getColumns().add(tableColumn2);
+            ObservableList<String> items2 = FXCollections.observableArrayList("Itachi","takamouri","yolo","pizza");
+            table.setItems(items2);
 
             Button cancel = new Button("Ακύρωση Οχήματος");
             cancel.setMinWidth(200);
@@ -155,6 +160,7 @@ public class Server extends Application {
                         try {
                             writeExcel(table.getSelectionModel().getSelectedItem());
                             System.out.println(table.getSelectionModel().getSelectedItem());
+                            //table.getItems().remove(table.getSelectionModel().getSelectedIndex());
                         }
                         catch (Exception ex) {
                             ex.printStackTrace();
