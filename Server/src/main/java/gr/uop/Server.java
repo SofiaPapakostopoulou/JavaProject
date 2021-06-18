@@ -60,12 +60,6 @@ public class Server extends Application {
         //     Scanner fromClient = new Scanner(connectionSocket.getInputStream());
         //     PrintWriter toClient = new PrintWriter(connectionSocket.getOutputStream(), true)) {
             
-            // try{
-            //     writer = new FileWriter(file);
-            // }
-            // catch (Exception ex) {
-            //     ex.printStackTrace();
-            // }
 
             Button logobtn = new Button();
             logobtn.setMaxSize(30, 30);
@@ -80,7 +74,6 @@ public class Server extends Application {
             logoBox.setAlignment(Pos.TOP_LEFT);
             logoBox.setPadding(new Insets(20, 0, 0, 40));
 
-            //εδω εβαλα ενδεικτηκα tableview για να δω το συνολο. Βαζουμε οτι πινακα βολευει
             TableView<String> table = new TableView<>();
             TableColumn<String, String> tableColumn = new TableColumn<>("Name");
 
@@ -145,36 +138,30 @@ public class Server extends Application {
                             ex.printStackTrace();
                         }
                     }
-                    // if (result.get() == ButtonType.OK) {
-                    //     final Button export = new Button("Export to Excel");
-                    //     export.setOnAction(new EventHandler<ActionEvent>() {
-
-                    //         @Override
-                    //         public void handle(ActionEvent e)  {
-                    //             try {
-                    //                 writeExcel(table.getSelectionModel().getSelectedItem());
-                    //             }
-                    //             catch (Exception ex) {
-                    //                 ex.printStackTrace();
-                    //             }
-                    //         }
-                    //     });
-                    // }
                 }
             };
             submit.setOnAction(event);
-            // table.setOnMouseReleased(new EventHandler<ActionEvent>() {
 
-            //     @Override
-            //     public void handle(ActionEvent e)  {
-            //         try {
-            //             writeExcel(table.getSelectionModel().getSelectedItem());
-            //         }
-            //         catch (Exception ex) {
-            //             ex.printStackTrace();
-            //         }
-            //     }
-            // });
+            table.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+                if (newSelection != null) {
+                    alert.setAlertType(AlertType.CONFIRMATION);
+                    String contet = "Υπηρεσίες: \n";
+                    alert.setContentText(contet);
+                    alert.setHeaderText("Συνολικό κόστος: " + 1120 + "€");
+                    alert.setTitle("Επιβεβαίωση Επιλογών");
+                    Optional<ButtonType> result = alert.showAndWait();
+    
+                    if (result.get() == ButtonType.OK) {
+                        try {
+                            writeExcel(table.getSelectionModel().getSelectedItem());
+                            System.out.println(table.getSelectionModel().getSelectedItem());
+                        }
+                        catch (Exception ex) {
+                            ex.printStackTrace();
+                        }
+                    }
+                }
+            });
 
         // } catch (IOException e) {
         //     System.out.println(e);
@@ -188,7 +175,6 @@ public class Server extends Application {
 
     public void writeExcel(String text) throws Exception {
         String CsvFile = "MobileP.csv";
-        //String FieldDelimiter = ",";
         ListView<String> dataList = new ListView<>(); 
  
         BufferedReader br;
@@ -198,21 +184,15 @@ public class Server extends Application {
  
             String line;
             while ((line = br.readLine()) != null) {
-                String fields = line;//line.split(FieldDelimiter, -1);
- 
-                // Record record = new Record(fields[0], fields[1], fields[2],
-                //         fields[3], fields[4], fields[5]);
+                String fields = line;
                 dataList.getItems().add(fields);
- 
             }
- 
         } catch (FileNotFoundException ex) {
             ex.printStackTrace();
         } catch (IOException ex) {
             ex.printStackTrace();
         }
  
-        
         try {
             dataList.getItems().add(text);
             writer = new FileWriter(file);
@@ -223,7 +203,6 @@ public class Server extends Application {
             ex.printStackTrace();
         }
         finally {
-
             writer.flush();
             writer.close();
         }
