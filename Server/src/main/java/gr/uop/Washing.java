@@ -48,6 +48,10 @@ public class Washing {
         this.cost = cost;
     }
 
+    public void setType(String type){
+        this.type = type;
+    }
+
     public String getPlate() {
         return plate;
     }
@@ -58,6 +62,10 @@ public class Washing {
 
     public List getServices() {
         return services;
+    }
+    
+    public String getType(String type){
+        return type;
     }
 
     public String toString() {

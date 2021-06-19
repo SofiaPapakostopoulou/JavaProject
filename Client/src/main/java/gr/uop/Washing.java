@@ -55,6 +55,10 @@ public class Washing {
         this.cost = cost;
     }
 
+    public void setType(String type){
+        this.type = type;
+    }
+
     public String getPlate() {
         return plate;
     }

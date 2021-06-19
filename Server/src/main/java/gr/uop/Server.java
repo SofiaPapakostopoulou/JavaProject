@@ -32,6 +32,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
@@ -52,14 +53,17 @@ public class Server extends Application {
 
     Writer writer = null;
     File file = new File("MobileP.csv");
+    TableView<Washing> table = new TableView<>();
+    static ObservableList<Washing> data = FXCollections.observableArrayList();
 
     @Override
     public void start(Stage stage) {
+        
         // try (ServerSocket serverSocket = new ServerSocket(7777);
         // Socket connectionSocket = serverSocket.accept();
         // Scanner fromClient = new Scanner(connectionSocket.getInputStream());
-        // PrintWriter toClient = new PrintWriter(connectionSocket.getOutputStream(),
-        // true)) {
+        // PrintWriter toClient = new PrintWriter(connectionSocket.getOutputStream(), true)) {
+
 
         Button logobtn = new Button();
         logobtn.setMaxSize(30, 30);
@@ -75,23 +79,39 @@ public class Server extends Application {
         logoBox.setAlignment(Pos.TOP_LEFT);
         logoBox.setPadding(new Insets(20, 0, 0, 40));
 
-        TableView<String> table = new TableView<>();
-        TableColumn<String, String> tableColumn = new TableColumn<>("Name");
-        TableColumn<String, String> tableColumn2 = new TableColumn<>("Surname");
+        
+        table.setMaxWidth(900);
+        TableColumn<Washing, String> tbc1 = new TableColumn<>("Αρ. Συναλλαγής");
+        TableColumn<Washing, String> tbc2 = new TableColumn<>("Αρ. Κυκλοφορίας");
+        TableColumn<Washing, String> tbc3 = new TableColumn<>("Υπηρεσίες");
+        TableColumn<Washing, String> tbc4 = new TableColumn<>("Συνολικό Κόστος");
+        TableColumn<Washing, String> tbc5 = new TableColumn<>("Ώρα Άφιξης");
 
-        tableColumn.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue()));
-        tableColumn2.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue()));
+        tbc1.setCellValueFactory(new PropertyValueFactory<Washing,String>("plate"));//id
+        tbc2.setCellValueFactory(new PropertyValueFactory<Washing,String>("plate"));//plate
+        tbc3.setCellValueFactory(new PropertyValueFactory<Washing,String>("cost"));//services
+        tbc4.setCellValueFactory(new PropertyValueFactory<Washing,String>("cost"));//cost
+        tbc5.setCellValueFactory(new PropertyValueFactory<Washing,String>("cost"));//time
 
-        table.getColumns().add(tableColumn);
-        ObservableList<String> items = FXCollections.observableArrayList("Itachi", "takamouri", "yolo", "pizza");
-        table.setItems(items);
-        table.setMaxSize(900, 1300);
-        // table.getItems().;
-        table.getItems().add("lal");
+        //table.getColumns().addAll(tbc1, tbc2, tbc3, tbc4, tbc5);
+        table.getColumns().add(tbc1);
+        table.getColumns().add(tbc2);
+        table.getColumns().add(tbc3);
+        table.getColumns().add(tbc4);
+        table.getColumns().add(tbc5);
 
-        table.getColumns().add(tableColumn2);
-        ObservableList<String> items2 = FXCollections.observableArrayList("Itachi", "takamouri", "yolo", "pizza");
-        table.setItems(items2);
+        tbc1.prefWidthProperty().bind(table.widthProperty().divide(5));
+        tbc2.prefWidthProperty().bind(table.widthProperty().divide(5));
+        tbc3.prefWidthProperty().bind(table.widthProperty().divide(5));
+        tbc4.prefWidthProperty().bind(table.widthProperty().divide(5));
+        tbc5.prefWidthProperty().bind(table.widthProperty().divide(5));
+
+        table.setItems(data);
+
+        data.add(new Washing("akk 0987", 98.0, "lol"));
+        data.add(new Washing("yegf09", 87, "lel"));
+
+        
 
         Button cancel = new Button("Ακύρωση Οχήματος");
         cancel.setMinWidth(200);
@@ -107,9 +127,7 @@ public class Server extends Application {
         VBox finalsp = new VBox(logoBox, table, bottomBtns);
         finalsp.setAlignment(Pos.CENTER);
         finalsp.setSpacing(40);
-        // StackPane.
-        finalsp.setBackground(
-                new Background(new BackgroundFill(Color.web("#d5f4e6"), CornerRadii.EMPTY, Insets.EMPTY)));
+        finalsp.setBackground(new Background(new BackgroundFill(Color.web("#d5f4e6"), CornerRadii.EMPTY, Insets.EMPTY)));
 
         var scene = new Scene(finalsp, 1024, 768);
 
@@ -136,7 +154,7 @@ public class Server extends Application {
 
                 if (result.get() == ButtonType.OK) {
                     try {
-                        writeExcel(table.getSelectionModel().getSelectedItem());
+                        //writeExcel(table.getSelectionModel().getSelectedItem());
                         System.out.println(table.getSelectionModel().getSelectedItem());
                     } catch (Exception ex) {
                         ex.printStackTrace();
@@ -157,7 +175,7 @@ public class Server extends Application {
 
                 if (result.get() == ButtonType.OK) {
                     try {
-                        writeExcel(table.getSelectionModel().getSelectedItem());
+                        //writeExcel(table.getSelectionModel().getSelectedItem());
                         System.out.println(table.getSelectionModel().getSelectedItem());
                         // table.getItems().remove(table.getSelectionModel().getSelectedIndex());
                     } catch (Exception ex) {
@@ -167,58 +185,57 @@ public class Server extends Application {
             }
         });
 
+        //data.add(Connected());
+        // while (true) {
+        //     try{
+        //         String plate = fromClient.nextLine();
+        //         toClient.println(plate);
+        //         System.out.println("Received: " + plate);
+        //         String cost = fromClient.nextLine();
+        //         toClient.println(cost);
+        //         System.out.println("Received: " + cost);
+        //         String type = fromClient.nextLine();
+        //         toClient.println(type);
+        //         System.out.println("Received: " + type);
+        //         Washing wc = new Washing(plate, Double.parseDouble(cost), type);
+        //         //data.add(wc);
+        //         System.out.println(wc);
+        //         String size = fromClient.nextLine();
+        //         toClient.println(size);
+        //         System.out.println("Received: " + size);
+        //         int sizelist = Integer.parseInt(size);
+        //         for (int i = 0; i < sizelist; i++) {
+        //             String id = fromClient.nextLine();
+        //             toClient.println(id);
+        //             System.out.println("Received: " + id);
+        //             String name_services = fromClient.nextLine();
+        //             toClient.println(name_services);
+        //             System.out.println("Received: " + name_services);
+        //             String costserv = fromClient.nextLine();
+        //             toClient.println(costserv);
+        //             System.out.println("Received: " + costserv);
+        //             Services ser = new Services(id, name_services, Double.parseDouble(costserv));
+        //             wc.getServices().add(ser);
+        //         }
+        //         List<Services> se = wc.getServices();
+        //         for (Services m : se) {
+        //             System.out.println(m.toString());
+        //         }
+        //     }catch (Exception e) {
+        //         System.out.println(e);
+        //     }
+        // }
+
         // } catch (IOException e) {
         // System.out.println(e);
         // }
 
+        //Connected();
+
     }
 
-    public static void main(String[] args) {
+    
 
-        // launch(args);
-        while (true) {
-            try (ServerSocket serverSocket = new ServerSocket(7777);
-                    Socket connectionSocket = serverSocket.accept();
-                    Scanner fromClient = new Scanner(connectionSocket.getInputStream());
-                    PrintWriter toClient = new PrintWriter(connectionSocket.getOutputStream(), true)) {
-
-                String plate = fromClient.nextLine();
-                toClient.println(plate);
-                System.out.println("Received: " + plate);
-                String cost = fromClient.nextLine();
-                toClient.println(cost);
-                System.out.println("Received: " + cost);
-                String type = fromClient.nextLine();
-                toClient.println(type);
-                System.out.println("Received: " + type);
-                Washing wc = new Washing(plate, Double.parseDouble(cost), type);
-                System.out.println(wc);
-                String size = fromClient.nextLine();
-                toClient.println(size);
-                System.out.println("Received: " + size);
-                int sizelist = Integer.parseInt(size);
-                for (int i = 0; i < sizelist; i++) {
-                    String id = fromClient.nextLine();
-                    toClient.println(id);
-                    System.out.println("Received: " + id);
-                    String name_services = fromClient.nextLine();
-                    toClient.println(name_services);
-                    System.out.println("Received: " + name_services);
-                    String costserv = fromClient.nextLine();
-                    toClient.println(costserv);
-                    System.out.println("Received: " + costserv);
-                    Services ser = new Services(id, name_services, Double.parseDouble(costserv));
-                    wc.getServices().add(ser);
-                }
-                List<Services> se = wc.getServices();
-                for (Services m : se) {
-                    System.out.println(m.toString());
-                }
-            } catch (IOException e) {
-                System.out.println(e);
-            }
-        }
-    }
 
     public void writeExcel(String text) throws Exception {
         String CsvFile = "MobileP.csv";
@@ -252,6 +269,58 @@ public class Server extends Application {
             writer.flush();
             writer.close();
         }
+    }
+
+    // public static void Connected(){
+    //     while (true) {
+    //         try (ServerSocket serverSocket = new ServerSocket(7777);
+    //                 Socket connectionSocket = serverSocket.accept();
+    //                 Scanner fromClient = new Scanner(connectionSocket.getInputStream());
+    //                 PrintWriter toClient = new PrintWriter(connectionSocket.getOutputStream(), true)) {
+
+    //             String plate = fromClient.nextLine();
+    //             toClient.println(plate);
+    //             System.out.println("Received: " + plate);
+    //             String cost = fromClient.nextLine();
+    //             toClient.println(cost);
+    //             System.out.println("Received: " + cost);
+    //             String type = fromClient.nextLine();
+    //             toClient.println(type);
+    //             System.out.println("Received: " + type);
+    //             Washing wc = new Washing(plate, Double.parseDouble(cost), type);
+    //             //data.add(wc);
+    //             System.out.println(wc);
+    //             String size = fromClient.nextLine();
+    //             toClient.println(size);
+    //             System.out.println("Received: " + size);
+    //             int sizelist = Integer.parseInt(size);
+    //             for (int i = 0; i < sizelist; i++) {
+    //                 String id = fromClient.nextLine();
+    //                 toClient.println(id);
+    //                 System.out.println("Received: " + id);
+    //                 String name_services = fromClient.nextLine();
+    //                 toClient.println(name_services);
+    //                 System.out.println("Received: " + name_services);
+    //                 String costserv = fromClient.nextLine();
+    //                 toClient.println(costserv);
+    //                 System.out.println("Received: " + costserv);
+    //                 Services ser = new Services(id, name_services, Double.parseDouble(costserv));
+    //                 wc.getServices().add(ser);
+    //             }
+    //             List<Services> se = wc.getServices();
+    //             for (Services m : se) {
+    //                 System.out.println(m.toString());
+    //             }
+    //             //return wc;
+    //         } catch (IOException e) {
+    //             System.out.println(e);
+    //         }
+    //     }
+    // }
+
+    public static void main(String[] args) {
+
+        launch(args);
     }
 
 }
