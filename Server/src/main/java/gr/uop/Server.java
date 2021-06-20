@@ -7,7 +7,6 @@ import java.io.PrintWriter;
 import java.io.Writer;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.security.spec.ECField;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -39,7 +38,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -172,9 +170,7 @@ public class Server extends Application {
         EventHandler<ActionEvent> event2 = new EventHandler<ActionEvent>() {
             public void handle(ActionEvent e) {
                 alert.setAlertType(AlertType.CONFIRMATION);
-                // needs improvment
-                // String contet = "Υπηρεσίες: \n";
-                // alert.setContentText(contet);
+
                 alert.setHeaderText("Ακύρωση Οχήματος ");
                 alert.setTitle("Διαγραφή Οχήματος");
                 Optional<ButtonType> result = alert.showAndWait();
@@ -192,6 +188,8 @@ public class Server extends Application {
         cancel.setOnAction(event2);
 
         // On Click Εκδoση Απόδειξης
+
+        // Iσως αυτο να μη χρειάζεται
         table.setOnMouseClicked((MouseEvent ev) -> {
             ActionEvent e = new ActionEvent();
             event.handle(e);
@@ -205,34 +203,24 @@ public class Server extends Application {
             }
 
         });
-        // table.getSelectionModel().selectedItemProperty().addListener((obs,
-        // oldSelection, newSelection) -> {
 
-        // ActionEvent e = new ActionEvent();
-        // event.handle(e);
+        ///
+        stage.setOnCloseRequest((e) -> {
+            if (data.size() != 0) {
+                Alert al = new Alert(AlertType.ERROR);
+                al.setTitle("Σφάλμα.");
+                al.setHeaderText("Υπάρχουν ακόμα οχήματα προς εξυπηρέτηση.");
+                al.setContentText("Το προγραμμα δεν μπορεί να τερματιστεί.");
 
-        // // if (newSelection != null) {
+                al.showAndWait();
+                e.consume();
+            }
+            if (data.size() == 0) {
+                System.exit(1);
 
-        // // // alert.setAlertType(AlertType.CONFIRMATION);
-        // // // String contet = "Υπηρεσίες: \n";
-        // // // alert.setContentText(contet);
-        // // // alert.setHeaderText("Συνολικό κόστος: " + 1120 + "€");
-        // // // alert.setTitle("Επιβεβαίωση Επιλογών");
-        // // // Optional<ButtonType> result = alert.showAndWait();
-
-        // // // if (result.get() == ButtonType.OK) {
-        // // // try {
-        // // // // writeExcel(table.getSelectionModel().getSelectedItem());
-        // // // System.out.println("selected: " +
-        // // // table.getSelectionModel().getSelectedItem());
-        // // // table.getItems().remove(table.getSelectionModel().getSelectedIndex());
-        // // // } catch (Exception ex) {
-        // // // ex.printStackTrace();
-        // // // }
-        // // // }
-        // // }
-        // });
-
+            }
+        });
+        ///
         new Thread(() -> {
 
             while (true) {
@@ -281,6 +269,7 @@ public class Server extends Application {
                     wc.setTime();
                     wc.setUniqueID();
                     data.add(wc);
+                    System.out.println(data.size());
                 } catch (IOException e) {
                     System.out.println(e);
                 }
