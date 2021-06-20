@@ -39,7 +39,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
@@ -170,13 +169,14 @@ public class Server extends Application {
             public void handle(ActionEvent e) {
                 alert.setAlertType(AlertType.CONFIRMATION);
 
-                alert.setHeaderText("Ακύρωση Οχήματος ");
+                alert.setHeaderText("Ακύρωση Οχήματος " + table.getSelectionModel().getSelectedItem().getPlate());
                 alert.setTitle("Διαγραφή Οχήματος");
                 Optional<ButtonType> result = alert.showAndWait();
 
                 if (result.get() == ButtonType.OK) {
                     try {
                         WriteCSV.removefromfile(table.getSelectionModel().getSelectedItem());
+                        CanceledCSV.writefile(table.getSelectionModel().getSelectedItem());
                         System.out.println("Selected for deletion: " + table.getSelectionModel().getSelectedItem());
                         table.getItems().remove(table.getSelectionModel().getSelectedIndex());
                     } catch (Exception ex) {
