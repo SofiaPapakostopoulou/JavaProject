@@ -111,7 +111,7 @@ public class Server extends Application {
         Button cancel = new Button("Ακύρωση Οχήματος");
         cancel.setMinWidth(200);
         cancel.setMaxWidth(200);
-        Button submit = new Button("Καταχώρηση Οχήματος");
+        Button submit = new Button("Έκδοση Απόδειξης");
         submit.setMinWidth(200);
         submit.setMaxWidth(200);
         StackPane bottomBtns = new StackPane(cancel, submit);
@@ -189,13 +189,13 @@ public class Server extends Application {
         };
         cancel.setOnAction(event2);
 
-        // On Click Εκδoση Απόδειξης
+        // On KeyPressed Εκδoση Απόδειξης
 
         // Iσως αυτο να μη χρειάζεται
-        table.setOnMouseClicked((MouseEvent ev) -> {
-            ActionEvent e = new ActionEvent();
-            event.handle(e);
-        });
+        // table.setOnMouseClicked((MouseEvent ev) -> {
+        //     ActionEvent e = new ActionEvent();
+        //     event.handle(e);
+        // });
         table.addEventFilter(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
 
             @Override
@@ -241,7 +241,6 @@ public class Server extends Application {
                     toClient.println(type);
                     System.out.println("Received: " + type);
                     Washing wc = new Washing(plate, Double.parseDouble(cost), type);
-                    // data.add(wc);
                     System.out.println(wc);
                     String size = fromClient.nextLine();
                     toClient.println(size);
