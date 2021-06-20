@@ -7,6 +7,9 @@ import java.io.PrintWriter;
 import java.io.Writer;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
@@ -268,6 +271,9 @@ public class Server extends Application {
     public void writeExcel(Washing text) throws Exception {
         String CsvFile = "MobileP.csv";
         ListView<String> dataList = new ListView<>();
+        DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+        Calendar cal = Calendar.getInstance();
+        String departureTime = dateFormat.format(cal.getTime());
 
         BufferedReader br;
 
@@ -286,7 +292,7 @@ public class Server extends Application {
         }
 
         try {
-            dataList.getItems().add(text.getDate()+ "  "+ text.getTime() + "  " + text.getPlate() + "  " + text.getServices() + "  " + text.getCost() + "€");
+            dataList.getItems().add(text.getDate()+ "  " + text.getTime() + "-"+ departureTime + "  " + text.getPlate() + "  " + text.getServices() + "  " + text.getCost() + "€");
             writer = new FileWriter(file);
             for (int i = 0; i < dataList.getItems().size(); i++) {
                 writer.write(dataList.getItems().get(i) + "\n");
