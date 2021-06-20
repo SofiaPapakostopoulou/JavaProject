@@ -1,12 +1,6 @@
 package gr.uop;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.net.Socket;
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Scanner;
-import java.util.UUID;
 
 import javafx.application.Application;
 
@@ -23,11 +17,6 @@ public class Client extends Application {
         ArrayList<Washing> warray = new ArrayList<Washing>();
 
         new PrimaryStage(stage, warray);
-
-        // Found how to have datetime and
-        // LocalDate datetime = LocalDate.now();
-        // String uniqueID = UUID.randomUUID().toString();
-        // System.out.println("LD:" + datetime + " ID: " + uniqueID);
 
     }
 

@@ -37,6 +37,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
@@ -155,7 +156,7 @@ public class Server extends Application {
 
                 if (result.get() == ButtonType.OK) {
                     try {
-                        //writeExcel(table.getSelectionModel().getSelectedItem());
+                        // writeExcel(table.getSelectionModel().getSelectedItem());
                         WriteCSV.updatefile(table.getSelectionModel().getSelectedItem());
                         System.out.println(
                                 "Selected for receipt and deletion: " + table.getSelectionModel().getSelectedItem());
@@ -193,15 +194,17 @@ public class Server extends Application {
 
         // Iσως αυτο να μη χρειάζεται
         // table.setOnMouseClicked((MouseEvent ev) -> {
-        //     ActionEvent e = new ActionEvent();
-        //     event.handle(e);
+        // ActionEvent e = new ActionEvent();
+        // event.handle(e);
         // });
         table.addEventFilter(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
 
             @Override
             public void handle(KeyEvent evt) {
-                ActionEvent e = new ActionEvent();
-                event.handle(e);
+                if (evt.getCode() == KeyCode.ENTER) {
+                    ActionEvent e = new ActionEvent();
+                    event.handle(e);
+                }
             }
 
         });
@@ -232,30 +235,23 @@ public class Server extends Application {
                         PrintWriter toClient = new PrintWriter(connectionSocket.getOutputStream(), true)) {
 
                     String plate = fromClient.nextLine();
-                    toClient.println(plate);
-                    System.out.println("Received: " + plate);
+
                     String cost = fromClient.nextLine();
-                    toClient.println(cost);
-                    System.out.println("Received: " + cost);
+
                     String type = fromClient.nextLine();
-                    toClient.println(type);
-                    System.out.println("Received: " + type);
+
                     Washing wc = new Washing(plate, Double.parseDouble(cost), type);
                     System.out.println(wc);
                     String size = fromClient.nextLine();
-                    toClient.println(size);
-                    System.out.println("Received: " + size);
+
                     int sizelist = Integer.parseInt(size);
                     for (int i = 0; i < sizelist; i++) {
                         String id = fromClient.nextLine();
-                        toClient.println(id);
-                        System.out.println("Received: " + id);
+
                         String name_services = fromClient.nextLine();
-                        toClient.println(name_services);
-                        System.out.println("Received: " + name_services);
+
                         String costserv = fromClient.nextLine();
-                        toClient.println(costserv);
-                        System.out.println("Received: " + costserv);
+
                         Services ser = new Services(id, name_services, Double.parseDouble(costserv));
                         wc.getServices().add(ser);
                     }
@@ -309,8 +305,8 @@ public class Server extends Application {
         }
 
         try {
-            dataList.getItems().add(text.getDate() + "  " + text.getTime() + "  "
-                    + text.getPlate() + "  " + text.getServices() + "  " + text.getCost() + "€");
+            dataList.getItems().add(text.getDate() + "  " + text.getTime() + "  " + text.getPlate() + "  "
+                    + text.getServices() + "  " + text.getCost() + "€");
             writer = new FileWriter(file);
             for (int i = 0; i < dataList.getItems().size(); i++) {
                 writer.write(dataList.getItems().get(i) + "\n");
@@ -321,8 +317,7 @@ public class Server extends Application {
             writer.flush();
             writer.close();
         }
-            
-        
+
     }
 
 }
