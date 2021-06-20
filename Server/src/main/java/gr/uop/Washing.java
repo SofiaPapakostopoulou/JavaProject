@@ -5,6 +5,12 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.UUID;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.ComboBox;
 
 public class Washing {
     /*
@@ -14,6 +20,9 @@ public class Washing {
     private double cost;
     private String type;
     private List<Services> services = new ArrayList<Services>();
+    private String time;
+    private String uniqueID;
+    private ComboBox cb;
 
     public Washing(String plate, double cost, String type) {
         /*
@@ -32,13 +41,24 @@ public class Washing {
         return dateFormat.format(cal.getTime());
     }
 
-    public String getTime() {
+    public String setTime() {
         DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
         Calendar cal = Calendar.getInstance();
-        return dateFormat.format(cal.getTime());
+        time = dateFormat.format(cal.getTime());
+        return time;
     }
 
-    // public String getID(){ return uniqueID; }
+    public String getTime() {
+        return time;
+    }
+
+    public void setUniqueID(){ 
+        uniqueID = UUID.randomUUID().toString(); 
+    }
+
+    public String getUniqueID(){ 
+        return uniqueID; 
+    }
 
     public void setPlate(String plate) {
         this.plate = plate;
@@ -46,10 +66,6 @@ public class Washing {
 
     public void setCost(double cost) {
         this.cost = cost;
-    }
-
-    public void setType(String type){
-        this.type = type;
     }
 
     public String getPlate() {
@@ -63,8 +79,24 @@ public class Washing {
     public List getServices() {
         return services;
     }
+
+    public void setCb(ComboBox cb){
+        this.cb = cb;
+    }
+
+    public ComboBox getCb(){
+        return cb;
+    }
+    // public ComboBox getServices() {
+    //     ObservableList<Services> options = FXCollections.observableArrayList();
+    //     for(int i =0; i<services.size(); i++){
+    //         options.add(services.get(i));
+    //     }
+    //     ComboBox comboBox = new ComboBox(options);
+    //     return comboBox;
+    // }
     
-    public String getType(String type){
+    public String getType(){
         return type;
     }
 
