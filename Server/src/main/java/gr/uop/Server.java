@@ -7,6 +7,7 @@ import java.io.PrintWriter;
 import java.io.Writer;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.security.spec.ECField;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -37,6 +38,9 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
@@ -140,9 +144,8 @@ public class Server extends Application {
             public void handle(ActionEvent e) {
                 alert.setAlertType(AlertType.CONFIRMATION);
                 // needs improvment
-                String contet = "Υπηρεσίες: \n";
-                // contet +=
-                // table.getSelectionModel().getSelectedItem().getServices().toString();
+                String contet = "Υπηρεσίες για το " + table.getSelectionModel().getSelectedItem().getPlate() + ": \n";
+
                 List<Services> ap = table.getSelectionModel().getSelectedItem().getServices();
                 for (Services s : ap) {
                     contet += s.toString() + "\n";
@@ -189,28 +192,45 @@ public class Server extends Application {
         cancel.setOnAction(event2);
 
         // On Click Εκδoση Απόδειξης
+        table.setOnMouseClicked((MouseEvent ev) -> {
+            ActionEvent e = new ActionEvent();
+            event.handle(e);
+        });
+        table.addEventFilter(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
 
+            @Override
+            public void handle(KeyEvent evt) {
+                ActionEvent e = new ActionEvent();
+                event.handle(e);
+            }
+
+        });
         // table.getSelectionModel().selectedItemProperty().addListener((obs,
         // oldSelection, newSelection) -> {
-        // if (newSelection != null) {
-        // alert.setAlertType(AlertType.CONFIRMATION);
-        // String contet = "Υπηρεσίες: \n";
-        // alert.setContentText(contet);
-        // alert.setHeaderText("Συνολικό κόστος: " + 1120 + "€");
-        // alert.setTitle("Επιβεβαίωση Επιλογών");
-        // Optional<ButtonType> result = alert.showAndWait();
 
-        // if (result.get() == ButtonType.OK) {
-        // try {
-        // //writeExcel(table.getSelectionModel().getSelectedItem());
-        // System.out.println("selected: " +
-        // table.getSelectionModel().getSelectedItem());
-        // table.getItems().remove(table.getSelectionModel().getSelectedIndex());
-        // } catch (Exception ex) {
-        // ex.printStackTrace();
-        // }
-        // }
-        // }
+        // ActionEvent e = new ActionEvent();
+        // event.handle(e);
+
+        // // if (newSelection != null) {
+
+        // // // alert.setAlertType(AlertType.CONFIRMATION);
+        // // // String contet = "Υπηρεσίες: \n";
+        // // // alert.setContentText(contet);
+        // // // alert.setHeaderText("Συνολικό κόστος: " + 1120 + "€");
+        // // // alert.setTitle("Επιβεβαίωση Επιλογών");
+        // // // Optional<ButtonType> result = alert.showAndWait();
+
+        // // // if (result.get() == ButtonType.OK) {
+        // // // try {
+        // // // // writeExcel(table.getSelectionModel().getSelectedItem());
+        // // // System.out.println("selected: " +
+        // // // table.getSelectionModel().getSelectedItem());
+        // // // table.getItems().remove(table.getSelectionModel().getSelectedIndex());
+        // // // } catch (Exception ex) {
+        // // // ex.printStackTrace();
+        // // // }
+        // // // }
+        // // }
         // });
 
         new Thread(() -> {

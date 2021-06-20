@@ -52,12 +52,12 @@ public class Washing {
         return time;
     }
 
-    public void setUniqueID(){ 
-        uniqueID = UUID.randomUUID().toString(); 
+    public void setUniqueID() {
+        uniqueID = UUID.randomUUID().toString();
     }
 
-    public String getUniqueID(){ 
-        return uniqueID; 
+    public String getUniqueID() {
+        return uniqueID;
     }
 
     public void setPlate(String plate) {
@@ -80,28 +80,31 @@ public class Washing {
         return services;
     }
 
-    public void setCb(ComboBox cb){
+    public void setCb(ComboBox cb) {
         this.cb = cb;
     }
 
-    public ComboBox getCb(){
+    public ComboBox getCb() {
         return cb;
     }
     // public ComboBox getServices() {
-    //     ObservableList<Services> options = FXCollections.observableArrayList();
-    //     for(int i =0; i<services.size(); i++){
-    //         options.add(services.get(i));
-    //     }
-    //     ComboBox comboBox = new ComboBox(options);
-    //     return comboBox;
+    // ObservableList<Services> options = FXCollections.observableArrayList();
+    // for(int i =0; i<services.size(); i++){
+    // options.add(services.get(i));
     // }
-    
-    public String getType(){
+    // ComboBox comboBox = new ComboBox(options);
+    // return comboBox;
+    // }
+
+    public String getType() {
         return type;
     }
 
     public String toString() {
         return "Plate:" + plate + " Cost:" + cost + " Type:" + type;
+    }
+
+    public void setOnAction() {
     }
 
 }
