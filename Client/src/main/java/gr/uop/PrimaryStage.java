@@ -147,13 +147,13 @@ public class PrimaryStage {
         }
         for (Button b : letList) {
             b.setMinWidth(40);
-            b.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 10));
+            b.setFont(Font.font("Comic Sans MS", 15));
         }
         Button backspace = new Button("Backspace");
-        backspace.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 10));
+        backspace.setFont(Font.font("Comic Sans MS", 15));
         gridLetters.add(backspace, 10, 0);
         Button space = new Button(" ");
-        space.setMinWidth(260);
+        space.setMinWidth(280);
         VBox letters = new VBox(gridLetters, space);
         VBox numbers = new VBox();
         GridPane gridNumber = new GridPane();
@@ -203,7 +203,7 @@ public class PrimaryStage {
         numbList.add(n0);
         for (Button b : numbList) {
             b.setMinWidth(40);
-            b.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 10));
+            b.setFont(Font.font("Comic Sans MS", 15));
         }
         numbers.setAlignment(Pos.CENTER);
         numbers.getChildren().addAll(gridNumber, n0);
@@ -255,7 +255,7 @@ public class PrimaryStage {
         });
 
         Button enter = new Button("Καταχώρηση Πινακίδας");
-        enter.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 10));
+        enter.setFont(Font.font("Comic Sans MS", 15));
         vb.getChildren().add(enter);
 
         enter.setOnAction(new EventHandler<ActionEvent>() {
@@ -272,7 +272,7 @@ public class PrimaryStage {
 
                 if (plate.getText().equals("")) {
                     check.setText("Ο αριθμός κυκλοφορίας δεν μπορεί να είναι κενός.");
-                    check.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 10));
+                    check.setFont(Font.font("Comic Sans MS", 15));
                     enter.setDisable(true);
                     backspace.setDisable(true);
 
@@ -294,7 +294,7 @@ public class PrimaryStage {
                         check.setText(" ");
                     } else {
                         check.setText("Ο αριθμός κυκλοφορίας πρέπει να περιέχει τουλάχιστον 2 γράμματα και 1 αριθμό.");
-                        check.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 10));
+                        check.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 15));
                         enter.setDisable(true);
                     }
 
