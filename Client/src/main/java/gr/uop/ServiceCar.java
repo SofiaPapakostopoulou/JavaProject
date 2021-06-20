@@ -37,28 +37,28 @@ public class ServiceCar {
     public ServiceCar(Stage stage, String plate) {
 
         var label = new Label("Επιλέξτε την υπηρεσία ή τις υπηρεσίες που επιθυμείτε απο τον παρακάτω τιμοκατάλογο.");
-        label.setFont(Font.font("comic Sans MS", 20));
+        label.setFont(Font.font("LiHei Pro", 20));
 
         CheckBox cb1 = new CheckBox("Πλύσιμο εξωτερικό,  7€");
-        cb1.setFont(Font.font("Comic Sans MS", 15));
+        cb1.setFont(Font.font("LiHei Pro", 15));
         CheckBox cb2 = new CheckBox("Πλύσιμο εσωτερικό,  6€");
-        cb2.setFont(Font.font("Comic Sans MS", 15));
+        cb2.setFont(Font.font("LiHei Pro", 15));
         CheckBox cb3 = new CheckBox("Πλύσιμο εξωτερικό και εσωτερικό,    12€");
-        cb3.setFont(Font.font("Comic Sans MS", 15));
+        cb3.setFont(Font.font("LiHei Pro", 15));
         CheckBox cb4 = new CheckBox("Πλύσιμο εξωτερικό σπέσιαλ,  9€");
-        cb4.setFont(Font.font("Comic Sans MS", 15));
+        cb4.setFont(Font.font("LiHei Pro", 15));
         CheckBox cb5 = new CheckBox("Πλύσιμο εσωτερικό σπέσιαλ,  8€");
-        cb5.setFont(Font.font("Comic Sans MS", 15));
+        cb5.setFont(Font.font("LiHei Pro", 15));
         CheckBox cb6 = new CheckBox("Πλύσιμο εσωτερικό και εξωτερικό σπέσιαλ,    15€");
-        cb6.setFont(Font.font("Comic Sans MS", 15));
+        cb6.setFont(Font.font("LiHei Pro", 15));
         CheckBox cb7 = new CheckBox("Βιολογικός καθαρισμός εσωτερικός,   80€");
-        cb7.setFont(Font.font("Comic Sans MS", 15));
+        cb7.setFont(Font.font("LiHei Pro", 15));
         CheckBox cb8 = new CheckBox("Κέρωμα - Γυάλισμα,  80€");
-        cb8.setFont(Font.font("Comic Sans MS", 15));
+        cb8.setFont(Font.font("LiHei Pro", 15));
         CheckBox cb9 = new CheckBox("Καθαρισμός κινητήρα, 20€");
-        cb9.setFont(Font.font("Comic Sans MS", 15));
+        cb9.setFont(Font.font("LiHei Pro", 15));
         CheckBox cb10 = new CheckBox("Πλύσιμο σασί,   3€");
-        cb10.setFont(Font.font("Comic Sans MS", 15));
+        cb10.setFont(Font.font("LiHei Pro", 15));
 
         VBox vbox = new VBox(cb1, cb2, cb3, cb4, cb5, cb6, cb7, cb8, cb9, cb10);
         vbox.setSpacing(10);
@@ -79,10 +79,10 @@ public class ServiceCar {
                 .or(cb6.selectedProperty()));
 
         var price = new Label("Συνολικό Κόστος: ");
-        price.setFont(Font.font("Comic Sans MS", 15));
+        price.setFont(Font.font("LiHei Pro", 15));
         price.setAlignment(Pos.CENTER_LEFT);
         Button btn = new Button("Καταχώρηση");
-        btn.setFont(Font.font("Comic Sans MS", 15));
+        btn.setFont(Font.font("LiHei Pro", 15));
         // try
 
         EventHandler<ActionEvent> ev = new EventHandler<ActionEvent>() {
@@ -120,7 +120,7 @@ public class ServiceCar {
                     cost = cost + 3;
                 }
                 price.setText("Συνολικό Κόστος: " + cost + "€");
-                price.setFont(Font.font("Comic Sans MS", 15));
+                price.setFont(Font.font("LiHei Pro", 15));
                 f_cost = cost;
             }
 
@@ -239,7 +239,7 @@ public class ServiceCar {
         ImageView backImageView = new ImageView(new Image(getClass().getResourceAsStream("images/back.png")));
         back.setGraphic(backImageView);
         Button start = new Button("Αρχική Σελίδα");
-        start.setFont(Font.font("Comic Sans MS", 15));
+        start.setFont(Font.font("LiHei Pro", 15));
         start.setAlignment(Pos.CENTER_LEFT);
         StackPane top = new StackPane(back, start);
         top.setPadding(new Insets(20, 50, 20, 50));

@@ -21,7 +21,7 @@ public class Washing {
     private String type;
     private List<Services> services = new ArrayList<Services>();
     private String time;
-    private String uniqueID;
+    private String date;
     private ComboBox cb;
 
     public Washing(String plate, double cost, String type) {
@@ -48,16 +48,16 @@ public class Washing {
         return time;
     }
 
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public void setDate(String time) {
+        this.date = date;
+    }
+
     public String getTime() {
         return time;
-    }
-
-    public void setUniqueID() {
-        uniqueID = UUID.randomUUID().toString();
-    }
-
-    public String getUniqueID() {
-        return uniqueID;
     }
 
     public void setPlate(String plate) {

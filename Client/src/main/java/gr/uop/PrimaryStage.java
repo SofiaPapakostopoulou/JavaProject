@@ -31,13 +31,13 @@ public class PrimaryStage {
 
         // -fx-background-color: #80ced6;
         var label = new Label("Καλωσήρθατε στο κατάστημα μας!");
-        label.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 50));
+        label.setFont(Font.font("LiHei Pro", FontWeight.BOLD, 50));
         // label.setStyle("padding: 20px; -fx-text-fill: #0694AB");
         var label_plate = new Label("Παρακαλώ εισάγετε τον αριθμό της πινακίδας σας");
-        label_plate.setFont(Font.font("comic Sans MS", 30));
+        label_plate.setFont(Font.font("LiHei Pro", 30));
         var plate = new Label("");
         plate.setAlignment(Pos.CENTER_RIGHT);
-        plate.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 20));
+        plate.setFont(Font.font("LiHei Pro", FontWeight.BOLD, 20));
         plate.setMinWidth(200);
         plate.setMaxWidth(200);
         plate.setMinHeight(50);
@@ -147,10 +147,10 @@ public class PrimaryStage {
         }
         for (Button b : letList) {
             b.setMinWidth(40);
-            b.setFont(Font.font("Comic Sans MS", 15));
+            b.setFont(Font.font("LiHei Pro", 15));
         }
         Button backspace = new Button("Backspace");
-        backspace.setFont(Font.font("Comic Sans MS", 15));
+        backspace.setFont(Font.font("LiHei Pro", 15));
         gridLetters.add(backspace, 10, 0);
         Button space = new Button(" ");
         space.setMinWidth(280);
@@ -203,7 +203,7 @@ public class PrimaryStage {
         numbList.add(n0);
         for (Button b : numbList) {
             b.setMinWidth(40);
-            b.setFont(Font.font("Comic Sans MS", 15));
+            b.setFont(Font.font("LiHei Pro", 15));
         }
         numbers.setAlignment(Pos.CENTER);
         numbers.getChildren().addAll(gridNumber, n0);
@@ -255,7 +255,7 @@ public class PrimaryStage {
         });
 
         Button enter = new Button("Καταχώρηση Πινακίδας");
-        enter.setFont(Font.font("Comic Sans MS", 15));
+        enter.setFont(Font.font("LiHei Pro", 15));
         vb.getChildren().add(enter);
 
         enter.setOnAction(new EventHandler<ActionEvent>() {
@@ -272,7 +272,7 @@ public class PrimaryStage {
 
                 if (plate.getText().equals("")) {
                     check.setText("Ο αριθμός κυκλοφορίας δεν μπορεί να είναι κενός.");
-                    check.setFont(Font.font("Comic Sans MS", 15));
+                    check.setFont(Font.font("LiHei Pro", 15));
                     enter.setDisable(true);
                     backspace.setDisable(true);
 
@@ -294,7 +294,7 @@ public class PrimaryStage {
                         check.setText(" ");
                     } else {
                         check.setText("Ο αριθμός κυκλοφορίας πρέπει να περιέχει τουλάχιστον 2 γράμματα και 1 αριθμό.");
-                        check.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 15));
+                        check.setFont(Font.font("LiHei Pro", FontWeight.BOLD, 15));
                         enter.setDisable(true);
                     }
 

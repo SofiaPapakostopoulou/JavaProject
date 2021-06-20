@@ -36,16 +36,16 @@ public class ServiceMoto {
     public ServiceMoto(Stage stage, String plate) {
 
         var label = new Label("Επιλέξτε την υπηρεσία ή τις υπηρεσίες που επιθυμείτε απο τον παρακάτω τιμοκατάλογο.");
-        label.setFont(Font.font("comic Sans MS", 20));
+        label.setFont(Font.font("LiHei Pro", 20));
 
         CheckBox cb1 = new CheckBox("Πλύσιμο εξωτερικό, 6€");
-        cb1.setFont(Font.font("Comic Sans MS", 15));
+        cb1.setFont(Font.font("LiHei Pro", 15));
         CheckBox cb2 = new CheckBox("Πλύσιμο εξωτερικό σπέσιαλ, 8€");
-        cb2.setFont(Font.font("Comic Sans MS", 15));
+        cb2.setFont(Font.font("LiHei Pro", 15));
         CheckBox cb3 = new CheckBox("Κέρωμα - Γυάλισμα, 40€");
-        cb3.setFont(Font.font("Comic Sans MS", 15));
+        cb3.setFont(Font.font("LiHei Pro", 15));
         CheckBox cb4 = new CheckBox("Καθαρισμός κινητήρα, 10€");
-        cb4.setFont(Font.font("Comic Sans MS", 15));
+        cb4.setFont(Font.font("LiHei Pro", 15));
 
         VBox vbox = new VBox(cb1, cb2, cb3, cb4);
         vbox.setSpacing(10);
@@ -56,10 +56,10 @@ public class ServiceMoto {
         cb2.disableProperty().bind(cb1.selectedProperty());
 
         var price = new Label("Συνολικό Κόστος: ");
-        price.setFont(Font.font("Comic Sans MS", 15));
+        price.setFont(Font.font("LiHei Pro", 15));
         price.setAlignment(Pos.CENTER_LEFT);
         Button btn = new Button("Καταχώρηση");
-        btn.setFont(Font.font("Comic Sans MS", 15));
+        btn.setFont(Font.font("LiHei Pro", 15));
 
         btn.disableProperty().bind(cb1.selectedProperty().not().and(cb2.selectedProperty().not())
                 .and(cb3.selectedProperty().not()).and(cb4.selectedProperty().not()));
@@ -84,7 +84,7 @@ public class ServiceMoto {
                 }
 
                 price.setText("Συνολικό Κόστος: " + cost + "€");
-                price.setFont(Font.font("Comic Sans MS", 15));
+                price.setFont(Font.font("LiHei Pro", 15));
                 f_cost = cost;
             }
 
@@ -158,7 +158,7 @@ public class ServiceMoto {
         ImageView backImageView = new ImageView(new Image(getClass().getResourceAsStream("images/back.png")));
         back.setGraphic(backImageView);
         Button start = new Button("Αρχική Σελίδα");
-        start.setFont(Font.font("Comic Sans MS", 15));
+        start.setFont(Font.font("LiHei Pro", 15));
         start.setAlignment(Pos.CENTER_LEFT);
         StackPane top = new StackPane(back, start);
         top.setPadding(new Insets(20, 50, 20, 50));

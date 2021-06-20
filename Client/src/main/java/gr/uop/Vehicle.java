@@ -34,9 +34,9 @@ public class Vehicle {
         RadioButton rb2 = new RadioButton("Τζίπ");
         RadioButton rb3 = new RadioButton("Μοτοσυκλέτα");
 
-        rb1.setFont(Font.font("Comic Sans MS", 30));
-        rb2.setFont(Font.font("Comic Sans MS", 30));
-        rb3.setFont(Font.font("Comic Sans MS", 30));
+        rb1.setFont(Font.font("LiHei Pro", 30));
+        rb2.setFont(Font.font("LiHei Pro", 30));
+        rb3.setFont(Font.font("LiHei Pro", 30));
 
         ToggleGroup radioGroup = new ToggleGroup();
 
@@ -58,7 +58,7 @@ public class Vehicle {
         tp.setText("Επιλέξτε το όχημα σας");
         tp.setContent(check);
         tp.setMaxWidth(400);
-        tp.setFont(Font.font("Comic Sans MS", 30));
+        tp.setFont(Font.font("LiHei Pro", 30));
 
         radioGroup.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
             public void changed(ObservableValue<? extends Toggle> ov, Toggle old_toggle, Toggle new_toggle) {

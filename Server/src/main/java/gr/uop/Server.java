@@ -63,6 +63,8 @@ public class Server extends Application {
     @Override
     public void start(Stage stage) {
 
+        ReadCSV.ReadCsv(data);
+
         Button logobtn = new Button();
         logobtn.setMaxSize(30, 30);
         logobtn.setMouseTransparent(true);
@@ -83,26 +85,29 @@ public class Server extends Application {
         TableColumn<Washing, ComboBox> tbc2 = new TableColumn<>("Υπηρεσίες");
         TableColumn<Washing, String> tbc3 = new TableColumn<>("Συνολικό Κόστος");
         TableColumn<Washing, String> tbc4 = new TableColumn<>("Όχημα");
-        TableColumn<Washing, String> tbc5 = new TableColumn<>("Ώρα Άφιξης");
+        TableColumn<Washing, String> tbc5 = new TableColumn<>("Ημέρα");
+        TableColumn<Washing, String> tbc6 = new TableColumn<>("Ώρα Άφιξης");
 
         tbc1.setCellValueFactory(new PropertyValueFactory<Washing, String>("plate"));
         tbc2.setCellValueFactory(new PropertyValueFactory<Washing, ComboBox>("cb"));
         tbc3.setCellValueFactory(new PropertyValueFactory<Washing, String>("cost"));
         tbc4.setCellValueFactory(new PropertyValueFactory<Washing, String>("type"));
-        tbc5.setCellValueFactory(new PropertyValueFactory<Washing, String>("time"));
+        tbc5.setCellValueFactory(new PropertyValueFactory<Washing, String>("date"));
+        tbc6.setCellValueFactory(new PropertyValueFactory<Washing, String>("time"));
 
         table.getColumns().add(tbc1);
         table.getColumns().add(tbc2);
         table.getColumns().add(tbc3);
         table.getColumns().add(tbc4);
         table.getColumns().add(tbc5);
+        table.getColumns().add(tbc6);
 
-        tbc1.prefWidthProperty().bind(table.widthProperty().divide(5));
-        tbc2.prefWidthProperty().bind(table.widthProperty().divide(5));
-        tbc3.prefWidthProperty().bind(table.widthProperty().divide(5));
-        tbc4.prefWidthProperty().bind(table.widthProperty().divide(5));
-        tbc5.prefWidthProperty().bind(table.widthProperty().divide(5));
-
+        tbc1.prefWidthProperty().bind(table.widthProperty().divide(6));
+        tbc2.prefWidthProperty().bind(table.widthProperty().divide(6));
+        tbc3.prefWidthProperty().bind(table.widthProperty().divide(6));
+        tbc4.prefWidthProperty().bind(table.widthProperty().divide(6));
+        tbc5.prefWidthProperty().bind(table.widthProperty().divide(6));
+        tbc6.prefWidthProperty().bind(table.widthProperty().divide(6));
         table.setItems(data);
 
         Button cancel = new Button("Ακύρωση Οχήματος");
@@ -261,7 +266,7 @@ public class Server extends Application {
                     cb.setMaxHeight(3);
                     wc.setCb(cb);
                     wc.setTime();
-                    wc.setUniqueID();
+                    wc.getDate();
                     data.add(wc);
                     WriteCSV.writefile(wc);
 
