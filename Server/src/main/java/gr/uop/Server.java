@@ -157,7 +157,8 @@ public class Server extends Application {
 
                 if (result.get() == ButtonType.OK) {
                     try {
-                        writeExcel(table.getSelectionModel().getSelectedItem());
+                        //writeExcel(table.getSelectionModel().getSelectedItem());
+                        WriteCSV.updatefile(table.getSelectionModel().getSelectedItem());
                         System.out.println(
                                 "Selected for receipt and deletion: " + table.getSelectionModel().getSelectedItem());
                         table.getItems().remove(table.getSelectionModel().getSelectedIndex());
@@ -181,6 +182,7 @@ public class Server extends Application {
 
                 if (result.get() == ButtonType.OK) {
                     try {
+                        WriteCSV.removefromfile(table.getSelectionModel().getSelectedItem());
                         System.out.println("Selected for deletion: " + table.getSelectionModel().getSelectedItem());
                         table.getItems().remove(table.getSelectionModel().getSelectedIndex());
                     } catch (Exception ex) {
@@ -192,10 +194,10 @@ public class Server extends Application {
         cancel.setOnAction(event2);
 
         // On Click Εκδoση Απόδειξης
-        table.setOnMouseClicked((MouseEvent ev) -> {
-            ActionEvent e = new ActionEvent();
-            event.handle(e);
-        });
+        // table.setOnMouseClicked((MouseEvent ev) -> {
+        //     ActionEvent e = new ActionEvent();
+        //     event.handle(e);
+        // });
         table.addEventFilter(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
 
             @Override
@@ -281,6 +283,11 @@ public class Server extends Application {
                     wc.setTime();
                     wc.setUniqueID();
                     data.add(wc);
+                    WriteCSV.writefile(wc);
+                    try{writeExcel(wc);}
+                    catch(Exception ex){
+                        System.out.println(ex);
+                    }
                 } catch (IOException e) {
                     System.out.println(e);
                 }
@@ -318,7 +325,7 @@ public class Server extends Application {
         }
 
         try {
-            dataList.getItems().add(text.getDate() + "  " + text.getTime() + "-" + departureTime + "  "
+            dataList.getItems().add(text.getDate() + "  " + text.getTime() + "  "
                     + text.getPlate() + "  " + text.getServices() + "  " + text.getCost() + "€");
             writer = new FileWriter(file);
             for (int i = 0; i < dataList.getItems().size(); i++) {
@@ -330,6 +337,8 @@ public class Server extends Application {
             writer.flush();
             writer.close();
         }
+            
+        
     }
 
 }
