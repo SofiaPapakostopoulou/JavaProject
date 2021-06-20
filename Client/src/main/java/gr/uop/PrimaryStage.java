@@ -11,6 +11,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
@@ -146,8 +147,10 @@ public class PrimaryStage {
         }
         for (Button b : letList) {
             b.setMinWidth(40);
+            b.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 10));
         }
         Button backspace = new Button("Backspace");
+        backspace.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 10));
         gridLetters.add(backspace, 10, 0);
         Button space = new Button(" ");
         space.setMinWidth(260);
@@ -200,6 +203,7 @@ public class PrimaryStage {
         numbList.add(n0);
         for (Button b : numbList) {
             b.setMinWidth(40);
+            b.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 10));
         }
         numbers.setAlignment(Pos.CENTER);
         numbers.getChildren().addAll(gridNumber, n0);
@@ -217,6 +221,7 @@ public class PrimaryStage {
                     String letter = b.getText();
 
                     plate.setText(plate.getText() + letter);
+
                 }
             });
         }
@@ -227,6 +232,7 @@ public class PrimaryStage {
                     String n = b.getText();
 
                     plate.setText(plate.getText() + n);
+
                 }
             });
         }
@@ -234,6 +240,7 @@ public class PrimaryStage {
             @Override
             public void handle(ActionEvent e) {
                 plate.setText(plate.getText() + " ");
+
             }
         });
 
@@ -242,11 +249,13 @@ public class PrimaryStage {
             public void handle(ActionEvent e) {
                 if (!plate.getText().equals("")) {
                     plate.setText(plate.getText().substring(0, plate.getText().length() - 1));
+
                 }
             }
         });
 
         Button enter = new Button("Καταχώρηση Πινακίδας");
+        enter.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 10));
         vb.getChildren().add(enter);
 
         enter.setOnAction(new EventHandler<ActionEvent>() {
@@ -263,6 +272,7 @@ public class PrimaryStage {
 
                 if (plate.getText().equals("")) {
                     check.setText("Ο αριθμός κυκλοφορίας δεν μπορεί να είναι κενός.");
+                    check.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 10));
                     enter.setDisable(true);
                     backspace.setDisable(true);
 
@@ -284,6 +294,7 @@ public class PrimaryStage {
                         check.setText(" ");
                     } else {
                         check.setText("Ο αριθμός κυκλοφορίας πρέπει να περιέχει τουλάχιστον 2 γράμματα και 1 αριθμό.");
+                        check.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 10));
                         enter.setDisable(true);
                     }
 
