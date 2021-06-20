@@ -28,7 +28,7 @@ import javafx.stage.Stage;
 public class Vehicle {
     Stage stage;
 
-    public Vehicle(Stage stage, String plate, ArrayList<Washing> warray) {
+    public Vehicle(Stage stage, String plate) {
 
         RadioButton rb1 = new RadioButton("Αυτοκίνητο");
         RadioButton rb2 = new RadioButton("Τζίπ");
@@ -66,13 +66,13 @@ public class Vehicle {
                 if (radioGroup.getSelectedToggle() != null) {
 
                     if (radioGroup.getSelectedToggle() == rb1) {
-                        new ServiceCar(stage, plate, warray);
+                        new ServiceCar(stage, plate);
                     }
                     if (radioGroup.getSelectedToggle() == rb2) {
-                        new ServiceJeep(stage, plate, warray);
+                        new ServiceJeep(stage, plate);
                     }
                     if (radioGroup.getSelectedToggle() == rb3) {
-                        new ServiceMoto(stage, plate, warray);
+                        new ServiceMoto(stage, plate);
                     }
 
                 }
@@ -84,7 +84,7 @@ public class Vehicle {
             @Override
             public void handle(ActionEvent e) {
                 stage.close();
-                new PrimaryStage(stage, warray);
+                new PrimaryStage(stage);
             }
         });
 

@@ -21,17 +21,12 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.net.ServerSocket;
-import java.net.Socket;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class PrimaryStage {
     Stage stage;
 
-    public PrimaryStage(Stage stage, ArrayList<Washing> warray) {
+    public PrimaryStage(Stage stage) {
 
         // -fx-background-color: #80ced6;
         var label = new Label("Καλωσήρθατε στο κατάστημα μας!");
@@ -257,7 +252,7 @@ public class PrimaryStage {
         enter.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-                new Vehicle(stage, plate.getText(), warray);
+                new Vehicle(stage, plate.getText());
             }
         });
         enter.setDisable(true);

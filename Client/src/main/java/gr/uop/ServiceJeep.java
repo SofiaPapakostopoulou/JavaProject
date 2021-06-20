@@ -32,7 +32,7 @@ public class ServiceJeep {
     Stage stage;
     double f_cost = 0;
 
-    public ServiceJeep(Stage stage, String plate, ArrayList<Washing> warray) {
+    public ServiceJeep(Stage stage, String plate) {
 
         var label = new Label("Επιλέξτε την υπηρεσία ή τις υπηρεσίες που επιθυμείτε απο τον παρακάτω τιμοκατάλογο.");
         label.setFont(Font.font("comic Sans MS", 30));
@@ -198,18 +198,10 @@ public class ServiceJeep {
                     if (cb10.isSelected()) {
                         wj.getServices().add(new Services("wj10", "Πλύσιμο σασί", 3.00));
                     }
-                    warray.add(wj);
 
-                    for (Washing a : warray) {
-                        System.out.println(a.toString());
-                        List<Services> services = a.getServices();
-                        for (Services s : services) {
-                            System.out.println(s.toString());
-                        }
-                    }
                     Washing.Connect(wj);
                     stage.close();
-                    new PrimaryStage(stage, warray);
+                    new PrimaryStage(stage);
                 }
 
             }
@@ -238,14 +230,14 @@ public class ServiceJeep {
         back.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-                new Vehicle(stage, plate, warray);
+                new Vehicle(stage, plate);
             }
         });
         start.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
                 stage.close();
-                new PrimaryStage(stage, warray);
+                new PrimaryStage(stage);
             }
         });
         top.setBackground(new Background(new BackgroundFill(Color.web("#d5f4e6"), CornerRadii.EMPTY, Insets.EMPTY)));

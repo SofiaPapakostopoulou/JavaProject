@@ -32,7 +32,7 @@ public class ServiceMoto {
     Stage stage;
     double f_cost = 0;
 
-    public ServiceMoto(Stage stage, String plate, ArrayList<Washing> warray) {
+    public ServiceMoto(Stage stage, String plate) {
 
         var label = new Label("Επιλέξτε την υπηρεσία ή τις υπηρεσίες που επιθυμείτε απο τον παρακάτω τιμοκατάλογο.");
         label.setFont(Font.font("comic Sans MS", 30));
@@ -127,18 +127,9 @@ public class ServiceMoto {
                         wm.getServices().add(new Services("wm4", "Καθαρισμός κινητήρα", 10.00));
                     }
 
-                    warray.add(wm);
-
-                    for (Washing a : warray) {
-                        System.out.println(a.toString());
-                        List<Services> services = a.getServices();
-                        for (Services s : services) {
-                            System.out.println(s.toString());
-                        }
-                    }
                     Washing.Connect(wm);
                     stage.close();
-                    new PrimaryStage(stage, warray);
+                    new PrimaryStage(stage);
 
                 }
 
@@ -168,14 +159,14 @@ public class ServiceMoto {
             @Override
             public void handle(ActionEvent e) {
                 stage.close();
-                new Vehicle(stage, plate, warray);
+                new Vehicle(stage, plate);
             }
         });
         start.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
                 stage.close();
-                new PrimaryStage(stage, warray);
+                new PrimaryStage(stage);
             }
         });
         top.setBackground(new Background(new BackgroundFill(Color.web("#d5f4e6"), CornerRadii.EMPTY, Insets.EMPTY)));

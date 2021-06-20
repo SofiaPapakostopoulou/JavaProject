@@ -33,7 +33,7 @@ public class ServiceCar {
     double f_cost = 0;
     String s = "";
 
-    public ServiceCar(Stage stage, String plate, ArrayList<Washing> warray) {
+    public ServiceCar(Stage stage, String plate) {
 
         var label = new Label("Επιλέξτε την υπηρεσία ή τις υπηρεσίες που επιθυμείτε απο τον παρακάτω τιμοκατάλογο.");
         label.setFont(Font.font("comic Sans MS", 20));
@@ -201,19 +201,11 @@ public class ServiceCar {
                     if (cb10.isSelected()) {
                         wc.getServices().add(new Services("wc10", "Πλύσιμο σασί", 3.00));
                     }
-                    warray.add(wc);
 
-                    for (Washing a : warray) {
-                        System.out.println(a.toString());
-                        List<Services> services = a.getServices();
-                        for (Services s : services) {
-                            System.out.println(s.toString());
-                        }
-                    }
                     Washing.Connect(wc);
                     alert.close();
                     stage.close();
-                    new PrimaryStage(stage, warray);
+                    new PrimaryStage(stage);
                 }
 
             }
@@ -241,14 +233,14 @@ public class ServiceCar {
             @Override
             public void handle(ActionEvent e) {
                 stage.close();
-                new Vehicle(stage, plate, warray);
+                new Vehicle(stage, plate);
             }
         });
         start.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
                 stage.close();
-                new PrimaryStage(stage, warray);
+                new PrimaryStage(stage);
             }
         });
 

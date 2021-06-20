@@ -14,9 +14,7 @@ public class Client extends Application {
     @Override
     public void start(Stage stage) {
 
-        ArrayList<Washing> warray = new ArrayList<Washing>();
-
-        new PrimaryStage(stage, warray);
+        new PrimaryStage(stage);
 
     }
 
