@@ -59,12 +59,6 @@ public class Server extends Application {
     @Override
     public void start(Stage stage) {
         
-        // try (ServerSocket serverSocket = new ServerSocket(7777);
-        // Socket connectionSocket = serverSocket.accept();
-        // Scanner fromClient = new Scanner(connectionSocket.getInputStream());
-        // PrintWriter toClient = new PrintWriter(connectionSocket.getOutputStream(), true)) {
-
-
         Button logobtn = new Button();
         logobtn.setMaxSize(30, 30);
         logobtn.setMouseTransparent(true);
@@ -93,7 +87,6 @@ public class Server extends Application {
         tbc4.setCellValueFactory(new PropertyValueFactory<Washing,String>("cost"));//cost
         tbc5.setCellValueFactory(new PropertyValueFactory<Washing,String>("cost"));//time
 
-        //table.getColumns().addAll(tbc1, tbc2, tbc3, tbc4, tbc5);
         table.getColumns().add(tbc1);
         table.getColumns().add(tbc2);
         table.getColumns().add(tbc3);
@@ -185,56 +178,60 @@ public class Server extends Application {
             }
         });
 
-        //data.add(Connected());
-        // while (true) {
-        //     try{
-        //         String plate = fromClient.nextLine();
-        //         toClient.println(plate);
-        //         System.out.println("Received: " + plate);
-        //         String cost = fromClient.nextLine();
-        //         toClient.println(cost);
-        //         System.out.println("Received: " + cost);
-        //         String type = fromClient.nextLine();
-        //         toClient.println(type);
-        //         System.out.println("Received: " + type);
-        //         Washing wc = new Washing(plate, Double.parseDouble(cost), type);
-        //         //data.add(wc);
-        //         System.out.println(wc);
-        //         String size = fromClient.nextLine();
-        //         toClient.println(size);
-        //         System.out.println("Received: " + size);
-        //         int sizelist = Integer.parseInt(size);
-        //         for (int i = 0; i < sizelist; i++) {
-        //             String id = fromClient.nextLine();
-        //             toClient.println(id);
-        //             System.out.println("Received: " + id);
-        //             String name_services = fromClient.nextLine();
-        //             toClient.println(name_services);
-        //             System.out.println("Received: " + name_services);
-        //             String costserv = fromClient.nextLine();
-        //             toClient.println(costserv);
-        //             System.out.println("Received: " + costserv);
-        //             Services ser = new Services(id, name_services, Double.parseDouble(costserv));
-        //             wc.getServices().add(ser);
-        //         }
-        //         List<Services> se = wc.getServices();
-        //         for (Services m : se) {
-        //             System.out.println(m.toString());
-        //         }
-        //     }catch (Exception e) {
-        //         System.out.println(e);
-        //     }
-        // }
+        new Thread( () -> {
 
-        // } catch (IOException e) {
-        // System.out.println(e);
-        // }
-
-        //Connected();
+            while (true) {
+                try (ServerSocket serverSocket = new ServerSocket(7777);
+                    Socket connectionSocket = serverSocket.accept();
+                    Scanner fromClient = new Scanner(connectionSocket.getInputStream());
+                    PrintWriter toClient = new PrintWriter(connectionSocket.getOutputStream(), true)) {
+                
+                    String plate = fromClient.nextLine();
+                    toClient.println(plate);
+                    System.out.println("Received: " + plate);
+                    String cost = fromClient.nextLine();
+                    toClient.println(cost);
+                    System.out.println("Received: " + cost);
+                    String type = fromClient.nextLine();
+                    toClient.println(type);
+                    System.out.println("Received: " + type);
+                    Washing wc = new Washing(plate, Double.parseDouble(cost), type);
+                    data.add(wc);
+                    System.out.println(wc);
+                    String size = fromClient.nextLine();
+                    toClient.println(size);
+                    System.out.println("Received: " + size);
+                    int sizelist = Integer.parseInt(size);
+                    for (int i = 0; i < sizelist; i++) {
+                    String id = fromClient.nextLine();
+                    toClient.println(id);
+                    System.out.println("Received: " + id);
+                    String name_services = fromClient.nextLine();
+                    toClient.println(name_services);
+                    System.out.println("Received: " + name_services);
+                    String costserv = fromClient.nextLine();
+                    toClient.println(costserv);
+                    System.out.println("Received: " + costserv);
+                    Services ser = new Services(id, name_services, Double.parseDouble(costserv));
+                    wc.getServices().add(ser);
+                    }
+                    List<Services> se = wc.getServices();
+                    for (Services m : se) {
+                        System.out.println(m.toString());
+                    }
+                    //return wc;
+                } catch (IOException e) {
+                    System.out.println(e);
+                }
+            }
+         }).start();
 
     }
 
-    
+    public static void main(String[] args) {
+
+        launch(args);
+    }
 
 
     public void writeExcel(String text) throws Exception {
@@ -318,9 +315,6 @@ public class Server extends Application {
     //     }
     // }
 
-    public static void main(String[] args) {
-
-        launch(args);
-    }
+    
 
 }
