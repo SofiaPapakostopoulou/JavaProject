@@ -60,7 +60,7 @@ public class Server extends Application {
 
     @Override
     public void start(Stage stage) {
-        
+
         Button logobtn = new Button();
         logobtn.setMaxSize(30, 30);
         logobtn.setMouseTransparent(true);
@@ -75,7 +75,6 @@ public class Server extends Application {
         logoBox.setAlignment(Pos.TOP_LEFT);
         logoBox.setPadding(new Insets(20, 0, 0, 40));
 
-        
         table.setMaxWidth(900);
         TableColumn<Washing, String> tbc1 = new TableColumn<>("Αρ. Συναλλαγής");
         TableColumn<Washing, String> tbc2 = new TableColumn<>("Αρ. Κυκλοφορίας");
@@ -84,13 +83,12 @@ public class Server extends Application {
         TableColumn<Washing, String> tbc5 = new TableColumn<>("Όχημα");
         TableColumn<Washing, String> tbc6 = new TableColumn<>("Ώρα Άφιξης");
 
-
-        tbc1.setCellValueFactory(new PropertyValueFactory<Washing,String>("uniqueID"));
-        tbc2.setCellValueFactory(new PropertyValueFactory<Washing,String>("plate"));
-        tbc3.setCellValueFactory(new PropertyValueFactory<Washing,ComboBox>("cb"));
-        tbc4.setCellValueFactory(new PropertyValueFactory<Washing,String>("cost"));
-        tbc5.setCellValueFactory(new PropertyValueFactory<Washing,String>("type"));
-        tbc6.setCellValueFactory(new PropertyValueFactory<Washing,String>("time"));
+        tbc1.setCellValueFactory(new PropertyValueFactory<Washing, String>("uniqueID"));
+        tbc2.setCellValueFactory(new PropertyValueFactory<Washing, String>("plate"));
+        tbc3.setCellValueFactory(new PropertyValueFactory<Washing, ComboBox>("cb"));
+        tbc4.setCellValueFactory(new PropertyValueFactory<Washing, String>("cost"));
+        tbc5.setCellValueFactory(new PropertyValueFactory<Washing, String>("type"));
+        tbc6.setCellValueFactory(new PropertyValueFactory<Washing, String>("time"));
 
         table.getColumns().add(tbc1);
         table.getColumns().add(tbc2);
@@ -122,7 +120,8 @@ public class Server extends Application {
         VBox finalsp = new VBox(logoBox, table, bottomBtns);
         finalsp.setAlignment(Pos.CENTER);
         finalsp.setSpacing(40);
-        finalsp.setBackground(new Background(new BackgroundFill(Color.web("#d5f4e6"), CornerRadii.EMPTY, Insets.EMPTY)));
+        finalsp.setBackground(
+                new Background(new BackgroundFill(Color.web("#d5f4e6"), CornerRadii.EMPTY, Insets.EMPTY)));
 
         var scene = new Scene(finalsp, 1024, 768);
 
@@ -140,9 +139,14 @@ public class Server extends Application {
         EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
             public void handle(ActionEvent e) {
                 alert.setAlertType(AlertType.CONFIRMATION);
-                //needs improvment
+                // needs improvment
                 String contet = "Υπηρεσίες: \n";
-                contet += table.getSelectionModel().getSelectedItem().getServices().toString();
+                // contet +=
+                // table.getSelectionModel().getSelectedItem().getServices().toString();
+                List<Services> ap = table.getSelectionModel().getSelectedItem().getServices();
+                for (Services s : ap) {
+                    contet += s.toString() + "\n";
+                }
                 alert.setContentText(contet);
                 alert.setHeaderText("Συνολικό κόστος: " + table.getSelectionModel().getSelectedItem().getCost() + "€");
                 alert.setTitle("Έκδοση Απόδειξης");
@@ -151,7 +155,8 @@ public class Server extends Application {
                 if (result.get() == ButtonType.OK) {
                     try {
                         writeExcel(table.getSelectionModel().getSelectedItem());
-                        System.out.println("Selected for receipt and deletion: " + table.getSelectionModel().getSelectedItem());
+                        System.out.println(
+                                "Selected for receipt and deletion: " + table.getSelectionModel().getSelectedItem());
                         table.getItems().remove(table.getSelectionModel().getSelectedIndex());
                     } catch (Exception ex) {
                         ex.printStackTrace();
@@ -164,7 +169,7 @@ public class Server extends Application {
         EventHandler<ActionEvent> event2 = new EventHandler<ActionEvent>() {
             public void handle(ActionEvent e) {
                 alert.setAlertType(AlertType.CONFIRMATION);
-                //needs improvment
+                // needs improvment
                 // String contet = "Υπηρεσίες: \n";
                 // alert.setContentText(contet);
                 alert.setHeaderText("Ακύρωση Οχήματος ");
@@ -183,37 +188,39 @@ public class Server extends Application {
         };
         cancel.setOnAction(event2);
 
-        //On Click Εκδωση Απόδειξης
+        // On Click Εκδoση Απόδειξης
 
-        // table.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-        //     if (newSelection != null) {
-        //         alert.setAlertType(AlertType.CONFIRMATION);
-        //         String contet = "Υπηρεσίες: \n";
-        //         alert.setContentText(contet);
-        //         alert.setHeaderText("Συνολικό κόστος: " + 1120 + "€");
-        //         alert.setTitle("Επιβεβαίωση Επιλογών");
-        //         Optional<ButtonType> result = alert.showAndWait();
+        // table.getSelectionModel().selectedItemProperty().addListener((obs,
+        // oldSelection, newSelection) -> {
+        // if (newSelection != null) {
+        // alert.setAlertType(AlertType.CONFIRMATION);
+        // String contet = "Υπηρεσίες: \n";
+        // alert.setContentText(contet);
+        // alert.setHeaderText("Συνολικό κόστος: " + 1120 + "€");
+        // alert.setTitle("Επιβεβαίωση Επιλογών");
+        // Optional<ButtonType> result = alert.showAndWait();
 
-        //         if (result.get() == ButtonType.OK) {
-        //             try {
-        //                 //writeExcel(table.getSelectionModel().getSelectedItem());
-        //                 System.out.println("selected: " + table.getSelectionModel().getSelectedItem());
-        //                 table.getItems().remove(table.getSelectionModel().getSelectedIndex());
-        //             } catch (Exception ex) {
-        //                 ex.printStackTrace();
-        //             }
-        //         }
-        //     }
+        // if (result.get() == ButtonType.OK) {
+        // try {
+        // //writeExcel(table.getSelectionModel().getSelectedItem());
+        // System.out.println("selected: " +
+        // table.getSelectionModel().getSelectedItem());
+        // table.getItems().remove(table.getSelectionModel().getSelectedIndex());
+        // } catch (Exception ex) {
+        // ex.printStackTrace();
+        // }
+        // }
+        // }
         // });
 
-        new Thread( () -> {
+        new Thread(() -> {
 
             while (true) {
                 try (ServerSocket serverSocket = new ServerSocket(7777);
-                    Socket connectionSocket = serverSocket.accept();
-                    Scanner fromClient = new Scanner(connectionSocket.getInputStream());
-                    PrintWriter toClient = new PrintWriter(connectionSocket.getOutputStream(), true)) {
-                
+                        Socket connectionSocket = serverSocket.accept();
+                        Scanner fromClient = new Scanner(connectionSocket.getInputStream());
+                        PrintWriter toClient = new PrintWriter(connectionSocket.getOutputStream(), true)) {
+
                     String plate = fromClient.nextLine();
                     toClient.println(plate);
                     System.out.println("Received: " + plate);
@@ -224,24 +231,24 @@ public class Server extends Application {
                     toClient.println(type);
                     System.out.println("Received: " + type);
                     Washing wc = new Washing(plate, Double.parseDouble(cost), type);
-                    //data.add(wc);
+                    // data.add(wc);
                     System.out.println(wc);
                     String size = fromClient.nextLine();
                     toClient.println(size);
                     System.out.println("Received: " + size);
                     int sizelist = Integer.parseInt(size);
                     for (int i = 0; i < sizelist; i++) {
-                    String id = fromClient.nextLine();
-                    toClient.println(id);
-                    System.out.println("Received: " + id);
-                    String name_services = fromClient.nextLine();
-                    toClient.println(name_services);
-                    System.out.println("Received: " + name_services);
-                    String costserv = fromClient.nextLine();
-                    toClient.println(costserv);
-                    System.out.println("Received: " + costserv);
-                    Services ser = new Services(id, name_services, Double.parseDouble(costserv));
-                    wc.getServices().add(ser);
+                        String id = fromClient.nextLine();
+                        toClient.println(id);
+                        System.out.println("Received: " + id);
+                        String name_services = fromClient.nextLine();
+                        toClient.println(name_services);
+                        System.out.println("Received: " + name_services);
+                        String costserv = fromClient.nextLine();
+                        toClient.println(costserv);
+                        System.out.println("Received: " + costserv);
+                        Services ser = new Services(id, name_services, Double.parseDouble(costserv));
+                        wc.getServices().add(ser);
                     }
                     List<Services> se = wc.getServices();
                     ComboBox cb = new ComboBox();
@@ -258,7 +265,7 @@ public class Server extends Application {
                     System.out.println(e);
                 }
             }
-         }).start();
+        }).start();
 
     }
 
@@ -266,7 +273,6 @@ public class Server extends Application {
 
         launch(args);
     }
-
 
     public void writeExcel(Washing text) throws Exception {
         String CsvFile = "MobileP.csv";
@@ -292,7 +298,8 @@ public class Server extends Application {
         }
 
         try {
-            dataList.getItems().add(text.getDate()+ "  " + text.getTime() + "-"+ departureTime + "  " + text.getPlate() + "  " + text.getServices() + "  " + text.getCost() + "€");
+            dataList.getItems().add(text.getDate() + "  " + text.getTime() + "-" + departureTime + "  "
+                    + text.getPlate() + "  " + text.getServices() + "  " + text.getCost() + "€");
             writer = new FileWriter(file);
             for (int i = 0; i < dataList.getItems().size(); i++) {
                 writer.write(dataList.getItems().get(i) + "\n");
