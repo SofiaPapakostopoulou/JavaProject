@@ -45,10 +45,8 @@ public class PrimaryStage {
         logoBox.setAlignment(Pos.TOP_CENTER);
         logoBox.setPadding(new Insets(0, 0, 0, 0));
 
-        // -fx-background-color: #80ced6;
         var label = new Label("Καλωσήρθατε στο κατάστημα μας!");
         label.setFont(Font.font("LiHei Pro", FontWeight.BOLD, 50));
-        // label.setStyle("padding: 20px; -fx-text-fill: #0694AB");
         var label_plate = new Label("Παρακαλώ εισάγετε τον αριθμό της πινακίδας σας");
         label_plate.setFont(Font.font("LiHei Pro", 30));
         var plate = new Label("");
