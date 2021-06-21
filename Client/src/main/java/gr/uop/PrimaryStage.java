@@ -12,6 +12,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.cell.CheckBoxTableCell;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
@@ -29,6 +31,20 @@ public class PrimaryStage {
 
     public PrimaryStage(Stage stage) {
 
+        Button logobtn = new Button();
+        logobtn.setMaxSize(30, 30);
+        logobtn.setMouseTransparent(true);
+        logobtn.setBackground(
+                new Background(new BackgroundFill(Color.web("#d5f4e6"), CornerRadii.EMPTY, Insets.EMPTY)));
+        ImageView logoImageView = new ImageView(new Image(getClass().getResourceAsStream("images/car.png")));
+        logobtn.setGraphic(logoImageView);
+        var logoLabel = new Label("MobileP");
+        logoLabel.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 50));
+        HBox logoBox = new HBox(logobtn, logoLabel);
+        logoBox.setSpacing(15);
+        logoBox.setAlignment(Pos.TOP_CENTER);
+        logoBox.setPadding(new Insets(0, 0, 0, 0));
+
         // -fx-background-color: #80ced6;
         var label = new Label("Καλωσήρθατε στο κατάστημα μας!");
         label.setFont(Font.font("LiHei Pro", FontWeight.BOLD, 50));
@@ -44,7 +60,7 @@ public class PrimaryStage {
         plate.setMaxHeight(100);
         var check = new Label("");
 
-        VBox vb = new VBox(label, label_plate, plate, check);
+        VBox vb = new VBox(logoBox, label, label_plate, plate, check);
 
         vb.setAlignment(Pos.CENTER);
         vb.setSpacing(20);
