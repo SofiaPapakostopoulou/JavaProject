@@ -19,9 +19,7 @@ public class ReadCSV {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] values = line.split(",  ");
-                for (int i = 0; i < values.length; i++) {
-                    System.out.println(i + " " + values[i]);
-                }
+
                 Washing W = new Washing(values[2], Double.parseDouble(values[5].replace("€", " ")), values[3]);
                 String str = values[4];
                 String result = str.substring(str.indexOf("[") + 1, str.indexOf("]"));

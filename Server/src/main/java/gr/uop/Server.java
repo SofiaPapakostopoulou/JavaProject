@@ -243,7 +243,7 @@ public class Server extends Application {
                     String type = fromClient.nextLine();
 
                     Washing wc = new Washing(plate, Double.parseDouble(cost), type);
-                    System.out.println(wc);
+
                     String size = fromClient.nextLine();
 
                     int sizelist = Integer.parseInt(size);
@@ -261,7 +261,7 @@ public class Server extends Application {
                     ComboBox cb = new ComboBox();
                     for (Services m : se) {
                         cb.getItems().add(m.toString());
-                        System.out.println(m.toString());
+
                     }
                     cb.setMaxHeight(3);
                     wc.setCb(cb);
