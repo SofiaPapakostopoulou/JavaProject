@@ -24,9 +24,11 @@ public class ReadCSV {
                 String str = values[4];
                 String result = str.substring(str.indexOf("[") + 1, str.indexOf("]"));
                 String[] v = result.split(",");
+
                 ComboBox cb = new ComboBox();
                 for (int i = 0; i < v.length; i += 2) {
                     cb.getItems().add(v[i] + "," + v[1 + i]);
+                    W.getServices().add(v[i] + "," + v[1 + i]);
                 }
                 W.setCb(cb);
                 W.setTime(values[1]);
