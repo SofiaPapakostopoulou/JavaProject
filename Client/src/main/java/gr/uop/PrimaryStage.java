@@ -163,12 +163,132 @@ public class PrimaryStage {
             b.setMinWidth(40);
             b.setFont(Font.font("LiHei Pro", 15));
         }
+        GridPane gridLettersGreek = new GridPane();
+        gridLettersGreek.setPadding(new Insets(5));
+        gridLettersGreek.setHgap(5);
+        gridLettersGreek.setVgap(5);
+
+        ArrayList<Button> letListGreek = new ArrayList<Button>();
+        for (int r = 0; r < 3; r++) {
+            switch (r) {
+                case 0:
+                    Button E = new Button("E");
+                    gridLettersGreek.add(E, 2, r);
+                    letListGreek.add(E);
+                    Button R = new Button("Ρ");
+                    gridLettersGreek.add(R, 3, r);
+                    letListGreek.add(R);
+                    Button T = new Button("T");
+                    gridLettersGreek.add(T, 4, r);
+                    letListGreek.add(T);
+                    Button Y = new Button("Y");
+                    gridLettersGreek.add(Y, 5, r);
+                    letListGreek.add(Y);
+                    Button U = new Button("Θ");
+                    gridLettersGreek.add(U, 6, r);
+                    letListGreek.add(U);
+                    Button I = new Button("I");
+                    gridLettersGreek.add(I, 7, r);
+                    letListGreek.add(I);
+                    Button O = new Button("O");
+                    gridLettersGreek.add(O, 8, r);
+                    letListGreek.add(O);
+                    Button P = new Button("Π");
+                    gridLettersGreek.add(P, 9, r);
+                    letListGreek.add(P);
+                    break;
+                case 1:
+                    Button A = new Button("A");
+                    gridLettersGreek.add(A, 1, r);
+                    letListGreek.add(A);
+                    Button S = new Button("Σ");
+                    gridLettersGreek.add(S, 2, r);
+                    letListGreek.add(S);
+                    Button D = new Button("Δ");
+                    gridLettersGreek.add(D, 3, r);
+                    letListGreek.add(D);
+                    Button F = new Button("Φ");
+                    gridLettersGreek.add(F, 4, r);
+                    letListGreek.add(F);
+                    Button G = new Button("Γ");
+                    gridLettersGreek.add(G, 5, r);
+                    letListGreek.add(G);
+                    Button H = new Button("H");
+                    gridLettersGreek.add(H, 6, r);
+                    letListGreek.add(H);
+                    Button J = new Button("Ξ");
+                    gridLettersGreek.add(J, 7, r);
+                    letListGreek.add(J);
+                    Button K = new Button("K");
+                    gridLettersGreek.add(K, 8, r);
+                    letListGreek.add(K);
+                    Button L = new Button("Λ");
+                    gridLettersGreek.add(L, 9, r);
+                    letListGreek.add(L);
+                    break;
+                case 2:
+                    Button Z = new Button("Z");
+                    gridLettersGreek.add(Z, 2, r);
+                    letListGreek.add(Z);
+                    Button X = new Button("X");
+                    gridLettersGreek.add(X, 3, r);
+                    letListGreek.add(X);
+                    Button C = new Button("Ψ");
+                    gridLettersGreek.add(C, 4, r);
+                    letListGreek.add(C);
+                    Button V = new Button("Ω");
+                    gridLettersGreek.add(V, 5, r);
+                    letListGreek.add(V);
+                    Button B = new Button("B");
+                    gridLettersGreek.add(B, 6, r);
+                    letListGreek.add(B);
+                    Button N = new Button("N");
+                    gridLettersGreek.add(N, 7, r);
+                    letListGreek.add(N);
+                    Button M = new Button("M");
+                    gridLettersGreek.add(M, 8, r);
+                    letListGreek.add(M);
+                    break;
+            }
+        }
+        for (Button b : letListGreek) {
+            b.setMinWidth(40);
+            b.setFont(Font.font("LiHei Pro", 15));
+        }
+
         Button backspace = new Button("Backspace");
         backspace.setFont(Font.font("LiHei Pro", 15));
         gridLetters.add(backspace, 10, 0);
+        gridLettersGreek.add(backspace, 10, 0);
         Button space = new Button(" ");
         space.setMinWidth(280);
-        VBox letters = new VBox(gridLetters, space);
+        Button greng = new Button("Greek");
+        HBox down = new HBox(greng, space);
+
+        down.setSpacing(50);
+        VBox letters = new VBox(gridLetters, down);
+
+        greng.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+                // TODO Auto-generated method stub
+
+                if (greng.getText().equals("Greek")) {
+                    letters.getChildren().remove(gridLetters);
+                    letters.getChildren().remove(down);
+                    letters.getChildren().addAll(gridLettersGreek, down);
+                    greng.setText("English");
+                } else {
+                    letters.getChildren().remove(gridLettersGreek);
+                    letters.getChildren().remove(down);
+                    letters.getChildren().addAll(gridLetters, down);
+                    greng.setText("Greek");
+                }
+            }
+
+        });
+
         VBox numbers = new VBox();
         GridPane gridNumber = new GridPane();
         gridNumber.setPadding(new Insets(5));
@@ -239,6 +359,17 @@ public class PrimaryStage {
                 }
             });
         }
+        for (Button b : letListGreek) {
+            b.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent e) {
+                    String letter = b.getText();
+
+                    plate.setText(plate.getText() + letter);
+
+                }
+            });
+        }
         for (Button b : numbList) {
             b.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
@@ -297,6 +428,9 @@ public class PrimaryStage {
                     int numb = 0;
                     for (char a : plate.getText().toCharArray()) {
                         if ((a >= 'A' && a <= 'Z')) {
+                            let++;
+                        }
+                        if ((a >= 'Α' && a <= 'Ω')) {
                             let++;
                         }
                         if ((a >= '0' && a <= '9')) {
