@@ -45,9 +45,9 @@ public class PrimaryStage {
         logoBox.setAlignment(Pos.TOP_CENTER);
         logoBox.setPadding(new Insets(0, 0, 0, 0));
 
-        var label = new Label("Καλωσήρθατε στο κατάστημα μας!");
+        var label = new Label("Welcome to our store!");
         label.setFont(Font.font("LiHei Pro", FontWeight.BOLD, 50));
-        var label_plate = new Label("Παρακαλώ εισάγετε τον αριθμό της πινακίδας σας");
+        var label_plate = new Label("Please enter your  plate number");
         label_plate.setFont(Font.font("LiHei Pro", 30));
         var plate = new Label("");
         plate.setAlignment(Pos.CENTER_RIGHT);
@@ -259,7 +259,7 @@ public class PrimaryStage {
         Button backspace = new Button("Backspace");
         backspace.setFont(Font.font("LiHei Pro", 15));
         gridLetters.add(backspace, 10, 0);
-        gridLettersGreek.add(backspace, 10, 0);
+
         Button space = new Button(" ");
         space.setMinWidth(280);
         Button greng = new Button("Greek");
@@ -267,27 +267,6 @@ public class PrimaryStage {
 
         down.setSpacing(50);
         VBox letters = new VBox(gridLetters, down);
-
-        greng.setOnAction(new EventHandler<ActionEvent>() {
-
-            @Override
-            public void handle(ActionEvent event) {
-                // TODO Auto-generated method stub
-
-                if (greng.getText().equals("Greek")) {
-                    letters.getChildren().remove(gridLetters);
-                    letters.getChildren().remove(down);
-                    letters.getChildren().addAll(gridLettersGreek, down);
-                    greng.setText("English");
-                } else {
-                    letters.getChildren().remove(gridLettersGreek);
-                    letters.getChildren().remove(down);
-                    letters.getChildren().addAll(gridLetters, down);
-                    greng.setText("Greek");
-                }
-            }
-
-        });
 
         VBox numbers = new VBox();
         GridPane gridNumber = new GridPane();
@@ -399,24 +378,57 @@ public class PrimaryStage {
             }
         });
 
-        Button enter = new Button("Καταχώρηση Πινακίδας");
+        Button enter = new Button("Enter plate");
         enter.setFont(Font.font("LiHei Pro", 15));
         vb.getChildren().add(enter);
 
         enter.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-                new Vehicle(stage, plate.getText());
+                new Vehicle(stage, plate.getText(), greng.getText());
             }
         });
         enter.setDisable(true);
+        greng.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+                // TODO Auto-generated method stub
+
+                if (greng.getText().equals("Greek")) {
+                    gridLettersGreek.add(backspace, 10, 0);
+                    label.setText("Καλωσήρθατε στο κατάστημα μας!");
+                    label_plate.setText("Παρακαλώ εισάγετε τον αριθμό της πινακίδας σας");
+                    letters.getChildren().remove(gridLetters);
+                    letters.getChildren().remove(down);
+                    letters.getChildren().addAll(gridLettersGreek, down);
+                    greng.setText("English");
+                    enter.setText("Enter plate");
+                } else {
+                    gridLetters.add(backspace, 10, 0);
+                    label.setText("Welcome to our store!");
+                    label_plate.setText("Please enter your  plate number");
+                    letters.getChildren().remove(gridLettersGreek);
+                    letters.getChildren().remove(down);
+                    letters.getChildren().addAll(gridLetters, down);
+                    greng.setText("Greek");
+                    enter.setText("Καταχώρηση Πινακίδας");
+                }
+            }
+
+        });
+
         plate.textProperty().addListener(new ChangeListener<String>() {
 
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
 
                 if (plate.getText().equals("")) {
-                    check.setText("Ο αριθμός κυκλοφορίας δεν μπορεί να είναι κενός.");
+                    if (greng.getText().equals("Greek"))
+                        check.setText("Plate cannot be blank.");
+                    else
+                        check.setText("Ο αριθμός κυκλοφορίας δεν μπορεί να είναι κενός.");
+
                     check.setFont(Font.font("LiHei Pro", 15));
                     enter.setDisable(true);
                     backspace.setDisable(true);
@@ -441,7 +453,12 @@ public class PrimaryStage {
                         enter.setDisable(false);
                         check.setText(" ");
                     } else {
-                        check.setText("Ο αριθμός κυκλοφορίας πρέπει να περιέχει τουλάχιστον 2 γράμματα και 1 αριθμό.");
+                        if (greng.getText().equals("Greek"))
+                            check.setText("Plate must contain 2 letter 1 number.");
+                        else
+                            check.setText(
+                                    "Ο αριθμός κυκλοφορίας πρέπει να περιέχει τουλάχιστον 2 γράμματα και 1 αριθμό.");
+
                         check.setFont(Font.font("LiHei Pro", FontWeight.BOLD, 15));
                         enter.setDisable(true);
                     }

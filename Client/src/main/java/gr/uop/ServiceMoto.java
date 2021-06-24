@@ -33,7 +33,7 @@ public class ServiceMoto {
     Stage stage;
     double f_cost = 0;
 
-    public ServiceMoto(Stage stage, String plate) {
+    public ServiceMoto(Stage stage, String plate, String nlanguage) {
 
         var label = new Label("Επιλέξτε την υπηρεσία ή τις υπηρεσίες που επιθυμείτε απο τον παρακάτω τιμοκατάλογο.");
         label.setFont(Font.font("LiHei Pro", 20));
@@ -82,8 +82,11 @@ public class ServiceMoto {
                 if (cb4.isSelected()) {
                     cost = cost + 10;
                 }
-
-                price.setText("Συνολικό Κόστος: " + cost + "€");
+                if (nlanguage.equals("Greek")) {
+                    price.setText("Final Cost: " + cost + "€");
+                } else {
+                    price.setText("Συνολικό Κόστος: " + cost + "€");
+                }
                 price.setFont(Font.font("LiHei Pro", 15));
                 f_cost = cost;
             }
@@ -114,8 +117,13 @@ public class ServiceMoto {
                     contet += cb4.getText() + "\n";
                 }
                 alert.setContentText(contet);
-                alert.setHeaderText("Συνολικό κόστος: " + f_cost + "€");
-                alert.setTitle("Επιβεβαίωση Επιλογών");
+                if (nlanguage.equals("Greek")) {
+                    alert.setHeaderText("Final Cost: " + f_cost + "€");
+                    alert.setTitle("Confirm Options");
+                } else {
+                    alert.setHeaderText("Συνολικό κόστος: " + f_cost + "€");
+                    alert.setTitle("Επιβεβαίωση Επιλογών");
+                }
 
                 Optional<ButtonType> result = alert.showAndWait();
 
@@ -168,7 +176,7 @@ public class ServiceMoto {
             @Override
             public void handle(ActionEvent e) {
                 stage.close();
-                new Vehicle(stage, plate);
+                new Vehicle(stage, plate, nlanguage);
             }
         });
         start.setOnAction(new EventHandler<ActionEvent>() {
@@ -198,6 +206,19 @@ public class ServiceMoto {
 
         stage.setScene(service);
         stage.setTitle("Υπηρεσίες");
+
+        if (nlanguage.equals("Greek")) {
+            start.setText("Home Page");
+            price.setText("Final Cost:");
+            btn.setText("Enter data");
+            label.setText("Please select the service or services you want from the price list below.");
+            cb1.setText("Exterior washing , 6 €");
+            cb2.setText("Exterior washing special, 8 €");
+            cb3.setText("Waxing - Polishing, 40 €");
+            cb4.setText("Engine cleaning, 10 €");
+
+            stage.setTitle("Services");
+        }
         stage.show();
     }
 

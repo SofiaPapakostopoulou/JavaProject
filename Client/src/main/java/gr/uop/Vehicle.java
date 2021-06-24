@@ -1,7 +1,5 @@
 package gr.uop;
 
-import java.util.ArrayList;
-
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -28,7 +26,7 @@ import javafx.stage.Stage;
 public class Vehicle {
     Stage stage;
 
-    public Vehicle(Stage stage, String plate) {
+    public Vehicle(Stage stage, String plate, String nlanguage) {
 
         RadioButton rb1 = new RadioButton("Αυτοκίνητο");
         RadioButton rb2 = new RadioButton("Τζίπ");
@@ -59,20 +57,25 @@ public class Vehicle {
         tp.setContent(check);
         tp.setMaxWidth(400);
         tp.setFont(Font.font("LiHei Pro", 30));
-
+        if (nlanguage.equals("Greek")) {
+            tp.setText("Please choose your vehicle");
+            rb1.setText("Car");
+            rb2.setText("Jeep");
+            rb3.setText("Μotorcycle");
+        }
         radioGroup.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
             public void changed(ObservableValue<? extends Toggle> ov, Toggle old_toggle, Toggle new_toggle) {
 
                 if (radioGroup.getSelectedToggle() != null) {
 
                     if (radioGroup.getSelectedToggle() == rb1) {
-                        new ServiceCar(stage, plate);
+                        new ServiceCar(stage, plate, nlanguage);
                     }
                     if (radioGroup.getSelectedToggle() == rb2) {
-                        new ServiceJeep(stage, plate);
+                        new ServiceJeep(stage, plate, nlanguage);
                     }
                     if (radioGroup.getSelectedToggle() == rb3) {
-                        new ServiceMoto(stage, plate);
+                        new ServiceMoto(stage, plate, nlanguage);
                     }
 
                 }

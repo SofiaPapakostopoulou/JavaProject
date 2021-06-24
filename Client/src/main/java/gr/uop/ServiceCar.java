@@ -34,7 +34,7 @@ public class ServiceCar {
     double f_cost = 0;
     String s = "";
 
-    public ServiceCar(Stage stage, String plate) {
+    public ServiceCar(Stage stage, String plate, String nlanguage) {
 
         var label = new Label("Επιλέξτε την υπηρεσία ή τις υπηρεσίες που επιθυμείτε απο τον παρακάτω τιμοκατάλογο.");
         label.setFont(Font.font("LiHei Pro", 20));
@@ -119,7 +119,13 @@ public class ServiceCar {
                 if (cb10.isSelected()) {
                     cost = cost + 3;
                 }
-                price.setText("Συνολικό Κόστος: " + cost + "€");
+
+                if (nlanguage.equals("Greek")) {
+                    price.setText("Final Cost: " + cost + "€");
+                } else {
+                    price.setText("Συνολικό Κόστος: " + cost + "€");
+                }
+
                 price.setFont(Font.font("LiHei Pro", 15));
                 f_cost = cost;
             }
@@ -147,7 +153,13 @@ public class ServiceCar {
         EventHandler<ActionEvent> event2 = new EventHandler<ActionEvent>() {
             public void handle(ActionEvent e) {
                 alert.setAlertType(AlertType.CONFIRMATION);
-                String contet = "Υπηρεσίες: \n";
+                String contet;
+                if (nlanguage.equals("Greek")) {
+                    contet = "Services: \n";
+
+                } else {
+                    contet = "Υπηρεσίες: \n";
+                }
                 if (cb1.isSelected()) {
                     contet += cb1.getText() + "\n";
                 }
@@ -180,8 +192,14 @@ public class ServiceCar {
                 }
 
                 alert.setContentText(contet);
-                alert.setHeaderText("Συνολικό κόστος: " + f_cost + "€");
-                alert.setTitle("Επιβεβαίωση Επιλογών");
+
+                if (nlanguage.equals("Greek")) {
+                    alert.setHeaderText("Final Cost: " + f_cost + "€");
+                    alert.setTitle("Confirm Options");
+                } else {
+                    alert.setHeaderText("Συνολικό κόστος: " + f_cost + "€");
+                    alert.setTitle("Επιβεβαίωση Επιλογών");
+                }
 
                 Optional<ButtonType> result = alert.showAndWait();
 
@@ -250,7 +268,7 @@ public class ServiceCar {
             @Override
             public void handle(ActionEvent e) {
                 stage.close();
-                new Vehicle(stage, plate);
+                new Vehicle(stage, plate, nlanguage);
             }
         });
         start.setOnAction(new EventHandler<ActionEvent>() {
@@ -280,6 +298,23 @@ public class ServiceCar {
 
         stage.setScene(service);
         stage.setTitle("Υπηρεσίες");
+        if (nlanguage.equals("Greek")) {
+            start.setText("Home Page");
+            price.setText("Final Cost:");
+            btn.setText("Enter data");
+            label.setText("Please select the service or services you want from the price list below.");
+            cb1.setText("Exterior washing , 7 €");
+            cb2.setText("Internal washing, 6 €");
+            cb3.setText("External and internal washing,12");
+            cb4.setText("Exterior washing special, 9 €");
+            cb5.setText("Special interior washing, 8 €");
+            cb6.setText("Washing interior and exterior special, 15 €");
+            cb7.setText("Biological interior cleaning, 80 €");
+            cb8.setText("Waxing - Polishing, 80 €");
+            cb9.setText("Engine cleaning, 20 €");
+            cb10.setText("Chassis washing, 3 €");
+            stage.setTitle("Services");
+        }
         stage.show();
     }
 
