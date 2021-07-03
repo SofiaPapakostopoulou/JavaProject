@@ -25,10 +25,19 @@ public class ReadCSV {
                 String result = str.substring(str.indexOf("[") + 1, str.indexOf("]"));
                 String[] v = result.split(",");
 
+                for (int i = 0; i < v.length; i = i + 2) {
+
+                    String id = v[i].substring(0, 4);
+                    String name_services = v[i].substring(4);
+                    String cost = v[i + 1].replace("€", " ");
+                    Services ser = new Services(id, name_services, Double.parseDouble(cost));
+                    W.getServices().add(ser);
+                }
+                List<Services> se = W.getServices();
                 ComboBox cb = new ComboBox();
-                for (int i = 0; i < v.length; i += 2) {
-                    cb.getItems().add(v[i] + "," + v[1 + i]);
-                    W.getServices().add(v[i] + "," + v[1 + i]);
+                for (Services m : se) {
+                    cb.getItems().add(m.toString());
+
                 }
                 W.setCb(cb);
                 W.setTime(values[1]);
