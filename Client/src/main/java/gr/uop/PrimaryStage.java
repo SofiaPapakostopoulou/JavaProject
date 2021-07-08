@@ -403,7 +403,7 @@ public class PrimaryStage {
                     letters.getChildren().remove(down);
                     letters.getChildren().addAll(gridLettersGreek, down);
                     greng.setText("English");
-                    enter.setText("Enter plate");
+                    enter.setText("Καταχώρηση Πινακίδας");
                 } else {
                     gridLetters.add(backspace, 10, 0);
                     label.setText("Welcome to our store!");
@@ -412,7 +412,7 @@ public class PrimaryStage {
                     letters.getChildren().remove(down);
                     letters.getChildren().addAll(gridLetters, down);
                     greng.setText("Greek");
-                    enter.setText("Καταχώρηση Πινακίδας");
+                    enter.setText("Enter plate");
                 }
             }
 
