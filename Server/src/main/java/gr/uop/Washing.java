@@ -34,6 +34,10 @@ public class Washing {
         this.type = type;
     }
 
+    public String getD() {
+        return date;
+    }
+
     // date
     public String getDate() {
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -102,9 +106,6 @@ public class Washing {
 
     public String toString() {
         return "Plate:" + plate + " Cost:" + cost + " Type:" + type;
-    }
-
-    public void setOnAction() {
     }
 
 }

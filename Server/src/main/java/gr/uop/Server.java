@@ -38,6 +38,15 @@ public class Server extends Application {
     public void start(Stage stage) {
 
         ReadCSV.ReadCsv(data);
+        try {
+            for (Washing wc : data) {
+                WriteCSV.writefile(wc);
+            }
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
         new ServerStage(stage, table, data);
 
     }

@@ -42,6 +42,7 @@ public class ReadCSV {
                 W.setCb(cb);
                 W.setTime(values[1]);
                 W.setDate(values[0]);
+                // WriteCSV.writefile(W);
                 data.add(W);
             }
             // return data;

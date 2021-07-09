@@ -19,9 +19,9 @@ public class WriteCSV {
     static File file = new File("MobileP.csv");
     static ListView<String> dataList = new ListView<>();
 
-    WriteCSV(Washing wc){  
+    WriteCSV(Washing wc) {
         String CsvFile = "MobileP.csv";
-        
+
         BufferedReader br;
 
         try {
@@ -36,14 +36,13 @@ public class WriteCSV {
             ex.printStackTrace();
         } catch (IOException ex) {
             ex.printStackTrace();
-        }      
-    }   
+        }
+    }
 
     public static void writefile(Washing wc) throws IOException {
         try {
-            dataList.getItems().add(wc.getDate()+ ",  " + wc.getTime() + "         ,  "
-                    + wc.getPlate() + ",  " +wc.getType()+ ",  " + wc.getServices() 
-                    + ",  " + wc.getCost() + "€");
+            dataList.getItems().add(wc.getDate() + ",  " + wc.getTime() + "         ,  " + wc.getPlate() + ",  "
+                    + wc.getType() + ",  " + wc.getServices() + ",  " + wc.getCost() + "€");
             writer = new FileWriter(file);
             for (int i = 0; i < dataList.getItems().size(); i++) {
                 writer.write(dataList.getItems().get(i) + "\n");
@@ -56,7 +55,7 @@ public class WriteCSV {
         }
     }
 
-    public static void updatefile(Washing wc) throws IOException{
+    public static void updatefile(Washing wc) throws IOException {
         DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
         Calendar cal = Calendar.getInstance();
         String departureTime = dateFormat.format(cal.getTime());
@@ -64,15 +63,13 @@ public class WriteCSV {
         String newstr = "";
 
         try {
-            temp = wc.getDate()+ ",  " + wc.getTime() + "         ,  "
-            + wc.getPlate() + ",  " +wc.getType()+ ",  " + wc.getServices() 
-            + ",  " + wc.getCost() + "€";
-            newstr = wc.getDate()+ ",  " + wc.getTime()+ "-" + departureTime + ",  "
-            + wc.getPlate() + ",  " +wc.getType()+ ",  " + wc.getServices() 
-            + ",  " + wc.getCost() + "€";
-            
-            for(int i = 0; i < dataList.getItems().size(); i++){
-                if(dataList.getItems().get(i).equals(temp)){
+            temp = wc.getDate() + ",  " + wc.getTime() + "         ,  " + wc.getPlate() + ",  " + wc.getType() + ",  "
+                    + wc.getServices() + ",  " + wc.getCost() + "€";
+            newstr = wc.getDate() + ",  " + wc.getTime() + "-" + departureTime + ",  " + wc.getPlate() + ",  "
+                    + wc.getType() + ",  " + wc.getServices() + ",  " + wc.getCost() + "€";
+
+            for (int i = 0; i < dataList.getItems().size(); i++) {
+                if (dataList.getItems().get(i).equals(temp)) {
                     dataList.getItems().set(i, newstr);
                 }
             }
@@ -89,16 +86,15 @@ public class WriteCSV {
 
     }
 
-    public static void removefromfile(Washing wc) throws IOException{
+    public static void removefromfile(Washing wc) throws IOException {
         String temp = "";
-        
-        try{
-            temp = wc.getDate()+ ",  " + wc.getTime() + "         ,  "
-            + wc.getPlate() + ",  " +wc.getType()+ ",  " + wc.getServices() 
-            + ",  " + wc.getCost() + "€";
 
-            for(int i = 0; i < dataList.getItems().size(); i++){
-                if(dataList.getItems().get(i).equals(temp)){
+        try {
+            temp = wc.getDate() + ",  " + wc.getTime() + "         ,  " + wc.getPlate() + ",  " + wc.getType() + ",  "
+                    + wc.getServices() + ",  " + wc.getCost() + "€";
+
+            for (int i = 0; i < dataList.getItems().size(); i++) {
+                if (dataList.getItems().get(i).equals(temp)) {
                     dataList.getItems().remove(i);
                 }
             }
@@ -115,9 +111,4 @@ public class WriteCSV {
         }
     }
 
-        
-    
-
 }
-    
-
