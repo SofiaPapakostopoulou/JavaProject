@@ -55,6 +55,22 @@ public class WriteCSV {
         }
     }
 
+    public static void wfile(Washing wc) throws IOException {
+        try {
+            dataList.getItems().add(wc.getD() + ",  " + wc.getTime() + "         ,  " + wc.getPlate() + ",  "
+                    + wc.getType() + ",  " + wc.getServices() + ",  " + wc.getCost() + "€");
+            writer = new FileWriter(file);
+            for (int i = 0; i < dataList.getItems().size(); i++) {
+                writer.write(dataList.getItems().get(i) + "\n");
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            writer.flush();
+            writer.close();
+        }
+    }
+
     public static void updatefile(Washing wc) throws IOException {
         DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
         Calendar cal = Calendar.getInstance();

@@ -40,7 +40,7 @@ public class Server extends Application {
         ReadCSV.ReadCsv(data);
         try {
             for (Washing wc : data) {
-                WriteCSV.writefile(wc);
+                WriteCSV.wfile(wc);
             }
         } catch (IOException e) {
             // TODO Auto-generated catch block
@@ -80,8 +80,8 @@ public class Server extends Application {
         }
 
         try {
-            dataList.getItems().add(text.getDate() + "  " + text.getTime() + "  " + text.getPlate() + "  "
-                    + text.getServices() + "  " + text.getCost() + "€");
+            dataList.getItems().add(text.getDate() + " " + text.getTime() + " " + text.getPlate() + " "
+                    + text.getServices() + " " + text.getCost() + "€");
             writer = new FileWriter(file);
             for (int i = 0; i < dataList.getItems().size(); i++) {
                 writer.write(dataList.getItems().get(i) + "\n");

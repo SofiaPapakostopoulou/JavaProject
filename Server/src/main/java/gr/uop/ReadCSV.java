@@ -3,7 +3,9 @@ package gr.uop;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Writer;
 import java.util.List;
 
 import javafx.collections.FXCollections;
@@ -13,15 +15,18 @@ import javafx.scene.control.ListView;
 
 public class ReadCSV {
     static File filereader = new File("MobileP.csv");
+    static File file = new File("MobilePc.csv");
+    static Writer writer = null;
 
     static void ReadCsv(ObservableList<Washing> data) {
         try (BufferedReader br = new BufferedReader(new FileReader("MobileP.csv"))) {
             String line;
+
             while ((line = br.readLine()) != null) {
                 String[] values = line.split(",  ");
-
-                Washing W = new Washing(values[2], Double.parseDouble(values[5].replace("€", " ")), values[3]);
-                String str = values[4];
+                int leng = values.length - 1;
+                Washing W = new Washing(values[2], Double.parseDouble(values[leng].replace("€", " ")), values[3]);
+                String str = line;
                 String result = str.substring(str.indexOf("[") + 1, str.indexOf("]"));
                 String[] v = result.split(",");
 
