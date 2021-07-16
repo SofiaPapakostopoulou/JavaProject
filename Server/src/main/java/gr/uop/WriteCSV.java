@@ -41,7 +41,7 @@ public class WriteCSV {
 
     public static void writefile(Washing wc) throws IOException {
         try {
-            dataList.getItems().add(wc.getDate() + ",  " + wc.getTime() + "         ,  " + wc.getPlate() + ",  "
+            dataList.getItems().add(wc.getDate() + ",  " + wc.getTime().trim() + ",  " + wc.getPlate() + ",  "
                     + wc.getType() + ",  " + wc.getServices() + ",  " + wc.getCost() + "€");
             writer = new FileWriter(file);
             for (int i = 0; i < dataList.getItems().size(); i++) {
@@ -57,7 +57,7 @@ public class WriteCSV {
 
     public static void wfile(Washing wc) throws IOException {
         try {
-            dataList.getItems().add(wc.getD() + ",  " + wc.getTime() + "         ,  " + wc.getPlate() + ",  "
+            dataList.getItems().add(wc.getD() + ",  " + wc.getTime().trim() + ",  " + wc.getPlate() + ",  "
                     + wc.getType() + ",  " + wc.getServices() + ",  " + wc.getCost() + "€");
             writer = new FileWriter(file);
             for (int i = 0; i < dataList.getItems().size(); i++) {
@@ -79,7 +79,7 @@ public class WriteCSV {
         String newstr = "";
 
         try {
-            temp = wc.getDate() + ",  " + wc.getTime() + "         ,  " + wc.getPlate() + ",  " + wc.getType() + ",  "
+            temp = wc.getDate() + ",  " + wc.getTime().trim() + ",  " + wc.getPlate() + ",  " + wc.getType() + ",  "
                     + wc.getServices() + ",  " + wc.getCost() + "€";
             newstr = wc.getDate() + ",  " + wc.getTime() + "-" + departureTime + ",  " + wc.getPlate() + ",  "
                     + wc.getType() + ",  " + wc.getServices() + ",  " + wc.getCost() + "€";
@@ -106,7 +106,7 @@ public class WriteCSV {
         String temp = "";
 
         try {
-            temp = wc.getDate() + ",  " + wc.getTime() + "         ,  " + wc.getPlate() + ",  " + wc.getType() + ",  "
+            temp = wc.getDate() + ",  " + wc.getTime().trim() + ",  " + wc.getPlate() + ",  " + wc.getType() + ",  "
                     + wc.getServices() + ",  " + wc.getCost() + "€";
 
             for (int i = 0; i < dataList.getItems().size(); i++) {

@@ -136,11 +136,11 @@ public class ServerStage {
                 if (result.get() == ButtonType.OK) {
                     try {
                         // writeExcel(table.getSelectionModel().getSelectedItem());
-                        // WriteCSV.updatefile(table.getSelectionModel().getSelectedItem());
+                        WriteCSV.updatefile(table.getSelectionModel().getSelectedItem());
                         System.out.println(
                                 "Selected for receipt and deletion: " + table.getSelectionModel().getSelectedItem());
                         table.getItems().remove(table.getSelectionModel().getSelectedIndex());
-                        WriteCSV.removefromfile(table.getSelectionModel().getSelectedItem());
+                        //WriteCSV.removefromfile(table.getSelectionModel().getSelectedItem());
                     } catch (Exception ex) {
                         ex.printStackTrace();
                     }

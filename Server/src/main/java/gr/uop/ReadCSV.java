@@ -22,33 +22,37 @@ public class ReadCSV {
         try (BufferedReader br = new BufferedReader(new FileReader("MobileP.csv"))) {
             String line;
 
-            while ((line = br.readLine()) != null) {
-                String[] values = line.split(",  ");
-                int leng = values.length - 1;
-                Washing W = new Washing(values[2], Double.parseDouble(values[leng].replace("€", " ")), values[3]);
-                String str = line;
-                String result = str.substring(str.indexOf("[") + 1, str.indexOf("]"));
-                String[] v = result.split(",");
+            while (((line = br.readLine()) != null)) {
+                // if (!line.contains("-")) {
+                String mry = line;
+                if (!mry.contains("-")) {
+                    String[] values = line.split(",  ");
+                    int leng = values.length - 1;
+                    Washing W = new Washing(values[2], Double.parseDouble(values[leng].replace("€", " ")), values[3]);
+                    String str = line;
+                    String result = str.substring(str.indexOf("[") + 1, str.indexOf("]"));
+                    String[] v = result.split(",");
 
-                for (int i = 0; i < v.length; i = i + 2) {
+                    for (int i = 0; i < v.length; i = i + 2) {
 
-                    String id = v[i].substring(0, 4);
-                    String name_services = v[i].substring(4);
-                    String cost = v[i + 1].replace("€", " ");
-                    Services ser = new Services(id, name_services, Double.parseDouble(cost));
-                    W.getServices().add(ser);
+                        String id = v[i].substring(0, 4);
+                        String name_services = v[i].substring(4);
+                        String cost = v[i + 1].replace("€", " ");
+                        Services ser = new Services(id, name_services, Double.parseDouble(cost));
+                        W.getServices().add(ser);
+                    }
+                    List<Services> se = W.getServices();
+                    ComboBox cb = new ComboBox();
+                    for (Services m : se) {
+                        cb.getItems().add(m.toString());
+
+                    }
+                    W.setCb(cb);
+                    W.setTime(values[1].trim());
+                    W.setDate(values[0].trim());
+                    // WriteCSV.writefile(W);
+                    data.add(W);
                 }
-                List<Services> se = W.getServices();
-                ComboBox cb = new ComboBox();
-                for (Services m : se) {
-                    cb.getItems().add(m.toString());
-
-                }
-                W.setCb(cb);
-                W.setTime(values[1]);
-                W.setDate(values[0]);
-                // WriteCSV.writefile(W);
-                data.add(W);
             }
             // return data;
         } catch (IOException e) {
