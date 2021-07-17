@@ -42,7 +42,7 @@ public class ServiceMoto {
         cb1.setFont(Font.font("LiHei Pro", 15));
         CheckBox cb2 = new CheckBox("Πλύσιμο εξωτερικό σπέσιαλ, 8€");
         cb2.setFont(Font.font("LiHei Pro", 15));
-        CheckBox cb3 = new CheckBox("Κέρωμα - Γυάλισμα, 40€");
+        CheckBox cb3 = new CheckBox("Κέρωμα  Γυάλισμα, 40€");
         cb3.setFont(Font.font("LiHei Pro", 15));
         CheckBox cb4 = new CheckBox("Καθαρισμός κινητήρα, 10€");
         cb4.setFont(Font.font("LiHei Pro", 15));
@@ -137,7 +137,7 @@ public class ServiceMoto {
                         wm.getServices().add(new Services("wm2", "Πλύσιμο εξωτερικό σπέσιαλ", 8.00));
                     }
                     if (cb3.isSelected()) {
-                        wm.getServices().add(new Services("wm3", "Κέρωμα - Γυάλισμα", 40.00));
+                        wm.getServices().add(new Services("wm3", "Κέρωμα  Γυάλισμα", 40.00));
                     }
                     if (cb4.isSelected()) {
                         wm.getServices().add(new Services("wm4", "Καθαρισμός κινητήρα", 10.00));

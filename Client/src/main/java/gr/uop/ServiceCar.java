@@ -53,7 +53,7 @@ public class ServiceCar {
         cb6.setFont(Font.font("LiHei Pro", 15));
         CheckBox cb7 = new CheckBox("Βιολογικός καθαρισμός εσωτερικός,   80€");
         cb7.setFont(Font.font("LiHei Pro", 15));
-        CheckBox cb8 = new CheckBox("Κέρωμα - Γυάλισμα,  80€");
+        CheckBox cb8 = new CheckBox("Κέρωμα  Γυάλισμα,  80€");
         cb8.setFont(Font.font("LiHei Pro", 15));
         CheckBox cb9 = new CheckBox("Καθαρισμός κινητήρα, 20€");
         cb9.setFont(Font.font("LiHei Pro", 15));
@@ -227,7 +227,7 @@ public class ServiceCar {
                         wc.getServices().add(new Services("wc7", "Βιολογικός καθαρισμός εσωτερικός", 80.00));
                     }
                     if (cb8.isSelected()) {
-                        wc.getServices().add(new Services("wc8", "Κέρωμα - Γυάλισμα", 80.00));
+                        wc.getServices().add(new Services("wc8", "Κέρωμα Γυάλισμα", 80.00));
                     }
                     if (cb9.isSelected()) {
                         wc.getServices().add(new Services("wc9", "Καθαρισμός κινητήρα", 20.00));

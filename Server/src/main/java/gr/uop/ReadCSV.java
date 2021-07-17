@@ -1,10 +1,14 @@
 package gr.uop;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.io.Writer;
 import java.util.List;
 
@@ -16,12 +20,11 @@ import javafx.scene.control.ListView;
 public class ReadCSV {
     static File filereader = new File("MobileP.csv");
     static File file = new File("MobilePc.csv");
-    static Writer writer = null;
 
     static void ReadCsv(ObservableList<Washing> data) {
         try (BufferedReader br = new BufferedReader(new FileReader("MobileP.csv"))) {
             String line;
-
+            PrintWriter pw = new PrintWriter(new FileWriter("out.txt"));
             while (((line = br.readLine()) != null)) {
                 // if (!line.contains("-")) {
                 String mry = line;
@@ -53,7 +56,11 @@ public class ReadCSV {
                     // WriteCSV.writefile(W);
                     data.add(W);
                 }
+                if (mry.contains("-")) {
+                    pw.write(mry + "\n");
+                }
             }
+            pw.close();
             // return data;
         } catch (IOException e) {
             // TODO Auto-generated catch block

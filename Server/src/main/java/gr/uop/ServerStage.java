@@ -140,7 +140,7 @@ public class ServerStage {
                         System.out.println(
                                 "Selected for receipt and deletion: " + table.getSelectionModel().getSelectedItem());
                         table.getItems().remove(table.getSelectionModel().getSelectedIndex());
-                        //WriteCSV.removefromfile(table.getSelectionModel().getSelectedItem());
+                        // WriteCSV.removefromfile(table.getSelectionModel().getSelectedItem());
                     } catch (Exception ex) {
                         ex.printStackTrace();
                     }
