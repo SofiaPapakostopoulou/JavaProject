@@ -97,7 +97,7 @@ public class WriteCSV {
 
         try {
             temp = wc.getDate() + ",  " + wc.getTime().trim() + ",  " + wc.getPlate() + ",  " + wc.getType() + ",  "
-                    + wc.getServices() + ",  " + wc.getCost() + "€";
+                    + wc.getServices();
             newstr = wc.getDate() + ",  " + wc.getTime() + "-" + departureTime + ",  " + wc.getPlate() + ",  "
                     + wc.getType() + ",  " + wc.getServices() + ",  " + wc.getCost() + "€";
 
@@ -124,7 +124,7 @@ public class WriteCSV {
 
         try {
             temp = wc.getDate() + ",  " + wc.getTime().trim() + ",  " + wc.getPlate() + ",  " + wc.getType() + ",  "
-                    + wc.getServices() + ",  " + wc.getCost() + "€";
+                    + wc.getServices();
 
             for (int i = 0; i < dataList.getItems().size(); i++) {
                 if (dataList.getItems().get(i).equals(temp)) {

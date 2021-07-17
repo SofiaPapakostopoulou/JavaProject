@@ -31,17 +31,21 @@ public class ReadCSV {
                 if (!mry.contains("-")) {
                     String[] values = line.split(",  ");
                     int leng = values.length - 1;
-                    Washing W = new Washing(values[2], Double.parseDouble(values[leng].replace("€", " ")), values[3]);
+                    int Ccost;
+                    Washing W = new Washing(values[2], 0 , values[3]);
+                    //Double.parseDouble(values[leng].replace("€", " ")), values[3]);
                     String str = line;
                     String result = str.substring(str.indexOf("[") + 1, str.indexOf("]"));
                     String[] v = result.split(",");
 
-                    for (int i = 0; i < v.length; i = i + 2) {
 
+                    double c = 0;
+                    for (int i = 0; i < v.length; i = i + 2) {
                         String id = v[i].substring(0, 4);
                         String name_services = v[i].substring(4);
                         String cost = v[i + 1].replace("€", " ");
                         Services ser = new Services(id, name_services, Double.parseDouble(cost));
+                        c += Double.valueOf(cost);
                         W.getServices().add(ser);
                     }
                     List<Services> se = W.getServices();
@@ -53,6 +57,7 @@ public class ReadCSV {
                     W.setCb(cb);
                     W.setTime(values[1].trim());
                     W.setDate(values[0].trim());
+                    W.setCost(c);
                     // WriteCSV.writefile(W);
                     data.add(W);
                 }
