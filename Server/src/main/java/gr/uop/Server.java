@@ -62,43 +62,4 @@ public class Server extends Application {
         launch(args);
     }
 
-    // public void writeExcel(Washing text) throws Exception {
-    //     String CsvFile = "MobileP.csv";
-    //     ListView<String> dataList = new ListView<>();
-    //     DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
-    //     Calendar cal = Calendar.getInstance();
-    //     String departureTime = dateFormat.format(cal.getTime());
-
-    //     BufferedReader br;
-
-    //     try {
-    //         br = new BufferedReader(new FileReader(CsvFile));
-
-    //         String line;
-    //         while ((line = br.readLine()) != null) {
-    //             String fields = line;
-    //             dataList.getItems().add(fields);
-    //         }
-    //     } catch (FileNotFoundException ex) {
-    //         ex.printStackTrace();
-    //     } catch (IOException ex) {
-    //         ex.printStackTrace();
-    //     }
-
-    //     try {
-    //         dataList.getItems().add(text.getDate() + " " + text.getTime() + " " + text.getPlate() + " "
-    //                 + text.getServices() + " " + text.getCost() + "€");
-    //         writer = new FileWriter(file);
-    //         for (int i = 0; i < dataList.getItems().size(); i++) {
-    //             writer.write(dataList.getItems().get(i) + "\n");
-    //         }
-    //     } catch (Exception ex) {
-    //         ex.printStackTrace();
-    //     } finally {
-    //         writer.flush();
-    //         writer.close();
-    //     }
-
-    // }
-
 }
