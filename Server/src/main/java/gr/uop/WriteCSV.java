@@ -42,7 +42,7 @@ public class WriteCSV {
     public static void writefile(Washing wc) throws IOException {
         try {
             dataList.getItems().add(wc.getDate() + ",  " + wc.getTime().trim() + ",  " + wc.getPlate() + ",  "
-                    + wc.getType() + ",  " + wc.getServices() + ",  " + wc.getCost() + "€");
+                    + wc.getType() + ",  " + wc.getServices());
             writer = new FileWriter(file);
             for (int i = 0; i < dataList.getItems().size(); i++) {
                 writer.write(dataList.getItems().get(i) + "\n");
