@@ -41,12 +41,11 @@ public class Server extends Application {
     public void start(Stage stage) throws Exception {
 
         ReadCSV.ReadCsv(data);
-        WriteCSV.writeOutfile();
+
         try {
             for (Washing wc : data) {
-                WriteCSV.wfile(wc);
+                WriteCSV.writefile(wc);
             }
-            // copyContent(fout, file);
 
         } catch (IOException e) {
             // TODO Auto-generated catch block

@@ -15,8 +15,5 @@ public class Services {
     public String toString() {
         return id + " " + name_services + ", " + cost + "€";
     }
-    // public String toString() {
-    //     return name_services + ", " + cost + "€";
-    // }
 
 }
