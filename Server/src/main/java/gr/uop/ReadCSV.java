@@ -30,8 +30,7 @@ public class ReadCSV {
                 String mry = line;
                 if (!mry.contains("-")) {
                     String[] values = line.split(",  ");
-                    int leng = values.length - 1;
-                    int Ccost;
+                    //int leng = values.length - 1;
                     Washing W = new Washing(values[2], 0 , values[3]);
                     //Double.parseDouble(values[leng].replace("€", " ")), values[3]);
                     String str = line;
