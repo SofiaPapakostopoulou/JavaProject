@@ -39,8 +39,8 @@ public class ReadCSV {
 
                     double c = 0;
                     for (int i = 0; i < v.length; i = i + 2) {
-                        String id = v[i].substring(0, 4);
-                        String name_services = v[i].substring(4);
+                        String id = v[i].substring(0, 4).trim();
+                        String name_services = v[i].substring(4).trim();
                         String cost = v[i + 1].replace("€", " ");
                         Services ser = new Services(id, name_services, Double.parseDouble(cost));
                         c += Double.valueOf(cost);

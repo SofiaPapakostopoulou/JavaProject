@@ -186,23 +186,24 @@ public class ServerStage {
 
         });
 
-        /// Για να μην επιτρέπεται το κλεισιμο οσο υπάρχουν στοιχεια στο TableView (πριν τη δημιουργεια του bonus ReadCSV)
-        // stage.setOnCloseRequest((e) -> {
-        //     if (data.size() != 0) {
-        //         Alert al = new Alert(AlertType.ERROR);
-        //         al.setTitle("Σφάλμα.");
-        //         al.setHeaderText("Υπάρχουν ακόμα οχήματα προς εξυπηρέτηση.");
-        //         al.setContentText("Το προγραμμα δεν μπορεί να τερματιστεί.");
+        /// Για να μην επιτρέπεται το κλεισιμο οσο υπάρχουν στοιχεια στο TableView (πριν
+        /// τη δημιουργεια του bonus ReadCSV)
+        stage.setOnCloseRequest((e) -> {
+            // if (data.size() != 0) {
+            // Alert al = new Alert(AlertType.ERROR);
+            // al.setTitle("Σφάλμα.");
+            // al.setHeaderText("Υπάρχουν ακόμα οχήματα προς εξυπηρέτηση.");
+            // al.setContentText("Το προγραμμα δεν μπορεί να τερματιστεί.");
 
-        //         al.showAndWait();
-        //         e.consume();
-        //     }
-        //     if (data.size() == 0) {
-        //         System.exit(1);
+            // al.showAndWait();
+            // e.consume();
+            // }
+            // if (data.size() == 0) {
+            System.exit(1);
 
-        //     }
-        // });
-        ///
+            // }
+        });
+
         new Thread(() -> {
 
             while (true) {
@@ -241,7 +242,7 @@ public class ServerStage {
                     cb.setMaxHeight(3);
                     wc.setCb(cb);
                     wc.setTime();
-                    //wc.getDate();
+                    // wc.getDate();
                     wc.setDate();
                     data.add(wc);
                     WriteCSV.writefile(wc);
