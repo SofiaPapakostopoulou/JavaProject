@@ -41,10 +41,19 @@ public class Washing {
 
     // date
     public String getDate() {
+        return date;
+        //return dateFormat.format(cal.getTime());
+    }
+
+    public void setDate() {
+        //this.date = date;
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Calendar cal = Calendar.getInstance();
-        date = dateFormat.format(cal.getTime());
-        return dateFormat.format(cal.getTime());
+        this.date = dateFormat.format(cal.getTime());
+    }
+
+    public void setTheDate(String date){
+        this.date = date;
     }
 
     public String setTime() {
@@ -56,10 +65,6 @@ public class Washing {
 
     public void setTime(String time) {
         this.time = time;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
     }
 
     public String getTime() {

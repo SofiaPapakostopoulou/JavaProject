@@ -54,7 +54,7 @@ public class ReadCSV {
                     }
                     W.setCb(cb);
                     W.setTime(values[1].trim());
-                    W.setDate(values[0].trim());
+                    W.setTheDate(values[0].trim());
                     W.setCost(c);
                     data.add(W);
                 }

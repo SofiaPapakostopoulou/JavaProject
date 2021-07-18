@@ -33,10 +33,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableView;
-import java.io.FileNotFoundException;
 import javafx.stage.Stage;
 
 public class ServerStage {
@@ -243,7 +241,8 @@ public class ServerStage {
                     cb.setMaxHeight(3);
                     wc.setCb(cb);
                     wc.setTime();
-                    wc.getDate();
+                    //wc.getDate();
+                    wc.setDate();
                     data.add(wc);
                     WriteCSV.writefile(wc);
 
