@@ -1,26 +1,14 @@
 package gr.uop;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileWriter;
+
 import java.io.IOException;
 
 import java.io.Writer;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FileReader;
-
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
-import javafx.scene.control.ListView;
 
 import javafx.scene.control.TableView;
 

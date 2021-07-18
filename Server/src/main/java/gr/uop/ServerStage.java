@@ -187,7 +187,7 @@ public class ServerStage {
         });
 
         /// Για να μην επιτρέπεται το κλεισιμο οσο υπάρχουν στοιχεια στο TableView (πριν
-        /// τη δημιουργεια του bonus ReadCSV)
+        /// τη δημιουργια του bonus ReadCSV)
         stage.setOnCloseRequest((e) -> {
             // if (data.size() != 0) {
             // Alert al = new Alert(AlertType.ERROR);
