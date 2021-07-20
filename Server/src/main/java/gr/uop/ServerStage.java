@@ -148,7 +148,15 @@ public class ServerStage {
         EventHandler<ActionEvent> event2 = new EventHandler<ActionEvent>() {
             public void handle(ActionEvent e) {
                 alert.setAlertType(AlertType.CONFIRMATION);
+                // not in git
+                String contet = "Υπηρεσίες για το " + table.getSelectionModel().getSelectedItem().getPlate() + ": \n";
 
+                List<Services> ap = table.getSelectionModel().getSelectedItem().getServices();
+                for (Services s : ap) {
+                    contet += s.toString() + "\n";
+                }
+                alert.setContentText(contet);
+                ///
                 alert.setHeaderText("Ακύρωση Οχήματος " + table.getSelectionModel().getSelectedItem().getPlate());
                 alert.setTitle("Διαγραφή Οχήματος");
                 Optional<ButtonType> result = alert.showAndWait();
